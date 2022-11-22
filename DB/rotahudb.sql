@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS `debt_lender` ;
 CREATE TABLE IF NOT EXISTS `debt_lender` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `image_url` VARCHAR(250) NOT NULL,
+  `image_url` VARCHAR(250) NULL,
   `site_url` VARCHAR(250) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -308,11 +308,113 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `debt_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `debt_type` (`id`, `name`) VALUES (1, 'Credit Card');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `debt_lender`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (1, 'Navy Federal', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `image_url`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'admin@gmail.com', NULL, 1, NULL, 'john', 'doe', '2022-11-22:00:00:00', '2022-11-22:12:00:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `debt`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `debt` (`id`, `name`, `monthly_interest_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (1, 'Navy Federal Credit Card', 18.65, 29.00, 7500.00, 7500.00, 1, 1, 1, 1, '2022-11-22:12:00:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `payment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `payment` (`id`, `amount`, `debt_id`, `payment_date`, `comment`) VALUES (1, 750, 1, '2022-11-22:13:00:00', 'initial payment with Rutahu');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'groceries');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'developer salary');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `frequency`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `frequency` (`id`, `name`) VALUES (1, 'monthly');
+INSERT INTO `frequency` (`id`, `name`) VALUES (2, 'weekly');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `expense`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `expense` (`id`, `name`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 'groceries', 250, 1, 2, 1, '2022-11-22:12:00:00', '2022-11-22:18:00:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `income`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `income` (`id`, `amount`, `name`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 7500, 'Software Engineer', 2, 1, 1, '2022-11-22:00:00:00', '2022-11-22:12:00:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `rating`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `rating` (`id`, `rate`, `description`, `debt_lender_id`, `user_id`, `rating_date`, `enabled`) VALUES (1, 5, '1 year 0% APR', 1, 1, '2022-11-22:12:00:00', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `credit_resource`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rotahudb`;
+INSERT INTO `credit_resource` (`id`, `description`, `video_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (1, 'nice resource', NULL, NULL, NULL, '2022-11-22:12:00:00', '2022-11-22:12:00:00', NULL, 1);
 
 COMMIT;
 
