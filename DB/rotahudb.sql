@@ -16,35 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `rotahudb` DEFAULT CHARACTER SET utf8 ;
 USE `rotahudb` ;
 
 -- -----------------------------------------------------
--- Table `payment`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `payment` ;
-
-CREATE TABLE IF NOT EXISTS `payment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `amount` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `debt`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `debt` ;
-
-CREATE TABLE IF NOT EXISTS `debt` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `company` VARCHAR(45) NULL,
-  `interest_rate` VARCHAR(45) NULL,
-  `minimum_payment` VARCHAR(45) NULL,
-  `initial_balance` VARCHAR(45) NULL,
-  `current_balance` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `debt_type`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `debt_type` ;
@@ -52,20 +23,20 @@ DROP TABLE IF EXISTS `debt_type` ;
 CREATE TABLE IF NOT EXISTS `debt_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `priority` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `expense`
+-- Table `debt_lender`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `expense` ;
+DROP TABLE IF EXISTS `debt_lender` ;
 
-CREATE TABLE IF NOT EXISTS `expense` (
+CREATE TABLE IF NOT EXISTS `debt_lender` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `amount` INT NULL,
+  `image_url` VARCHAR(250) NOT NULL,
+  `site_url` VARCHAR(250) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -80,34 +51,86 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `imgUrl` VARCHAR(250) NULL,
   `role` VARCHAR(45) NULL,
   `enabled` TINYINT NULL,
+  `image_url` VARCHAR(250) NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `budget`
+-- Table `debt`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `budget` ;
+DROP TABLE IF EXISTS `debt` ;
 
-CREATE TABLE IF NOT EXISTS `budget` (
+CREATE TABLE IF NOT EXISTS `debt` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `name` VARCHAR(45) NOT NULL,
+  `monthly_interest_rate` DOUBLE NOT NULL,
+  `minimum_monthly_payment` DOUBLE NOT NULL,
+  `initial_balance` DOUBLE NOT NULL,
+  `current_balance` DOUBLE NULL,
+  `priority` INT NULL,
+  `debt_type_id` INT NOT NULL,
+  `debt_lender_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_debt_debt_type1_idx` (`debt_type_id` ASC),
+  INDEX `fk_debt_debt_lender1_idx` (`debt_lender_id` ASC),
+  INDEX `fk_debt_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_debt_debt_type1`
+    FOREIGN KEY (`debt_type_id`)
+    REFERENCES `debt_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_debt_debt_lender1`
+    FOREIGN KEY (`debt_lender_id`)
+    REFERENCES `debt_lender` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_debt_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `income`
+-- Table `payment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `income` ;
+DROP TABLE IF EXISTS `payment` ;
 
-CREATE TABLE IF NOT EXISTS `income` (
+CREATE TABLE IF NOT EXISTS `payment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `amount` VARCHAR(45) NULL,
-  `name` VARCHAR(45) NULL,
+  `amount` DOUBLE NOT NULL,
+  `debt_id` INT NOT NULL,
+  `payment_date` DATETIME NOT NULL,
+  `comment` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_payment_debt1_idx` (`debt_id` ASC),
+  CONSTRAINT `fk_payment_debt1`
+    FOREIGN KEY (`debt_id`)
+    REFERENCES `debt` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `category` ;
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -125,13 +148,74 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `debt_lender`
+-- Table `expense`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `debt_lender` ;
+DROP TABLE IF EXISTS `expense` ;
 
-CREATE TABLE IF NOT EXISTS `debt_lender` (
+CREATE TABLE IF NOT EXISTS `expense` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `name` VARCHAR(45) NULL,
+  `amount` DOUBLE NULL,
+  `category_id` INT NOT NULL,
+  `frequency_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_expense_category1_idx` (`category_id` ASC),
+  INDEX `fk_expense_frequency1_idx` (`frequency_id` ASC),
+  INDEX `fk_expense_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_expense_category1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_expense_frequency1`
+    FOREIGN KEY (`frequency_id`)
+    REFERENCES `frequency` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_expense_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `income`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `income` ;
+
+CREATE TABLE IF NOT EXISTS `income` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `amount` DOUBLE NULL,
+  `name` VARCHAR(45) NULL,
+  `category_id` INT NOT NULL,
+  `frequency_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_income_category1_idx` (`category_id` ASC),
+  INDEX `fk_income_frequency1_idx` (`frequency_id` ASC),
+  INDEX `fk_income_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_income_category1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_income_frequency1`
+    FOREIGN KEY (`frequency_id`)
+    REFERENCES `frequency` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_income_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -142,29 +226,74 @@ DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `rate` INT NOT NULL,
+  `description` VARCHAR(250) NULL,
+  `debt_lender_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `rating_date` DATETIME NOT NULL,
+  `enabled` TINYINT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_rating_debt_lender1_idx` (`debt_lender_id` ASC),
+  INDEX `fk_rating_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_rating_debt_lender1`
+    FOREIGN KEY (`debt_lender_id`)
+    REFERENCES `debt_lender` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rating_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `image`
+-- Table `credit_resource`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `image` ;
+DROP TABLE IF EXISTS `credit_resource` ;
 
-CREATE TABLE IF NOT EXISTS `image` (
+CREATE TABLE IF NOT EXISTS `credit_resource` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `description` VARCHAR(250) NULL,
+  `video_url` VARCHAR(1500) NULL,
+  `site_url` VARCHAR(250) NULL,
+  `debt_intensity` INT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` VARCHAR(45) NOT NULL,
+  `enabled` TINYINT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_credit_resource_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_credit_resource_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `category`
+-- Table `user_has_credit_resource`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `category` ;
+DROP TABLE IF EXISTS `user_has_credit_resource` ;
 
-CREATE TABLE IF NOT EXISTS `category` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `user_has_credit_resource` (
+  `user_id` INT NOT NULL,
+  `credit_resource_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `credit_resource_id`),
+  INDEX `fk_user_has_credit_resource_credit_resource1_idx` (`credit_resource_id` ASC),
+  INDEX `fk_user_has_credit_resource_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_credit_resource_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_credit_resource_credit_resource1`
+    FOREIGN KEY (`credit_resource_id`)
+    REFERENCES `credit_resource` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -183,7 +312,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `imgUrl`, `role`, `enabled`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'admin@gmail.com', NULL, NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `image_url`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 'admin@gmail.com', NULL, 1, NULL, 'john', 'doe', '2022-11-22:00:00:00', '2022-11-22:12:00:00');
 
 COMMIT;
 
