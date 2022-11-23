@@ -1,11 +1,14 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -23,6 +26,24 @@ public class User {
 	private String role;
 	
 	private String email;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Income> incomes;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Expense> expenses;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Debt> debts;
+	
+	@OneToMany(mappedBy = "createdBy")
+	private List<CreditResource> createdResources;
+	
+	@ManyToMany(mappedBy = "servedTo")
+	private List<CreditResource> creditResources;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Rating> ratings;
 
 	public User() {}
 
@@ -84,6 +105,54 @@ public class User {
 		this.email = email;
 	}
 
+	public List<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void setIncomes(List<Income> incomes) {
+		this.incomes = incomes;
+	}
+
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+
+	public void setExpenses(List<Expense> expenses) {
+		this.expenses = expenses;
+	}
+
+	public List<Debt> getDebts() {
+		return debts;
+	}
+
+	public void setDebts(List<Debt> debts) {
+		this.debts = debts;
+	}
+
+	public List<CreditResource> getCreatedResources() {
+		return createdResources;
+	}
+
+	public void setCreatedResources(List<CreditResource> createdResources) {
+		this.createdResources = createdResources;
+	}
+
+	public List<CreditResource> getCreditResources() {
+		return creditResources;
+	}
+
+	public void setCreditResources(List<CreditResource> creditResources) {
+		this.creditResources = creditResources;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -107,6 +176,4 @@ public class User {
 				+ ", role=" + role + ", email=" + email + "]";
 	}
 	
-	
-
 }
