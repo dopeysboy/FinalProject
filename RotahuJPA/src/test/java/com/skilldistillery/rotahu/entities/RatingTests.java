@@ -43,7 +43,7 @@ class RatingTests {
 	@Test
 	void test() {
 		assertNotNull(rating);
-//		assertEquals("", rating.get);
+		assertEquals(5, rating.getRate());
 	}
 
 }

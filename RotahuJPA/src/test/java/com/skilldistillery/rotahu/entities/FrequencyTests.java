@@ -43,7 +43,7 @@ class FrequencyTests {
 	@Test
 	void test() {
 		assertNotNull(frequency);
-//		assertEquals("", frequency.get);
+		assertEquals("monthly", frequency.getName());
 	}
 
 }
