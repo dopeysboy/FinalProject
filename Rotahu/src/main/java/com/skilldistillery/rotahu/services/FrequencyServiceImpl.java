@@ -60,13 +60,14 @@ public class FrequencyServiceImpl implements FrequencyService {
 		frequencyRepo.deleteById(frequency.getId());
 			if(!frequencyRepo.findById(frequency.getId()).isPresent()) {
 				return true;
-			}else {
-				return false;
 			}
+			}
+		return false;
 		
 
 	}
 	
+	}
 	
 
-}
+
