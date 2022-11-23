@@ -41,9 +41,15 @@ class PaymentTests {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mappings() {
 		assertNotNull(payment);
 		assertEquals(750, payment.getAmount());
+	}
+	
+	@Test
+	void test_payment_mapping_debt() {
+		assertNotNull(payment);
+		assertNotNull(payment.getDebt());
 	}
 
 }
