@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,12 +19,23 @@ public class DebtType {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String name;
+	private String description;
+	
+	@Column(name = "default_priority")
+	private int defaultPriority;
 	
 	@OneToMany(mappedBy = "debtType")
 	private List<Debt> debts;
 	
 	public DebtType() {}
+
+	public DebtType(int id, String description, int defaultPriority, List<Debt> debts) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.defaultPriority = defaultPriority;
+		this.debts = debts;
+	}
 
 	public int getId() {
 		return id;
@@ -33,12 +45,20 @@ public class DebtType {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getDefaultPriority() {
+		return defaultPriority;
+	}
+
+	public void setDefaultPriority(int defaultPriority) {
+		this.defaultPriority = defaultPriority;
 	}
 
 	public List<Debt> getDebts() {
@@ -49,24 +69,6 @@ public class DebtType {
 		this.debts = debts;
 	}
 
-	public void addDebt(Debt debt) {
-		if(debts == null) {
-			debts = new ArrayList<>();
-		}
-		
-		if(!debts.contains(debt)) {
-			debts.add(debt);
-			debt.setDebtType(this);
-		}
-	}
-	
-	public void removeDebt(Debt debt) {
-		if(debts != null && debts.contains(debt)) {
-			debts.remove(debt);
-			debt.setDebtType(null);
-		}
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -83,4 +85,11 @@ public class DebtType {
 		DebtType other = (DebtType) obj;
 		return id == other.id;
 	}
+
+	@Override
+	public String toString() {
+		return "DebtType [id=" + id + ", description=" + description + ", defaultPriority=" + defaultPriority + "]";
+	}
+
+	
 }

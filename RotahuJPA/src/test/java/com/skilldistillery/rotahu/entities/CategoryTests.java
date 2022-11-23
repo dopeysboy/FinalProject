@@ -49,7 +49,7 @@ class CategoryTests {
 	@Test
 	void test_Category_Expense_mapping() {
 		String expected = "groceries";
-		String actual = category.getExpenses().get(0).getName();
+		String actual = category.getExpenses().get(0).getDescription();
 		
 		assertEquals(expected, actual);
 	}
@@ -59,7 +59,7 @@ class CategoryTests {
 		category = em.find(Category.class, 2);
 		
 		String expected = "Software Engineer";
-		String actual = category.getIncomes().get(0).getName();
+		String actual = category.getIncomes().get(0).getDescription();
 		
 		assertEquals(expected, actual);
 	}
