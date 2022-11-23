@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Debt {
 	@Id
@@ -37,17 +39,21 @@ public class Debt {
 	
 	@ManyToOne
 	@JoinColumn(name="debt_type_id")
+	@JsonIgnoreProperties("debts")
 	private DebtType debtType;
 	
 	@ManyToOne
 	@JoinColumn(name="debt_lender_id")
+	@JsonIgnoreProperties("debts")
 	private DebtLender debtLender;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("debts")
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@OneToMany(mappedBy = "debt")
+	@JsonIgnoreProperties("debt")
 	private List<Payment>payments;
 	
 	public Debt() {}

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Payment {
 	
@@ -30,6 +32,7 @@ public class Payment {
 	
 	@ManyToOne
 	@JoinColumn(name="debt_id")
+	@JsonIgnoreProperties("payments")
 	private Debt debt;
 
 	public Payment() {}

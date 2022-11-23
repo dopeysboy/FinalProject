@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User {
 	
@@ -29,21 +31,27 @@ public class User {
 	private String email;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnoreProperties("user")
 	private List<Income> incomes;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnoreProperties("user")
 	private List<Expense> expenses;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnoreProperties("user")
 	private List<Debt> debts;
 	
 	@OneToMany(mappedBy = "createdBy")
+	@JsonIgnoreProperties("user")
 	private List<CreditResource> createdResources;
 	
 	@ManyToMany(mappedBy = "servedTo")
+	@JsonIgnoreProperties("users")
 	private List<CreditResource> creditResources;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnoreProperties("user")
 	private List<Rating> ratings;
 
 	public User() {}

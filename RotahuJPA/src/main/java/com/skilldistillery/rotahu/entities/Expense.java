@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Expense {
 	
@@ -34,16 +36,19 @@ public class Expense {
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 	
-	@OneToOne
+	@ManyToOne
+	@JsonIgnoreProperties("expenses")
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	@OneToOne
+	@ManyToOne
+	@JsonIgnoreProperties("expenses")
 	@JoinColumn(name = "frequency_id")
 	private Frequency frequency;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnoreProperties("expenses")
 	private User user;
 
 	public Expense() {}

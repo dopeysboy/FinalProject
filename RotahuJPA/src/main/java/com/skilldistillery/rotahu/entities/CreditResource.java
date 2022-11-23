@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="credit_resource")
 public class CreditResource {
@@ -50,10 +52,12 @@ public class CreditResource {
 	@JoinTable(name="user_has_credit_resources",
 	joinColumns = @JoinColumn(name="credit_resource_id"),
 	inverseJoinColumns = @JoinColumn(name="user_id"))
+	@JsonIgnoreProperties("creditResources")
 	private List<User> servedTo;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonIgnoreProperties("createdResources")
 	private User createdBy;
 	
 	public CreditResource() {}

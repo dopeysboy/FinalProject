@@ -12,7 +12,7 @@ public interface CategoryService {
 	 * @return List of all Categories
 	 * @author tylertanner
 	 */
-	List<Category> findAll();
+	List<Category> findAll(String username);
 	
 	/**
 	 * Will return the Category represented by the given Id, or null
@@ -21,7 +21,7 @@ public interface CategoryService {
 	 * @return Category or null if no Category is found
 	 * @author tylertanner
 	 */
-	Category findById(int id);
+	Category findById(int id, String username);
 	
 	/**
 	 * Will create a Category in the database if the passed User has a role of "admin"

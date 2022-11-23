@@ -16,14 +16,14 @@ public class CategoryServiceImpl implements CategoryService{
 	private CategoryRepository catRepo;
 
 	@Override
-	public List<Category> findAll() {
+	public List<Category> findAll(String username) {
 		List<Category> cats = catRepo.findAll();
 		
 		return cats;
 	}
 
 	@Override
-	public Category findById(int id) {
+	public Category findById(int id, String username) {
 		Optional<Category> catOpt = catRepo.findById(id);
 		
 		if(catOpt.isPresent()) {
