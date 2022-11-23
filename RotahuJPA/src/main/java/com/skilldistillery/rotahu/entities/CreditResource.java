@@ -145,7 +145,7 @@ public class CreditResource {
 	public void removeServedTo(User user) {
 		if(servedTo != null && servedTo.contains(user)) {
 			servedTo.add(user);
-			user.addCreditResource(this);
+			user.removeCreditResource(this);
 		}
 	}
 	

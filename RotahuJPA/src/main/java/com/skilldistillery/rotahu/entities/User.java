@@ -1,5 +1,6 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -153,6 +154,42 @@ public class User {
 		this.ratings = ratings;
 	}
 
+	public void addCreditResource(CreditResource cr) {
+		if(creditResources == null) {
+			creditResources = new ArrayList<>();
+		}
+		
+		if(!creditResources.contains(cr)) {
+			creditResources.add(cr);
+			cr.addServedTo(this);
+		}
+	}
+
+	public void removeCreditResource(CreditResource cr) {
+		if(creditResources != null && creditResources.contains(cr)) {
+			creditResources.remove(cr);
+			cr.removeServedTo(this);
+		}
+	}
+	
+	public void addRating(Rating rating) {
+		if(ratings == null) {
+			ratings = new ArrayList<>();
+		}
+		
+		if(!ratings.contains(rating)) {
+			ratings.add(rating);
+			rating.setUser(this);
+		}
+	}
+	
+	public void removeRating(Rating rating) {
+		if(ratings != null && ratings.contains(rating)) {
+			ratings.remove(rating);
+			rating.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
