@@ -1,11 +1,17 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import javassist.expr.NewArray;
 
 @Entity
 public class Category {
@@ -14,6 +20,12 @@ public class Category {
 	private int id;
 	
 	private String name;
+	
+	@OneToMany(mappedBy = "category")
+	private List<Expense> expenses;
+	
+	@OneToMany(mappedBy = "category")
+	private List<Income> incomes;
 	
 	public Category() {}
 
@@ -33,6 +45,58 @@ public class Category {
 		this.name = name;
 	}
 
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+
+	public void setExpenses(List<Expense> expenses) {
+		this.expenses = expenses;
+	}
+
+	public List<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void addExpense(Expense expense) {
+		if(expenses == null) {
+			expenses = new ArrayList<>();
+		}
+		
+		if(!expenses.contains(expense)) {
+			expenses.add(expense);
+			expense.setCategory(this);
+		}
+	}
+	
+	public void removeExpense(Expense expense) {
+		if(expenses != null && expenses.contains(expense)) {
+			expenses.remove(expense);
+			expense.setCategory(null);
+		}
+	}
+	
+	public void setIncomes(List<Income> incomes) {
+		this.incomes = incomes;
+	}
+
+	public void addIncome(Income income) {
+		if(incomes == null) {
+			incomes = new ArrayList<>(); 
+		}
+		
+		if(!incomes.contains(income)) {
+			incomes.add(income);
+			income.setCategory(this);
+		}
+	}
+	
+	public void removeIncome(Income income) {
+		if(incomes != null && incomes.contains(income)) {
+			income.setCategory(null);
+			incomes.remove(income);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

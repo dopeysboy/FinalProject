@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Debt {
@@ -28,6 +30,18 @@ public class Debt {
 	private Double currentBalance;
 	
 	private Integer priority;
+	
+	@ManyToOne
+	@JoinColumn(name="debt_type_id")
+	private DebtType debtType;
+	
+	@ManyToOne
+	@JoinColumn(name="debt_lender_id")
+	private DebtLender debtLender;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	public Debt() {}
 
@@ -85,6 +99,30 @@ public class Debt {
 
 	public void setPriority(Integer priority) {
 		this.priority = priority;
+	}
+
+	public DebtType getDebtType() {
+		return debtType;
+	}
+
+	public void setDebtType(DebtType debtType) {
+		this.debtType = debtType;
+	}
+
+	public DebtLender getDebtLender() {
+		return debtLender;
+	}
+
+	public void setDebtLender(DebtLender debtLender) {
+		this.debtLender = debtLender;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

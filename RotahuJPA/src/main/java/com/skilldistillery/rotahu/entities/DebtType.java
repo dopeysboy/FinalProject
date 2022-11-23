@@ -1,11 +1,14 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,9 @@ public class DebtType {
 	private int id;
 
 	private String name;
+	
+	@OneToMany(mappedBy = "debtType")
+	private List<Debt> debts;
 	
 	public DebtType() {}
 
@@ -35,6 +41,32 @@ public class DebtType {
 		this.name = name;
 	}
 
+	public List<Debt> getDebts() {
+		return debts;
+	}
+
+	public void setDebts(List<Debt> debts) {
+		this.debts = debts;
+	}
+
+	public void addDebt(Debt debt) {
+		if(debts == null) {
+			debts = new ArrayList<>();
+		}
+		
+		if(!debts.contains(debt)) {
+			debts.add(debt);
+			debt.setDebtType(this);
+		}
+	}
+	
+	public void removeDebt(Debt debt) {
+		if(debts != null && debts.contains(debt)) {
+			debts.remove(debt);
+			debt.setDebtType(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
