@@ -2,6 +2,7 @@ package com.skilldistillery.rotahu.services;
 
 import java.util.List;
 
+import com.skilldistillery.rotahu.entities.Debt;
 import com.skilldistillery.rotahu.entities.DebtLender;
 import com.skilldistillery.rotahu.entities.User;
 
@@ -59,4 +60,26 @@ public interface DebtLenderService {
 	 * @author tylertanner
 	 */
 	boolean destroy(DebtLender debtLender, User user);
+	
+	/**
+	 * Will add a Debt to a DebtLender's list of Debts if the passed User
+	 * owns the Debt
+	 * @param dl - the DebtLender to edit
+	 * @param debt - the Debt to add
+	 * @param user - the User trying to conduct the action
+	 * @return the updated DebtLender
+	 * @author tylertanner
+	 */
+	DebtLender addDebtToDebtLender(DebtLender dl, Debt debt, User user);
+	
+	/**
+	 * Will remove a Debt from a DebtLender's list of Debts if the passed User
+	 * owns the Debt
+	 * @param dl - the DebtLender to edit
+	 * @param debt - the Debt to remove
+	 * @param user - the User trying to conduct the action
+	 * @return the updated DebtLender
+	 * @author tylertanner
+	 */
+	DebtLender removeDebtFromDebtLender(DebtLender dl, Debt debt, User user);
 }
