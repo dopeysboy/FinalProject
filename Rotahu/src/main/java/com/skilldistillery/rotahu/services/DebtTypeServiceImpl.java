@@ -1,11 +1,14 @@
 package com.skilldistillery.rotahu.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.rotahu.entities.DebtType;
+import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.repositories.DebtTypeRepository;
+
 
 public class DebtTypeServiceImpl implements DebtTypeService {
 	
@@ -14,6 +17,56 @@ public class DebtTypeServiceImpl implements DebtTypeService {
 	
 	public List<DebtType> findAll(){
 		return debtTypeRepo.findAll();
+	}
+
+	@Override
+	public DebtType findByName(String name) {
+		return debtTypeRepo.findByName(name);
+	}
+
+	@Override
+	public DebtType findById(int debtTypeId) {
+		Optional <DebtType> opDebtType = debtTypeRepo.findById(debtTypeId);
+		DebtType d = null;
+		if(opDebtType.isPresent()) {
+			d = opDebtType.get();
+		}
+		return d;
+	}
+
+	@Override
+	public DebtType createDebtType(DebtType debtType, User user) {
+		if(user.getRole().equals("admin")) {
+			return debtTypeRepo.saveAndFlush(debtType);
+		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	public DebtType updateDebtType(DebtType debtType, String name, User user) {
+		if(user.getRole().equals("admin")) {
+		DebtType managed = findByName(name);
+		managed.setDefaultPriority(debtType.getDefaultPriority());
+		managed.setDescription(debtType.getDescription());
+		return managed;
+		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean destroyDebtType(DebtType debtType, User user) {
+			if(user.getRole().equals("admin")) {
+				debtTypeRepo.delete(debtType);
+				
+				}
+				if(!debtTypeRepo.findById(debtType.getId()).isPresent()) {
+					return true;
+			}
+		return false;
 	}
 
 }
