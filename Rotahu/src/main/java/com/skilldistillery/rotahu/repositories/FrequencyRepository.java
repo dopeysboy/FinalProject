@@ -6,6 +6,6 @@ import com.skilldistillery.rotahu.entities.Frequency;
 
 public interface FrequencyRepository extends JpaRepository<Frequency, Integer> {
 	
-	Frequency findByFrequency_Name (String name);
+	Frequency findByName (String name);
 
 }

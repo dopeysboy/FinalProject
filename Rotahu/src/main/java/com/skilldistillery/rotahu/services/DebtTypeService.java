@@ -9,7 +9,7 @@ public interface DebtTypeService {
 	
 	List<DebtType> findAll();
 	
-	DebtType findByName(String name);
+	DebtType findByDescription(String desc);
 	
 	DebtType findById(int debtTypeId);
 	

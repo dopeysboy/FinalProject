@@ -20,8 +20,8 @@ public class DebtTypeServiceImpl implements DebtTypeService {
 	}
 
 	@Override
-	public DebtType findByName(String name) {
-		return debtTypeRepo.findByName(name);
+	public DebtType findByDescription(String desc) {
+		return debtTypeRepo.findByDescription(desc);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class DebtTypeServiceImpl implements DebtTypeService {
 	@Override
 	public DebtType updateDebtType(DebtType debtType, String name, User user) {
 		if(user.getRole().equals("admin")) {
-		DebtType managed = findByName(name);
+		DebtType managed = findByDescription(name);
 		managed.setDefaultPriority(debtType.getDefaultPriority());
 		managed.setDescription(debtType.getDescription());
 		return managed;
