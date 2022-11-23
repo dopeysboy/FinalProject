@@ -6,14 +6,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.rotahu.entities.Debt;
 import com.skilldistillery.rotahu.entities.DebtLender;
 import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.repositories.DebtLenderRepository;
+import com.skilldistillery.rotahu.repositories.DebtRepository;
 
 @Service
 public class DebtLenderServiceImpl implements DebtLenderService {
 	@Autowired
 	private DebtLenderRepository dlRepo;
+	@Autowired
+	private DebtRepository debtRepo;
 	
 	@Override
 	public List<DebtLender> findAll() {
@@ -79,5 +83,32 @@ public class DebtLenderServiceImpl implements DebtLenderService {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public DebtLender addDebtToDebtLender(DebtLender dl, Debt debt, User user) {
+		if(!debt.getUser().equals(user)) {
+			return null;
+		}
+		
+		dl.addDebt(debt);
+		
+		debtRepo.saveAndFlush(debt);
+		dl = dlRepo.saveAndFlush(dl);
+		
+		return dl;
+	}
+	
+	@Override
+	public DebtLender removeDebtFromDebtLender(DebtLender dl, Debt debt, User user) {
+		if(!debt.getUser().equals(user)) {
+			return null;
+		}
+		dl.removeDebt(debt);
+		
+		debtRepo.saveAndFlush(debt);
+		dl = dlRepo.saveAndFlush(dl);
+		
+		return dl;
 	}
 }
