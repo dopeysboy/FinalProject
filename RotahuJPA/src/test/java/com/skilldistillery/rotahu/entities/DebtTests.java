@@ -41,9 +41,12 @@ class DebtTests {
 	}
 
 	@Test
-	void test() {
+	void test_debt_basic_mappings() {
 		assertNotNull(debt);
-//		assertEquals("", debt.get);
+		assertNotNull(debt.getName());
+		assertNotNull(debt.getInitialBalance());
+		assertEquals("Navy Federal Credit Card", debt.getName());
+		assertEquals(7500, debt.getInitialBalance());
 	}
 
 }
