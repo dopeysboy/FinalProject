@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.rotahu.entities.Category;
@@ -17,12 +18,13 @@ import com.skilldistillery.rotahu.services.CategoryService;
 
 
 @RestController
+@RequestMapping("api")
 @CrossOrigin({"*", "http://localhost/"})
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
-	@Autowired
+	
 
 	
 	@GetMapping("category")

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="debt_lender")
 public class DebtLender {
@@ -28,9 +30,11 @@ public class DebtLender {
 	private String siteUrl;
 	
 	@OneToMany(mappedBy = "debtLender")
+	@JsonIgnoreProperties("debtLender")
 	private List<Debt> debts;
 	
 	@OneToMany(mappedBy = "debtLender")
+	@JsonIgnoreProperties("debtLender")
 	private List<Rating> ratings;
 	
 	public DebtLender() {}

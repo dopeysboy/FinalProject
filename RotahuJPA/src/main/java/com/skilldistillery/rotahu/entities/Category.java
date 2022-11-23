@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Category {
 	@Id
@@ -18,9 +20,11 @@ public class Category {
 	
 	private String name;
 	
+	@JsonIgnoreProperties("category")
 	@OneToMany(mappedBy = "category")
 	private List<Expense> expenses;
 	
+	@JsonIgnoreProperties("category")
 	@OneToMany(mappedBy = "category")
 	private List<Income> incomes;
 	
