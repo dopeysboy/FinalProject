@@ -49,4 +49,11 @@ class DebtTests {
 		assertEquals(7500, debt.getInitialBalance());
 	}
 
+	@Test
+	void test_Debt_Payment_mapping() {
+		double expected = 750;
+		double actual = debt.getPayments().get(0).getAmount();
+		
+		assertEquals(expected, actual);
+	}
 }

@@ -46,4 +46,19 @@ class CategoryTests {
 		assertEquals("groceries", category.getName());
 	}
 
+	@Test
+	void test_Category_Expense_mapping() {
+		String expected = "groceries";
+		String actual = category.getExpenses().get(0).getName();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void test_Category_Income_mapping() {
+		String expected = "";
+		String actual = category.getIncomes().get(0).getName();
+		
+		assertEquals(expected, actual);
+	}
 }

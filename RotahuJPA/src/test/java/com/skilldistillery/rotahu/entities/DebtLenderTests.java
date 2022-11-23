@@ -41,9 +41,24 @@ class DebtLenderTests {
 	}
 
 	@Test
-	void test() {
+	void test_DebtLender_mapping() {
 		assertNotNull(debtLender);
 		assertEquals("Navy Federal", debtLender.getName());
 	}
-
+	
+	@Test
+	void test_DebtLender_Debt_mapping() {
+		double expected = 18.65;
+		double actual = debtLender.getDebts().get(0).getMonthlyInterestRate();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void test_DebtLender_Rating_mapping() {
+		String expected = "1 year 0% APR";
+		String actual = debtLender.getRatings().get(0).getDescription();
+		
+		assertEquals(expected, actual);
+	}
 }

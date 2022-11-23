@@ -60,4 +60,22 @@ class CreditResourceTests {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	void test_CreditResource_ServedTo_User_mapping() {
+		assertNotNull(creditResource);
+		/*
+		String expected = "";
+		String actual = creditResource.getServedTo().get(0).getUsername();
+		
+		assertEquals(expected, actual);
+		*/
+	}
+	
+	@Test
+	void test_CreditResource_CreatedBy_User_mapping() {
+		String expected = "admin";
+		String actual = creditResource.getCreatedBy().getUsername();
+		
+		assertEquals(expected, actual);
+	}
 }

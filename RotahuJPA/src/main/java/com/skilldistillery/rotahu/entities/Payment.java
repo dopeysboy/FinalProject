@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,7 +28,8 @@ public class Payment {
 	
 	private String comment;
 	
-	@OneToMany(mappedBy = "payments")
+	@ManyToOne
+	@JoinColumn(name="debt_id")
 	private Debt debt;
 
 	public Payment() {}
