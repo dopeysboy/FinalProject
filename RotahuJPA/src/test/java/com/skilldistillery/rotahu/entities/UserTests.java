@@ -42,9 +42,39 @@ class UserTests {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mappings() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
+	}
+	
+	@Test
+	void test_user_mapping_incomes() {
+		assertNotNull(user);
+		assertNotNull(user.getIncomes());
+	}
+	
+	@Test
+	void test_user_mapping_expenses() {
+		assertNotNull(user);
+		assertNotNull(user.getExpenses());
+	}
+	
+	@Test
+	void test_user_mapping_debts() {
+		assertNotNull(user);
+		assertNotNull(user.getDebts());
+	}
+	
+	@Test
+	void test_user_mapping_createdResources() {
+		assertNotNull(user);
+		assertNotNull(user.getCreatedResources());
+	}
+	
+	@Test
+	void test_user_mapping_creditResources() {
+		assertNotNull(user);
+		assertNotNull(user.getCreditResources());
 	}
 
 }
