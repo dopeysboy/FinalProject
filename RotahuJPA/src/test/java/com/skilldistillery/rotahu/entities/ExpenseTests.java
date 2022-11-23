@@ -43,7 +43,7 @@ class ExpenseTests {
 	@Test
 	void test_basic_mappings() {
 		assertNotNull(expense);
-		assertEquals("groceries", expense.getName());
+		assertEquals("groceries", expense.getDescription());
 	}
 	
 	@Test

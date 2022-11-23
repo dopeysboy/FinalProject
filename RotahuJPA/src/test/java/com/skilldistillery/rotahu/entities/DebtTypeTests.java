@@ -43,7 +43,7 @@ class DebtTypeTests {
 	@Test
 	void test_DebtType_mapping() {
 		assertNotNull(debtType);
-		assertEquals("Credit Card", debtType.getName());
+		assertEquals("Credit Card", debtType.getDescription());
 	}
 
 	@Test
