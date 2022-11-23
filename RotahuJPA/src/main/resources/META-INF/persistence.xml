@@ -4,6 +4,16 @@
 	
 		<!-- ENTITIES -->
 		<class>com.skilldistillery.rotahu.entities.User</class>
+		<class>com.skilldistillery.rotahu.entities.Category</class>
+		<class>com.skilldistillery.rotahu.entities.CreditResource</class>
+		<class>com.skilldistillery.rotahu.entities.Debt</class>
+		<class>com.skilldistillery.rotahu.entities.DebtLender</class>
+		<class>com.skilldistillery.rotahu.entities.DebtType</class>
+		<class>com.skilldistillery.rotahu.entities.Expense</class>
+		<class>com.skilldistillery.rotahu.entities.Frequency</class>
+		<class>com.skilldistillery.rotahu.entities.Income</class>
+		<class>com.skilldistillery.rotahu.entities.Payment</class>
+		<class>com.skilldistillery.rotahu.entities.Rating</class>
 		<!-- END ENTITIES -->
 		
 		<properties>

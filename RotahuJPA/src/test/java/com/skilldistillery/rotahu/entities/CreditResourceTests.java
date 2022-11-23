@@ -2,6 +2,9 @@ package com.skilldistillery.rotahu.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -41,9 +44,20 @@ class CreditResourceTests {
 	}
 
 	@Test
-	void test() {
+	void test_CreditResource_mapping() {
 		assertNotNull(creditResource);
-//		assertEquals("", creditResource.get);
+		assertEquals("nice resource", creditResource.getDescription());
+		assertEquals(null, creditResource.getVideoUrl());
+		assertEquals(null, creditResource.getSiteUrl());
+	}
+	@Test
+	void test_CreditResource_datetime_mapping() {
+		// 2022-11-22 12:00:00
+		LocalDateTime expected = LocalDateTime.of(2022, 11, 22, 12, 0, 0);
+		LocalDateTime actual = creditResource.getCreatedAt().atZone(ZoneId.systemDefault())
+				.withZoneSameInstant(ZoneId.of("America/Denver")).toLocalDateTime();
+		
+		assertEquals(expected, actual);
 	}
 
 }
