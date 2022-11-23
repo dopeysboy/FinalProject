@@ -60,7 +60,7 @@ class DebtTests {
 	@Test
 	void test_Debt_DebtType_mapping() {
 		String expected = "Credit Card";
-		String actual = debt.getDebtType().getName();
+		String actual = debt.getDebtType().getDescription();
 		
 		assertEquals(expected, actual);
 	}

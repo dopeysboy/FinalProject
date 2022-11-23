@@ -22,7 +22,7 @@ public class Expense {
 	@Id
 	private int id;
 	
-	private String name;
+	private String description;
 	
 	private Double amount;
 	
@@ -56,12 +56,12 @@ public class Expense {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Double getAmount() {
@@ -131,7 +131,7 @@ public class Expense {
 
 	@Override
 	public String toString() {
-		return "Expense [id=" + id + ", name=" + name + ", amount=" + amount + ", createdAt=" + createdAt
+		return "Expense [id=" + id + ", name=" + description + ", amount=" + amount + ", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + "]";
 	}
 	

@@ -24,7 +24,7 @@ public class Income {
 	
 	private Double amount;
 	
-	private String name;
+	private String description;
 	
 	@CreationTimestamp
 	@Column(name = "created_at")
@@ -64,12 +64,12 @@ public class Income {
 		this.amount = amount;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -131,7 +131,7 @@ public class Income {
 
 	@Override
 	public String toString() {
-		return "Income [id=" + id + ", amount=" + amount + ", name=" + name + ", createdAt=" + createdAt
+		return "Income [id=" + id + ", amount=" + amount + ", description=" + description + ", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + "]";
 	}
 	
