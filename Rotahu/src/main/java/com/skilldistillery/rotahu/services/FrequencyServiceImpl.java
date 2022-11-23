@@ -21,7 +21,7 @@ public class FrequencyServiceImpl implements FrequencyService {
 
 	@Override
 	public Frequency findByName(String name) {
-		return frequencyRepo.findByFrequency_Name(name);
+		return frequencyRepo.findByName(name);
 	}
 
 	@Override

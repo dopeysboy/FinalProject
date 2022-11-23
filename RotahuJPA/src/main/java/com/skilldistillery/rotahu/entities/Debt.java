@@ -18,6 +18,7 @@ public class Debt {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	
 	@Column(name="monthly_interest_rate")

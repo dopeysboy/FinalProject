@@ -13,7 +13,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>{
 	
 	Category findByExpenses_id(int id);
 	
-	Category findByIncome_Description(String description);
+	Category findByIncomes_Description(String description);
 	
-	Category findByIncome_id(int id);
+	Category findByIncomes_id(int id);
 }
