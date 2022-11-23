@@ -6,4 +6,9 @@ public interface AuthService {
 	public User register(User user);
 	
 	public User getUserByUsername(String username);
+	
+	public User update(User user);
+	
+	public boolean destroy(User user);
+	
 }
