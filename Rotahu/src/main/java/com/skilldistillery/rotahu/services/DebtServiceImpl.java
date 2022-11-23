@@ -26,6 +26,16 @@ public class DebtServiceImpl implements DebtService{
 		
 		return debts;
 	}
+
+	@Override
+	public Debt getDebtById(int id, User user) {
+		Optional<Debt> debtOpt = debtRepo.findById(id);
+		if(!debtOpt.isPresent() || !debtOpt.get().getUser().equals(user)) {
+			return null;
+		}
+		
+		return debtOpt.get();
+	}
 	
 	@Override
 	public List<Debt> getDebtsByDebtLender(DebtLender debtLender, User user){
