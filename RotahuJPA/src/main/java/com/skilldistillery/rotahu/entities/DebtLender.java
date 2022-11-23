@@ -1,5 +1,7 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +28,12 @@ public class DebtLender {
 	
 	@Column(name="site_url")
 	private String siteUrl;
+	
+	@OneToMany(mappedBy = "debtLender")
+	private List<Debt> debts;
+	
+	@OneToMany(mappedBy = "debtLender")
+	private List<Rating> ratings;
 	
 	public DebtLender() {}
 
@@ -58,6 +69,57 @@ public class DebtLender {
 		this.siteUrl = siteUrl;
 	}
 
+	public List<Debt> getDebts() {
+		return debts;
+	}
+
+	public void setDebts(List<Debt> debts) {
+		this.debts = debts;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public void addDebt(Debt debt) {
+		if(debts == null) {
+			debts = new ArrayList<>();
+		}
+		if(!debts.contains(debt)) {
+			debts.add(debt);
+			debt.setDebtLender(this);
+		}
+	}
+	
+	public void removeDebt(Debt debt) {
+		if(debts != null && debts.contains(debt)) {
+			debts.remove(debt);
+			debt.setDebtLender(null);
+		}
+	}
+	
+	public void addRating(Rating rating) {
+		if(ratings == null) {
+			ratings = new ArrayList<>();
+		}
+		
+		if(!ratings.contains(rating)) {
+			ratings.add(rating);
+			rating.setDebtLender(this);
+		}
+	}
+	
+	public void removeRating(Rating rating) {
+		if(ratings != null && ratings.contains(rating)) {
+			ratings.remove(rating);
+			rating.setDebtLender(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
