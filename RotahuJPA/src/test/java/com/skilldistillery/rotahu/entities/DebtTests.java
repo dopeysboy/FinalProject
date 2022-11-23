@@ -56,4 +56,28 @@ class DebtTests {
 		
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void test_Debt_DebtType_mapping() {
+		String expected = "Credit Card";
+		String actual = debt.getDebtType().getName();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void test_Debt_DebtLender_mapping() {
+		String expected = "Navy Federal";
+		String actual = debt.getDebtLender().getName();
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void test_Debt_User_mapping() {
+		String expected = "admin";
+		String actual = debt.getUser().getUsername();
+		
+		assertEquals(expected, actual);
+	}
 }

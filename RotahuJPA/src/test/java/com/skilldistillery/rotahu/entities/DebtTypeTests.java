@@ -41,9 +41,16 @@ class DebtTypeTests {
 	}
 
 	@Test
-	void test() {
+	void test_DebtType_mapping() {
 		assertNotNull(debtType);
 		assertEquals("Credit Card", debtType.getName());
 	}
 
+	@Test
+	void test_DebtType_Debt_mapping() {
+		String expected = "Navy Federal Credit Card";
+		String actual = debtType.getDebts().get(0).getName();
+		
+		assertEquals(expected, actual);
+	}
 }

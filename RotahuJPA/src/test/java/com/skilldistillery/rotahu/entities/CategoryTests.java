@@ -56,7 +56,9 @@ class CategoryTests {
 	
 	@Test
 	void test_Category_Income_mapping() {
-		String expected = "";
+		category = em.find(Category.class, 2);
+		
+		String expected = "Software Engineer";
 		String actual = category.getIncomes().get(0).getName();
 		
 		assertEquals(expected, actual);
