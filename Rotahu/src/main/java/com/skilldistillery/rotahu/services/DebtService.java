@@ -17,6 +17,15 @@ public interface DebtService {
 	List<Debt> getDebtsByUser(User user);
 
 	/**
+	 * Given an id, will return the Debt associated with that id if it is owned by
+	 * the passed User
+	 * @param id - the id of the Debt
+	 * @param user - the User who owns the Debt
+	 * @return Either null or the persisted Debt
+	 * @author tylertanner
+	 */
+	Debt getDebtById(int id, User user);
+	/**
 	 * Given a DebtLender and a User, will return each Debt that has the given User and DebtLender
 	 * @param debtLender - The DebtLender object you want to see Debts from
 	 * @param user - The User whose Debts you want to see
