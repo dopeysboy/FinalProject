@@ -414,7 +414,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `credit_resource` (`id`, `description`, `video_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (1, 'nice resource', NULL, NULL, NULL, '2022-11-22:12:00:00', '2022-11-22:12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `video_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (1, 'nice resource', NULL, NULL, NULL, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
 
 COMMIT;
 
