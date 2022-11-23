@@ -67,7 +67,7 @@ public class CategoryServiceImpl implements CategoryService{
 		if(user.getRole().equals("admin")) {
 			catRepo.delete(category);
 			
-			if(catRepo.findById(category.getId()).isEmpty()) {
+			if(!catRepo.findById(category.getId()).isPresent()) {
 				return true;
 			}
 		}
