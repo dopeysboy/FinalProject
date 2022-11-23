@@ -43,7 +43,7 @@ class DebtLenderTests {
 	@Test
 	void test() {
 		assertNotNull(debtLender);
-//		assertEquals("", debtLender.get);
+		assertEquals("Navy Federal", debtLender.getName());
 	}
 
 }

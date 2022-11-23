@@ -43,7 +43,7 @@ class IncomeTests {
 	@Test
 	void test() {
 		assertNotNull(income);
-//		assertEquals("", income.get);
+		assertEquals(7500, income.getAmount());
 	}
 
 }
