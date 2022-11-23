@@ -30,6 +30,7 @@ public interface DebtService {
 	 * @param apr - The Double percentage monthly APR
 	 * @param user - The User you want to see Debts for
 	 * @return List of all Debts that match the criteria
+	 * @author tylertanner
 	 */
 	List<Debt> getDebtsByApr(Double apr, User user);
 
@@ -38,6 +39,7 @@ public interface DebtService {
 	 * @param debt - The new Debt you want persisted
 	 * @param user - The User who owns the Debt
 	 * @return The saved Debt
+	 * @author tylertanner
 	 */
 	Debt createDebt(Debt debt, User user);
 
@@ -48,6 +50,7 @@ public interface DebtService {
 	 * @param debt - The Debt you want deleted
 	 * @param user - The User who owns the Debt
 	 * @return True or False based on whether the operation was successful
+	 * @author tylertanner
 	 */
 	boolean destroyDebt(Debt debt, User user);
 
@@ -59,6 +62,7 @@ public interface DebtService {
 	 * @param debtId - The id of the old Debt
 	 * @param user - The User who owns the old Debt
 	 * @return The persisted Debt object
+	 * @author tylertanner
 	 */
 	Debt updateDebt(Debt newDebt, int debtId, User user);
 
