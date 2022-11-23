@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Payment {
@@ -18,11 +21,14 @@ public class Payment {
 	
 	private Double amount;
 	
-//	@CreationTimestamp
+	@CreationTimestamp
 	@Column(name = "payment_date")
 	private LocalDateTime paymentDate;
 	
 	private String comment;
+	
+	@OneToMany(mappedBy = "payments")
+	private Debt debt;
 
 	public Payment() {}
 
@@ -56,6 +62,14 @@ public class Payment {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Debt getDebt() {
+		return debt;
+	}
+
+	public void setDebt(Debt debt) {
+		this.debt = debt;
 	}
 
 	@Override

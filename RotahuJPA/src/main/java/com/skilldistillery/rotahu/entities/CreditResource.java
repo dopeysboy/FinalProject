@@ -1,6 +1,8 @@
 package com.skilldistillery.rotahu.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,6 +45,16 @@ public class CreditResource {
 	private LocalDateTime updatedAt;
 	
 	private Boolean enabled;
+	
+	@ManyToMany
+	@JoinTable(name="user_has_credit_resources",
+	joinColumns = @JoinColumn(name="credit_resource_id"),
+	inverseJoinColumns = @JoinColumn(name="user_id"))
+	private List<User> servedTo;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User createdBy;
 	
 	public CreditResource() {}
 
@@ -104,6 +120,41 @@ public class CreditResource {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	
+	public List<User> getServedTo() {
+		return servedTo;
+	}
+
+	public void setServedTo(List<User> servedTo) {
+		this.servedTo = servedTo;
+	}
+
+	public void addServedTo(User user) {
+		if(servedTo == null) {
+			servedTo = new ArrayList<>();
+		}
+		
+		if(!servedTo.contains(user)) {
+			servedTo.add(user);
+			user.addCreditResource(this);
+		}
+	}
+	
+	public void removeServedTo(User user) {
+		if(servedTo != null && servedTo.contains(user)) {
+			servedTo.add(user);
+			user.removeCreditResource(this);
+		}
+	}
+	
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	@Override
