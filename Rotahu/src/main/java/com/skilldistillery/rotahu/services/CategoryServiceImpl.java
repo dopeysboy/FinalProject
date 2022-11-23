@@ -49,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService{
 		if(user.getRole().equals("admin")) {
 			Optional<Category> catOpt = catRepo.findById(catId);
 		
-			if(catOpt.isEmpty()) {
+			if(!catOpt.isPresent()) {
 				return null;
 			}
 			

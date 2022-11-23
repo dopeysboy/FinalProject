@@ -86,7 +86,7 @@ public class DebtServiceImpl implements DebtService{
 		//If debt doesn't exist by that id
 		//OR
 		//If debt isn't owned by the user passed
-		if(debtOpt.isEmpty() || debtOpt.get().getUser() != user) {
+		if(!debtOpt.isPresent() || debtOpt.get().getUser() != user) {
 			return null;
 		}
 		user.removeDebt(debtOpt.get());
