@@ -6,6 +6,6 @@ import com.skilldistillery.rotahu.entities.DebtType;
 
 public interface DebtTypeRepository extends JpaRepository <DebtType, Integer> {
 	
-	DebtType findByName (String name);
+	DebtType findByDescription (String desc);
 
 }
