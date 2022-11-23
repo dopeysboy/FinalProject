@@ -41,9 +41,27 @@ class ExpenseTests {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mappings() {
 		assertNotNull(expense);
 		assertEquals("groceries", expense.getName());
+	}
+	
+	@Test
+	void test_expense_mapping_category() {
+		assertNotNull(expense);
+		assertNotNull(expense.getCategory());
+	}
+	
+	@Test
+	void test_expense_mapping_frequency() {
+		assertNotNull(expense);
+		assertNotNull(expense.getFrequency());
+	}
+	
+	@Test
+	void test_expense_mapping_user() {
+		assertNotNull(expense);
+		assertNotNull(expense.getUser());
 	}
 
 }

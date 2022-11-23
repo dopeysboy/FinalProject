@@ -41,9 +41,27 @@ class IncomeTests {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mappings() {
 		assertNotNull(income);
 		assertEquals(7500, income.getAmount());
+	}
+	
+	@Test
+	void test_income_mapping_category() {
+		assertNotNull(income);
+		assertNotNull(income.getCategory());
+	}
+	
+	@Test
+	void test_income_mapping_frequency() {
+		assertNotNull(income);
+		assertNotNull(income.getFrequency());
+	}
+	
+	@Test
+	void test_income_mapping_user() {
+		assertNotNull(income);
+		assertNotNull(income.getUser());
 	}
 
 }

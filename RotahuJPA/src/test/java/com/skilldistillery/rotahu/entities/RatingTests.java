@@ -41,9 +41,21 @@ class RatingTests {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mappings() {
 		assertNotNull(rating);
 		assertEquals(5, rating.getRate());
+	}
+	
+	@Test
+	void test_rating_mapping_debt_lender() {
+		assertNotNull(rating);
+		assertNotNull(rating.getDebtLender());
+	}
+	
+	@Test
+	void test_rating_mapping_debt_users() {
+		assertNotNull(rating);
+		assertNotNull(rating.getUser());
 	}
 
 }
