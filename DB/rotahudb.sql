@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `debt_type` ;
 
 CREATE TABLE IF NOT EXISTS `debt_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `description` VARCHAR(250) NULL,
   `default_priority` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -155,7 +155,7 @@ DROP TABLE IF EXISTS `expense` ;
 
 CREATE TABLE IF NOT EXISTS `expense` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
   `amount` DOUBLE NULL,
   `category_id` INT NOT NULL,
   `frequency_id` INT NOT NULL,
@@ -192,7 +192,7 @@ DROP TABLE IF EXISTS `income` ;
 CREATE TABLE IF NOT EXISTS `income` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `amount` DOUBLE NULL,
-  `name` VARCHAR(45) NULL,
+  `description` VARCHAR(500) NULL,
   `category_id` INT NOT NULL,
   `frequency_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -313,11 +313,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `debt_type` (`id`, `name`, `default_priority`) VALUES (1, 'Credit Card', 5);
-INSERT INTO `debt_type` (`id`, `name`, `default_priority`) VALUES (2, 'Mortgage', 1);
-INSERT INTO `debt_type` (`id`, `name`, `default_priority`) VALUES (3, 'Auto Loan', 2);
-INSERT INTO `debt_type` (`id`, `name`, `default_priority`) VALUES (4, 'Personal Loan', 3);
-INSERT INTO `debt_type` (`id`, `name`, `default_priority`) VALUES (5, 'Student Loan', 4);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (1, 'Credit Card', 5);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (2, 'Mortgage', 1);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (3, 'Auto Loan', 2);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (4, 'Personal Loan', 3);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (5, 'Student Loan', 4);
 
 COMMIT;
 
@@ -401,9 +401,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `expense` (`id`, `name`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 'groceries', 250, 1, 2, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
-INSERT INTO `expense` (`id`, `name`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 'rent', 2200, 4, 1, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
-INSERT INTO `expense` (`id`, `name`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (3, 'gas', 200, 5, 2, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
+INSERT INTO `expense` (`id`, `description`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 'groceries', 250, 1, 2, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
+INSERT INTO `expense` (`id`, `description`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 'rent', 2200, 4, 1, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
+INSERT INTO `expense` (`id`, `description`, `amount`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (3, 'gas', 200, 5, 2, 1, '2022-11-22 12:00:00', '2022-11-22 18:00:00');
 
 COMMIT;
 
@@ -413,10 +413,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `income` (`id`, `amount`, `name`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 7500, 'Software Engineer', 2, 1, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
-INSERT INTO `income` (`id`, `amount`, `name`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 993, 'MHA', 3, 1, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
-INSERT INTO `income` (`id`, `amount`, `name`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (3, 55.00, 'Dividends', 4, 3, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
-INSERT INTO `income` (`id`, `amount`, `name`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (4, 250, 'Groceries', 1, 2, 1, '2022-11-22 00:00:00', '2022-11-22 00:00:00');
+INSERT INTO `income` (`id`, `amount`, `description`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 7500, 'Software Engineer', 2, 1, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
+INSERT INTO `income` (`id`, `amount`, `description`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (2, 993, 'MHA', 3, 1, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
+INSERT INTO `income` (`id`, `amount`, `description`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (3, 55.00, 'Dividends', 4, 3, 1, '2022-11-22 00:00:00', '2022-11-22 12:00:00');
+INSERT INTO `income` (`id`, `amount`, `description`, `category_id`, `frequency_id`, `user_id`, `created_at`, `updated_at`) VALUES (4, 250, 'Groceries', 1, 2, 1, '2022-11-22 00:00:00', '2022-11-22 00:00:00');
 
 COMMIT;
 
