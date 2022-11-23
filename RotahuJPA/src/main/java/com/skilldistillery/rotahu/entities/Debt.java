@@ -1,5 +1,7 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Debt {
@@ -42,6 +45,9 @@ public class Debt {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToMany(mappedBy = "debt")
+	private List<Payment>payments;
 	
 	public Debt() {}
 
@@ -125,6 +131,32 @@ public class Debt {
 		this.user = user;
 	}
 
+	public List<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payment> payments) {
+		this.payments = payments;
+	}
+
+	public void addPayment(Payment payment) {
+		if(payments == null) {
+			payments = new ArrayList<>(); 
+		}
+		
+		if(!payments.contains(payment)) {
+			payments.add(payment);
+			payment.setDebt(this);
+		}
+	}
+	
+	public void removePayment(Payment payment) {
+		if(payments != null && payments.contains(payment)) {
+			payments.remove(payment);
+			payment.setDebt(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
