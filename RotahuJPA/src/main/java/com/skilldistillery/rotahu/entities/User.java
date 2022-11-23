@@ -190,6 +190,78 @@ public class User {
 		}
 	}
 	
+	public void addDebt(Debt debt) {
+		if(debts == null) {
+			debts = new ArrayList<>();
+		}
+		
+		if(!debts.contains(debt)) {
+			debts.add(debt);
+			debt.setUser(this);
+		}
+	}
+	
+	public void removeDebt(Debt debt) {
+		if(debts != null && debts.contains(debt)) {
+			debts.remove(debt);
+			debt.setUser(null);
+		}
+	}
+	
+	public void addIncome(Income income) {
+		if(incomes == null) {
+			incomes = new ArrayList<>();
+		}
+		
+		if(!incomes.contains(income)) {
+			incomes.add(income);
+			income.setUser(this);
+		}
+	}
+	
+	public void removeIncome(Income income) {
+		if(incomes != null && incomes.contains(income)) {
+			incomes.remove(income);
+			income.setUser(null);
+		}
+	}
+	
+	public void addCreatedResource(CreditResource cr) {
+		if(createdResources == null) {
+			createdResources = new ArrayList<>();
+		}
+		
+		if(!createdResources.contains(cr)) {
+			createdResources.add(cr);
+			cr.setCreatedBy(this);
+		}
+	}
+	
+	public void removeCreatedResource(CreditResource cr) {
+		if(createdResources != null && createdResources.contains(cr)) {
+			createdResources.remove(cr);
+			cr.setCreatedBy(null);
+		}
+	}
+	
+	public void addExpense(Expense expense) {
+		if(expenses == null) {
+			expenses = new ArrayList<>();
+		}
+		
+		if(!expenses.contains(expense)) {
+			expenses.add(expense);
+			expense.setUser(this);
+		}
+	}
+	
+	public void removeExpense(Expense expense) {
+		if(expenses != null && expenses.contains(expense)) {
+			expenses.remove(expense);
+			expense.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
