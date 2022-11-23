@@ -24,9 +24,7 @@ public class User {
 	
 	private String email;
 
-	public User() {
-		super();
-	}
+	public User() {}
 
 	public User(int id, String username, String password, Boolean enabled, String role, String email) {
 		super();
