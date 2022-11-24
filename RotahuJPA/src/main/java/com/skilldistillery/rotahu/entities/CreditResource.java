@@ -49,7 +49,7 @@ public class CreditResource {
 	private Boolean enabled;
 	
 	@ManyToMany
-	@JoinTable(name="user_has_credit_resources",
+	@JoinTable(name="user_has_credit_resource",
 	joinColumns = @JoinColumn(name="credit_resource_id"),
 	inverseJoinColumns = @JoinColumn(name="user_id"))
 	@JsonIgnoreProperties("creditResources")

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -51,7 +52,7 @@ public class User {
 	private List<CreditResource> creditResources;
 	
 	@OneToMany(mappedBy = "user")
-	@JsonIgnoreProperties("user")
+	@JsonIgnore //Properties("user")
 	private List<Rating> ratings;
 
 	public User() {}

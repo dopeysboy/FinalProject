@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -38,7 +39,7 @@ public class Income {
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	@JsonIgnoreProperties("incomes")
+	@JsonIgnore //Properties("incomes")
 	private Category category;
 	
 	@OneToOne
