@@ -58,7 +58,7 @@ public class DebtServiceImpl implements DebtService{
 		 * will go before save and flush
 		 */
 		user.addDebt(debt);
-		
+		debt.setUser(user);
 		userRepo.saveAndFlush(user);
 		debt = debtRepo.saveAndFlush(debt);
 		
@@ -70,7 +70,7 @@ public class DebtServiceImpl implements DebtService{
 		if(debtRepo.findByUser(user).contains(debt)) {
 			user.removeDebt(debt);
 			
-			userRepo.saveAndFlush(user);
+//			userRepo.saveAndFlush(user);
 			/**
 			 * MIGHT HAVE TO ITERATIVELY DELETE EACH ASSOCIATION
 			 */
@@ -100,12 +100,11 @@ public class DebtServiceImpl implements DebtService{
 			return null;
 		}
 		user.removeDebt(debtOpt.get());
-		
 		newDebt.setId(debtId);
 		user.addDebt(newDebt);
 		
-		userRepo.saveAndFlush(user);
-		debtRepo.saveAndFlush(newDebt);
+//		userRepo.saveAndFlush(user);
+		newDebt = debtRepo.saveAndFlush(newDebt);
 		return newDebt;
 	}
 }
