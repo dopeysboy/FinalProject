@@ -46,6 +46,7 @@ public class PaymentController {
 	
 	@PostMapping("payment")
 	public Payment create(HttpServletRequest req, HttpServletResponse res, @RequestBody Payment payment, Integer debtId, Principal principal) {
+		debtId = payment.getDebt().getId();
 		String username = principal.getName();
 		try {
 			payment = paymentService.create(username, debtId, payment);
@@ -66,7 +67,8 @@ public class PaymentController {
 	}
 
 	@PutMapping("payment/{paymentId}")
-	public Payment update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer debtId, @PathVariable Integer paymentId, @RequestBody Payment payment, Principal principal) {
+	public Payment update(HttpServletRequest req, HttpServletResponse res, Integer debtId, @PathVariable Integer paymentId, @RequestBody Payment payment, Principal principal) {
+		System.out.println("payment");
 		String username = principal.getName();
 		try {
 			payment = paymentService.update(username, debtId, paymentId, payment);
@@ -82,7 +84,7 @@ public class PaymentController {
 	}
 
 	@DeleteMapping("payment/{paymentId}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer debtId, @PathVariable Integer paymentId,  Principal principal) {
+	public void destroy(HttpServletRequest req, HttpServletResponse res, Integer debtId, @PathVariable Integer paymentId,  Principal principal) {
 		String username = principal.getName();
 		try {
 			boolean deleted = paymentService.delete(username, debtId, paymentId);
