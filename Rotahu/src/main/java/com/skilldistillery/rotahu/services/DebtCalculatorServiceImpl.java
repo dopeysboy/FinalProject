@@ -18,9 +18,11 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 	@Override
 	public Map<Integer, Double> calculatePayments(Debt debt, double payment){
 		Map<Integer, Double> payments = new HashMap<>();
-		double interestRate = debt.getMonthlyInterestRate();
+		double interestRate = debt.getAnnualPercentageRate();
 		double debtTotal = debt.getCurrentBalance();
 		
+		//turn from annual to monthly
+		interestRate /= 12;
 		//turn from percent to decimal
 		interestRate /= 100;
 		
