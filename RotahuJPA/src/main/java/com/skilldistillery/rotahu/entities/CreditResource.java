@@ -52,12 +52,12 @@ public class CreditResource {
 	@JoinTable(name="user_has_credit_resource",
 	joinColumns = @JoinColumn(name="credit_resource_id"),
 	inverseJoinColumns = @JoinColumn(name="user_id"))
-	@JsonIgnoreProperties("creditResources")
+	@JsonIgnoreProperties({"creditResources", "incomes", "debts", "expenses", "ratings"})
 	private List<User> servedTo;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonIgnoreProperties("createdResources")
+	@JsonIgnoreProperties({"createdResources", "incomes", "debts", "expenses", "ratings"})
 	private User createdBy;
 	
 	public CreditResource() {}

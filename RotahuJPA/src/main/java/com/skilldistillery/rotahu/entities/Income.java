@@ -39,7 +39,7 @@ public class Income {
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	@JsonIgnore //Properties("incomes")
+	@JsonIgnoreProperties({"incomes", "expenses"})
 	private Category category;
 	
 	@OneToOne
@@ -49,7 +49,7 @@ public class Income {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnoreProperties("incomes")
+	@JsonIgnoreProperties({"incomes", "expenses", "debts", "createdResources", "creditResources"})
 	private User user;
 
 	public Income() {}

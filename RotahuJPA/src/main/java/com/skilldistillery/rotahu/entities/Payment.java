@@ -32,7 +32,7 @@ public class Payment {
 	
 	@ManyToOne
 	@JoinColumn(name="debt_id")
-	@JsonIgnoreProperties("payments")
+	@JsonIgnoreProperties({"payments", "user"})
 	private Debt debt;
 
 	public Payment() {}

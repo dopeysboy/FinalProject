@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,7 +28,7 @@ public class DebtType {
 	private int defaultPriority;
 	
 	@OneToMany(mappedBy = "debtType")
-	@JsonIgnoreProperties("debtType")
+	@JsonIgnore //Properties("debtType")
 	private List<Debt> debts;
 	
 	public DebtType() {}

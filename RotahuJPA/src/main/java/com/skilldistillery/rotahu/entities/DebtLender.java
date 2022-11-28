@@ -31,7 +31,7 @@ public class DebtLender {
 	private String siteUrl;
 	
 	@OneToMany(mappedBy = "debtLender")
-	@JsonIgnoreProperties("debtLender")
+	@JsonIgnoreProperties({"debtLender", "user", "payments"})
 	private List<Debt> debts;
 	
 	@OneToMany(mappedBy = "debtLender")

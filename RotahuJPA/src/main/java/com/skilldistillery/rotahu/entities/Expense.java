@@ -36,7 +36,7 @@ public class Expense {
 	private LocalDateTime updatedAt;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("expenses")
+	@JsonIgnoreProperties({"expenses", "incomes"})
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
@@ -47,7 +47,7 @@ public class Expense {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnoreProperties("expenses")
+	@JsonIgnoreProperties({"expenses", "incomes", "debts", "createdResources", "creditResources", "ratings"})
 	private User user;
 
 	public Expense() {}

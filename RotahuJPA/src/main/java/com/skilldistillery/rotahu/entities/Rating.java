@@ -39,7 +39,7 @@ public class Rating {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnoreProperties("ratings")
+	@JsonIgnoreProperties({"expenses", "incomes", "debts", "createdResources", "creditResources", "ratings"})
 	private User user;
 
 	public Rating() {}

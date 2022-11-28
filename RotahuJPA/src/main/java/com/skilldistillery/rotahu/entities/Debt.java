@@ -1,5 +1,6 @@
 package com.skilldistillery.rotahu.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -55,6 +58,10 @@ public class Debt {
 	@OneToMany(mappedBy = "debt")
 	@JsonIgnoreProperties("debt")
 	private List<Payment>payments;
+	
+	@CreationTimestamp
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
 	
 	public Debt() {}
 

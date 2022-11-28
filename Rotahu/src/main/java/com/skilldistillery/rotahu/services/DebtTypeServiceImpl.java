@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.DebtType;
 import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.repositories.DebtTypeRepository;
 
-
+@Service
 public class DebtTypeServiceImpl implements DebtTypeService {
 	
 	@Autowired
