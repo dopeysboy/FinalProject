@@ -31,11 +31,11 @@ public class ExpenseController {
 	@GetMapping("expense")
 	public List<Expense> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		String username = principal.getName();
-		List<Expense> todos = expenseService.index(username);
-		if (todos.size() == 0) {
+		List<Expense> expenses = expenseService.index(username);
+		if (expenses.size() == 0) {
 			res.setStatus(404);
 		}
-		return todos;
+		return expenses;
 	}
 
 	@GetMapping("expense/{expenseId}")
