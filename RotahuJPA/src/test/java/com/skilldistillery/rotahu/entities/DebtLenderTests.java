@@ -49,7 +49,7 @@ class DebtLenderTests {
 	@Test
 	void test_DebtLender_Debt_mapping() {
 		double expected = 18.65;
-		double actual = debtLender.getDebts().get(0).getMonthlyInterestRate();
+		double actual = debtLender.getDebts().get(0).getAnnualPercentageRate();
 		
 		assertEquals(expected, actual);
 	}

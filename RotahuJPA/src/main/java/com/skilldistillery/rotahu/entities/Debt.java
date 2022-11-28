@@ -26,8 +26,8 @@ public class Debt {
 	
 	private String name;
 	
-	@Column(name="monthly_interest_rate")
-	private double monthlyInterestRate;
+	@Column(name="annual_percentage_rate")
+	private double annualPercentageRate;
 	
 	@Column(name="minimum_monthly_payment")
 	private double minimumMonthlyPayment;
@@ -81,12 +81,12 @@ public class Debt {
 		this.name = name;
 	}
 
-	public double getMonthlyInterestRate() {
-		return monthlyInterestRate;
+	public double getAnnualPercentageRate() {
+		return annualPercentageRate;
 	}
 
-	public void setMonthlyInterestRate(double monthlyInterestRate) {
-		this.monthlyInterestRate = monthlyInterestRate;
+	public void setAnnualPercentageRate(double annualPercentageRate) {
+		this.annualPercentageRate = annualPercentageRate;
 	}
 
 	public double getMinimumMonthlyPayment() {
