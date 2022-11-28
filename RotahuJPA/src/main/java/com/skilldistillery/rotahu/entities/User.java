@@ -44,11 +44,11 @@ public class User {
 	private List<Debt> debts;
 	
 	@OneToMany(mappedBy = "createdBy")
-	@JsonIgnoreProperties("user")
+	@JsonIgnoreProperties("createdBy")
 	private List<CreditResource> createdResources;
 	
 	@ManyToMany(mappedBy = "servedTo")
-	@JsonIgnoreProperties("users")
+	@JsonIgnoreProperties("servedTo")
 	private List<CreditResource> creditResources;
 	
 	@OneToMany(mappedBy = "user")
