@@ -5,10 +5,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IndexComponent } from './index/index.component';
+import { PublicCalulatorComponent } from './public-calulator/public-calulator.component';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserDebtComponent } from './user-debt/user-debt.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CompanyDetailComponent } from './company-detail/company-detail.component';
+import { AdviceComponent } from './advice/advice.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IndexComponent,
+    PublicCalulatorComponent,
+    LoginComponent,
+    NavbarComponent,
+    UserDebtComponent,
+    ProfileComponent,
+    CompanyDetailComponent,
+    AdviceComponent
   ],
   imports: [
     BrowserModule,
