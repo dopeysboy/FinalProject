@@ -23,8 +23,8 @@ import com.skilldistillery.rotahu.services.PaymentService;
 @RestController
 @RequestMapping("api")
 @CrossOrigin({"*", "http://localhost/"})
-
 public class PaymentController {
+	
 	@Autowired
 	private PaymentService paymentService;
 	

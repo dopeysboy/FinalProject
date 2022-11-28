@@ -13,6 +13,7 @@ import { UserDebtComponent } from './user-debt/user-debt.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { AdviceComponent } from './advice/advice.component';
+import { RatingComponent } from './models/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AdviceComponent } from './advice/advice.component';
     UserDebtComponent,
     ProfileComponent,
     CompanyDetailComponent,
-    AdviceComponent
+    AdviceComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

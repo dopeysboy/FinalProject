@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.Frequency;
 import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.repositories.FrequencyRepository;
 
+@Service
 public class FrequencyServiceImpl implements FrequencyService {
 	
 	@Autowired
