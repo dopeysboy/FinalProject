@@ -153,6 +153,14 @@ public class Debt {
 		this.payments = payments;
 	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public void addPayment(Payment payment) {
 		if(payments == null) {
 			payments = new ArrayList<>(); 
