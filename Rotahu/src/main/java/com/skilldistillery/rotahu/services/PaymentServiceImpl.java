@@ -66,6 +66,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Payment update(String username, Integer debtId, Integer paymentId, Payment payment) {
 		Payment dbPayment = show(username, paymentId);
+		debtId = dbPayment.getDebt().getId();
 		if (dbPayment != null && dbPayment.getDebt().getId() == debtId) {
 			dbPayment.setComment(payment.getComment());
 			dbPayment.setAmount(payment.getAmount());
