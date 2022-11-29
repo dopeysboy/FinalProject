@@ -1,12 +1,12 @@
 package com.skilldistillery.rotahu.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

@@ -1,0 +1,22 @@
+#initials {
+  color: white;
+  background-color: rgba(var(--bs-primary-rgb));
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 36px;
+  margin: 15px;
+}
+
+#initials,p {
+  padding: 20px;
+}
+
+button {
+  margin: 10px;
+}
+
+div.row {
+  justify-content: center;
+}

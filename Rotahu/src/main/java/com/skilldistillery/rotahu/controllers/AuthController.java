@@ -47,8 +47,9 @@ public class AuthController {
 	}
 	
 	@PutMapping("user/disable")
-	public void disableAcct(Principal principal, HttpServletResponse res) {
-		String username = principal.getName();
+	public void disableAcct(@RequestBody User user, HttpServletResponse res) {
+		String username = user.getUsername();
+		
 		boolean disabled = userService.disable(username);
 		if (!disabled) {
 			res.setStatus(404);
