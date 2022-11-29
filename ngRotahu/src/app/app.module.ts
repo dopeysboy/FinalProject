@@ -11,10 +11,14 @@ import { PublicCalculatorComponent } from './components/public-calculator/public
 import { UserDebtComponent } from './components/user-debt/user-debt.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+<<<<<<< HEAD
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
 
+=======
+import { NgChartsModule } from 'ng2-charts';
+>>>>>>> 6da0216d0524f4f36808eab4fe5f6a09c5b27183
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-hom
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

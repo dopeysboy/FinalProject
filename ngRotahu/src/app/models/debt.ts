@@ -5,7 +5,7 @@ import { Payment } from "./payment";
 export class Debt {
   id : number | undefined;
   name : string | undefined;
-  monthlyInterestRate : number | undefined;
+  annualPercentageRate : number | undefined;
   minimumMonthlyPayment : number | undefined;
   initialBalance : number | undefined;
   currentBalance : number | undefined;
@@ -21,7 +21,7 @@ export class Debt {
     createdAt?:string){
       this.id = id;
       this.name = name;
-      this.monthlyInterestRate = monthlyInterestRate;
+      this.annualPercentageRate = monthlyInterestRate;
       this.minimumMonthlyPayment = minimumMonthlyPayment;
       this.initialBalance = initialBalance;
       this.currentBalance = currentBalance;
