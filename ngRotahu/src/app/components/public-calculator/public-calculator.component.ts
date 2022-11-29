@@ -11,6 +11,9 @@ import { Debt } from 'src/app/models/debt';
 })
 export class PublicCalculatorComponent implements OnInit {
 
+  debt : Debt = new Debt();
+  totalInterest : number = 0;
+
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
@@ -72,6 +75,17 @@ export class PublicCalculatorComponent implements OnInit {
     //console.log(event);
   }
 
+  formSubmit(debt: Debt){
+    this.calcService.freeCalc(debt).subscribe({
+      next: (results) =>{
+        this.refreshChart(results, debt);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   refreshChart(data: any, debt: Debt): void{
     let dataArr : number[] = [];
     let monthsArr : number[] = [];
@@ -90,6 +104,8 @@ export class PublicCalculatorComponent implements OnInit {
     this.lineChartData.labels = monthsArr;
     this.lineChartData.datasets[0].label = debt.name;
     this.chart?.update();
+
+    this.totalInterest = data[-1];
   }
 
   constructor(private calcService: CalculatorService) {
@@ -97,21 +113,19 @@ export class PublicCalculatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let debt : Debt = new Debt();
-    debt.name = "Navy Federal";
-    debt.currentBalance = 12323;
-    debt.minimumMonthlyPayment = 600;
-    debt.annualPercentageRate = 12;
+    this.debt.name = "Navy Federal";
+    this.debt.currentBalance = 12323;
+    this.debt.minimumMonthlyPayment = 600;
+    this.debt.annualPercentageRate = 12;
 
-    this.calcService.freeCalc(debt).subscribe({
+    this.calcService.freeCalc(this.debt).subscribe({
       next: (results) => {
-        this.refreshChart(results, debt);
+        this.refreshChart(results, this.debt);
       },
       error: (err) => {
         console.log(err);
       }
     });
-
   }
 
 }

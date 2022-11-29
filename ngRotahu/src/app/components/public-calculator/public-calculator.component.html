@@ -1,3 +1,19 @@
+<div>
+  <form>
+    <label class="form-label" for="name">Name of Debt</label>
+    <input class="form-control" type="text" name="name" [(ngModel)]="debt.name"/><br>
+    <label class="form-label" for="payment">Monthly payment</label>
+    <input class="form-control" type="number" name="payment" [(ngModel)]="debt.minimumMonthlyPayment"/><br>
+    <label class="form-label" for="apr">APR</label>
+    <input class="form-control" type="number" name="apr" [(ngModel)]="debt.annualPercentageRate"/><br>
+    <label class="form-label" for="balance">Amount owed</label>
+    <input class="form-control" type="number" name="balance" [(ngModel)]="debt.currentBalance"/><br>
+    <button type="button" (click)="formSubmit(debt)">Refresh Chart</button>
+  </form>
+  <p>Total Interest Paid:</p>
+  <p>{{totalInterest | currency}}</p>
+</div>
+
 <div style="display: block;">
   <canvas baseChart width="400" height="400"
         [data]="lineChartData"
