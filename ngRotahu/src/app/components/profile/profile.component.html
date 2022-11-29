@@ -4,7 +4,7 @@
       <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p>
     </div>
     <div class="row">
-      <button class="btn btn-primary">Change Password</button>
+      <button class="btn btn-primary" (click)="open(content)">Change Password</button>
     </div>
     <div class="row">
       <button class="btn btn-primary">Update account Information</button>
@@ -18,3 +18,31 @@
 
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div class="input-group">
+          <label for="oldPassword">Old Password</label>
+          <input type="password" name="oldPassword" [(ngModel)]="oldPassword" />
+				</div>
+        <div class="input-group">
+          <label for="newPassword1">New Password</label>
+          <input type="password" name="newPassword1" [(ngModel)]="newPassword1" />
+				</div>
+        <div class="input-group">
+          <label for="newPassword2">Retype New Password</label>
+          <input type="password" name="newPassword2" [(ngModel)]="newPassword2" />
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); modalSubmit(oldPassword, newPassword1, newPassword2)">Change</button>
+	</div>
+</ng-template>

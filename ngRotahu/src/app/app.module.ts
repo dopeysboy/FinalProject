@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { NgChartsModule } from 'ng2-charts';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     NgChartsModule
   ],
   providers: [],
