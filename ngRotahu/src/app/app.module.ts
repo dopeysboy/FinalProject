@@ -16,6 +16,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgChartsModule } from 'ng2-charts';
     RegisterComponent,
     LogoutComponent,
     LoggedInHomeComponent,
+    LoggedInCalculatorComponent,
 
   ],
   imports: [
