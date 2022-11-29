@@ -64,11 +64,20 @@ export class LoggedInCalculatorComponent implements OnInit {
   }
 
   generateRandomRGBA(): string{
-    return 'rgba(148,259,177,0.3)';
+    let r = Math.random() * 255;
+    let g = Math.random() * 255;
+    let b = Math.random() * 255;
+    let a = Math.random();
+
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
 
   generateRandomHEX(): string{
-    return '#fff';
+    let fst = (Math.random() * 255).toString(16);
+    let snd = (Math.random() * 255).toString(16);
+    let trd = (Math.random() * 255).toString(16);
+
+    return `#${fst}${snd}${trd}`
   }
 
   constructor(private router: Router, private route: ActivatedRoute, private calcService: CalculatorService) { }
