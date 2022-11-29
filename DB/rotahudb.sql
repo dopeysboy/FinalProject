@@ -352,8 +352,9 @@ COMMIT;
 START TRANSACTION;
 USE `rotahudb`;
 INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (1, 'Navy Federal Credit Card', 18.65, 29.00, 7500.00, 7500.00, 1, 1, 1, 1, '2022-11-22 12:00:00');
-INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (2, 'Mortgage', 4.75, 2478.72, 489000.00, 489000.00, 10, 1, 2, 1, '2022-11-22 12:00:00');
-INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (3, 'Auto Loan', 9.2, 457.50, 52000, 50750, 9, 2, 4, 1, '2022-11-22 12:00:00');
+INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (2, 'Mortgage', 4.75, 2478.72, 489000.00, 489000.00, 9, 2, 2, 1, '2022-11-22 12:00:00');
+INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (3, 'Auto Loan', 9.2, 457.50, 52000, 50750, 8, 3, 4, 1, '2022-11-22 12:00:00');
+INSERT INTO `debt` (`id`, `name`, `annual_percentage_rate`, `minimum_monthly_payment`, `initial_balance`, `current_balance`, `priority`, `debt_type_id`, `debt_lender_id`, `user_id`, `created_at`) VALUES (4, 'Student Loan', 2.1, 400, 97000, 97000, 10, 5, 5, 1, '2022-11-22 12:00:00');
 
 COMMIT;
 
