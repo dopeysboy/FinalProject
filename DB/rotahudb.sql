@@ -313,11 +313,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (1, 'Credit Card', 5);
-INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (2, 'Mortgage', 1);
-INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (3, 'Auto Loan', 2);
-INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (4, 'Personal Loan', 3);
-INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (5, 'Student Loan', 4);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (1, 'Credit Card', 2);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (2, 'Mortgage', 9);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (3, 'Auto Loan', 8);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (4, 'Personal Loan', 1);
+INSERT INTO `debt_type` (`id`, `description`, `default_priority`) VALUES (5, 'Student Loan', 10);
 
 COMMIT;
 
