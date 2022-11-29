@@ -14,6 +14,7 @@
         <li><u>Min. Monthly Payment</u></li>
        {{debt.minimumMonthlyPayment | currency}}
       </ul>
+      <button class = "btn btn-danger" (click)="deleteDebt(debt.id)">Delete Debt</button>
 
 		</ng-template>
 	</ngb-panel>

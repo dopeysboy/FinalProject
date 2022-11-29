@@ -4,6 +4,7 @@ import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -14,7 +15,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
 
-  constructor(private debtService:DebtService, private user: UserService, private auth: AuthService) { }
+  constructor(private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
 
 
@@ -27,6 +28,20 @@ export class LoggedInHomeComponent implements OnInit {
       error: (oops) => {
         console.error('loggedInHome: error getting debts');
         console.error(oops);
+      }
+    })
+  }
+
+
+
+  deleteDebt(debtId = 0){
+    this.debtService.destroy(debtId).subscribe({
+      next: (success)=>{
+        this.loadDebts();
+      },
+      error: (err)=> {
+        console.error('loggedinHome.deleteDebt: could not delete');
+        console.error(err);
       }
     })
   }
