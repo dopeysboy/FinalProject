@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   loginUser: User = new User();
   invalidLogin = false;
 
@@ -18,13 +17,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkLogin(){
-    if(this.loginservice.generateBasicAuthCredentials(this.username, this.password)){
-      this.router.navigate([''])
-      this.invalidLogin = false
-    }else{
-      this.invalidLogin = true
-    }
-  }
-
+  // login(user: User): void{
+  //   if(user.username && user.password){
+  //     this.authService.login(user.username, user.password).subscribe({
+  //       next: (results) => {
+  //         this.router.navigateByUrl('todo');
+  //       },
+  //       error: (err) => {
+  //         console.error('Error in LoginComponent.login(): failed to login user');
+  //         console.error(err);
+  //       }
+  //     });
+  //   }
+  // }
 }

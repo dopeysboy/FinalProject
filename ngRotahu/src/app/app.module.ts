@@ -11,6 +11,7 @@ import { PublicCalculatorComponent } from './components/public-calculator/public
 import { UserDebtComponent } from './components/user-debt/user-debt.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     PublicCalculatorComponent,
     UserDebtComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

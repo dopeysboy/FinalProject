@@ -1,16 +1,16 @@
 export class User {
 
   id : number | undefined
-  username: string | undefined
-  password: string | undefined
-  email : string | undefined
+  username: string
+  password: string
+  email : string
   role : string | undefined
   enabled : boolean | undefined
   imgUrl : string | undefined
-  firstName : string | undefined
-  lastName : string | undefined
+  firstName : string
+  lastName : string
 
-  constructor(id? : number, username?:string, password?:string, email?:string, role?:string, enabled?:boolean, imgUrl?:string, firstName?:string, lastName?:string){
+  constructor(id? : number, username:string='', password:string='', email:string = '', role?:string, enabled?:boolean, imgUrl?:string, firstName:string='', lastName:string=''){
     this.id = id;
     this.username = username;
     this.password = password;

@@ -1,0 +1,11 @@
+<label for="fname">First Name</label>
+<input type="text" name = "fname" placeholder="First Name" [(ngModel)]="newUser.firstName"><br>
+<label for="lname">Last Name</label>
+<input type="text" name = "lname" placeholder="Last Name" [(ngModel)]="newUser.lastName"><br>
+<label for="userame">User name</label>
+<input type="text" name = "username" placeholder="Username" [(ngModel)]="newUser.username"><br>
+<label for="password">Password</label>
+<input type="text" name = "password" placeholder="Password" [(ngModel)]="newUser.password"><br>
+<label for="email">Email</label>
+<input type="text" name = "email" placeholder="Email" [(ngModel)]="newUser.email"><br>
+<button (click)="register(newUser)">Register Account</button>
