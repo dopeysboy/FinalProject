@@ -24,7 +24,7 @@ export class CalculatorService {
   }
 
   freeCalc(debt: Debt): Observable<Object>{
-    return this.http.post<Object>(`${this.url}/loggedout`, debt, this.getHttpOptions()).pipe(
+    return this.http.post<Object>(`${this.url}/loggedout`, debt).pipe(
       catchError( (err: any) => {
         console.error(err);
         return throwError(

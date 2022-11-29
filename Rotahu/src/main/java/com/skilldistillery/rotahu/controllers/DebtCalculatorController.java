@@ -24,7 +24,7 @@ import com.skilldistillery.rotahu.services.DebtService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost"})
+@CrossOrigin({"*", "http://localhost:4200/"})
 public class DebtCalculatorController {
 
 	@Autowired
