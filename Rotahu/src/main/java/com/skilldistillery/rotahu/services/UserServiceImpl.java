@@ -46,5 +46,16 @@ public class UserServiceImpl implements UserService {
 //		userRepo.deleteById(userId);
 //		return !userRepo.existsById(userId);
 //	}
+	
+	@Override
+	public boolean disable(String username) {
+		User dbUser = findByUsername(username);
+		dbUser.setEnabled(false);
+		dbUser = userRepo.saveAndFlush(dbUser);
+		if (dbUser.getEnabled()) {
+			return false;
+		}
+		return true;
+	}
 
 }
