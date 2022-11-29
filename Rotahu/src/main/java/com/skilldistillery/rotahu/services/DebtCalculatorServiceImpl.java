@@ -107,12 +107,14 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 			if(remainingIncome < .25) {
 				break;
 			}
-			System.out.println("key: " + key + "\tvalue: " + value);
 		}
 		debts.stream().forEach( (debt) -> {
-			returnMap.put(debt.getName(), 
-					calculatePayments(debt, paymentAmounts.get( debt.getName())));
+			Map<Integer, Double> payPlan = calculatePayments(debt, paymentAmounts.get( debt.getName()));
+			payPlan.put(-2, paymentAmounts.get(debt.getName()));
+			
+			returnMap.put(debt.getName(), payPlan);	
 		});
+		
 		return returnMap;
 	}
 }
