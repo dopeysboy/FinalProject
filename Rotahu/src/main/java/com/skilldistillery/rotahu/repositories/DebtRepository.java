@@ -13,5 +13,5 @@ public interface DebtRepository extends JpaRepository<Debt, Integer>{
 	
 	List<Debt> findByDebtLenderAndUser(DebtLender debtLender, User user);
 	
-	List<Debt> findByMonthlyInterestRateAndUser(Double apr, User user);
+	List<Debt> findByAnnualPercentageRateAndUser(Double apr, User user);
 }

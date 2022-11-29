@@ -46,7 +46,7 @@ public class DebtServiceImpl implements DebtService{
 	
 	@Override
 	public List<Debt> getDebtsByApr(Double apr, User user){
-		List<Debt> debts = debtRepo.findByMonthlyInterestRateAndUser(apr, user);
+		List<Debt> debts = debtRepo.findByAnnualPercentageRateAndUser(apr, user);
 		
 		return debts;
 	}
