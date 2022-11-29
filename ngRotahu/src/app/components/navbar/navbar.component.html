@@ -1,43 +1,18 @@
 <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Rotahu</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> -->
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li>
-        <div class="login-container">
-          <form action="/action_page.php">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Password" name="psw">
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      </li>
-    </ul>
+  <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+    <li  class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/login']"> Login</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/register']"> Create Account</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-primary" [routerLink]="['/logout']"> Logout</button>
+
+</ul>
 
 
-  </div>
+
+
 </nav>
-
-
-
-<p>logo ----  login/signup or display logged in user</p>

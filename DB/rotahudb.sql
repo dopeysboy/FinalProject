@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image_url` VARCHAR(250) NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;

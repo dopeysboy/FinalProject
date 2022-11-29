@@ -1,1 +1,16 @@
-<p>login works!</p>
+<!-- <div class="container">
+
+  <div>
+    User Name : <input type="text" name="username" [(ngModel)]="username"><br>
+    Password : <input type="password" name="password" [(ngModel)]="password">
+  </div>
+  <button (click)=checkLogin() class="btn btn-success">
+    Login
+  </button>
+</div> -->
+
+<label for="username">Username</label>
+<input type="text" name = "username" placeholder="Username" [(ngModel)]="loginUser.username"><br>
+<label for="password">Password </label>
+<input type="text" name = "password" placeholder="Password" [(ngModel)]="loginUser.password"><br>
+<button (click)="login(loginUser)">Login </button>
