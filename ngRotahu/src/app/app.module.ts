@@ -12,6 +12,9 @@ import { UserDebtComponent } from './components/user-debt/user-debt.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { RegisterComponent } from './components/register/register.component';
     UserDebtComponent,
     NavbarComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent,
+    LoggedInHomeComponent,
+
   ],
   imports: [
     BrowserModule,

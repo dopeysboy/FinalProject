@@ -17,17 +17,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // login(user: User): void{
-  //   if(user.username && user.password){
-  //     this.authService.login(user.username, user.password).subscribe({
-  //       next: (results) => {
-  //         this.router.navigateByUrl('todo');
-  //       },
-  //       error: (err) => {
-  //         console.error('Error in LoginComponent.login(): failed to login user');
-  //         console.error(err);
-  //       }
-  //     });
-  //   }
-  // }
+  login(user: User): void{
+    if(user.username && user.password){
+      this.loginservice.login(user.username, user.password).subscribe({
+        next: (results) => {
+          this.router.navigateByUrl('/loggedInHome');
+        },
+        error: (err) => {
+          console.error('Error in LoginComponent.login(): failed to login user');
+          console.error(err);
+        }
+      });
+    }
+  }
 }

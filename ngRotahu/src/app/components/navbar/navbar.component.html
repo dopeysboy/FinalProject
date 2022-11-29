@@ -1,13 +1,15 @@
 <nav class="navbar navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Rotahu</a>
+  <a class="navbar-brand" [router]>Rotahu</a>
   <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> -->
 
   <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-      <button class="btn btn-primary" [routerLink]="['/login']"> Login</button>
-      <button class="btn btn-primary" [routerLink]="['/register']"> Create Account</button>
+    <li  class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/login']"> Login</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/register']"> Create Account</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-primary" [routerLink]="['/logout']"> Logout</button>
+
 </ul>
 
 

@@ -9,4 +9,8 @@
   </button>
 </div> -->
 
-login works
+<label for="username">Username</label>
+<input type="text" name = "username" placeholder="Username" [(ngModel)]="loginUser.username"><br>
+<label for="password">Password </label>
+<input type="text" name = "password" placeholder="Password" [(ngModel)]="loginUser.password"><br>
+<button (click)="login(loginUser)">Login </button>
