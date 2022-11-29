@@ -79,4 +79,18 @@ public class DebtCalculatorController {
 		return map;
 	}
 	
+	@GetMapping("calculator/inc/{resInc}")
+	public Map<String, Map<Integer, Double>> calculateDebtsGivenUser(@PathVariable double resInc,
+			Principal principal, HttpServletRequest req, HttpServletResponse resp){
+		User user = authService.getUserByUsername(principal.getName());
+		
+		if(user == null) {
+			resp.setStatus(401);
+			return null;
+		}
+		
+		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(user.getDebts(), resInc);
+		
+		return map;
+	}
 }

@@ -57,7 +57,7 @@ export class CalculatorService {
   }
 
   calculateUserDebtsFromUser(residualIncome: number): Observable<Object>{
-    return this.http.get<Object>(`${this.url}/${residualIncome}`, this.getHttpOptions()).pipe(
+    return this.http.get<Object>(`${this.url}/inc/${residualIncome}`, this.getHttpOptions()).pipe(
       catchError( (err: any) => {
         console.error(err);
         return throwError(
