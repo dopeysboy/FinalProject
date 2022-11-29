@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalculatorService } from 'src/app/services/calculator.service';
 
 @Component({
   selector: 'app-public-calculator',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicCalculatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private calcService: CalculatorService) { }
 
   ngOnInit(): void {
   }

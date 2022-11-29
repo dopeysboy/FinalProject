@@ -54,6 +54,7 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 		return payments;
 	}
 	
+	//TODO: fix issue where if minimum payment is met but does not cause the highest interest, there is a chance for the total to increase
 	@Override
 	public Map<String, Map<Integer, Double>> calculateBestPayment(List<Debt> debts, double leftoverIncome){
 		Map<String, Map<Integer, Double>> returnMap = new HashMap<>();
