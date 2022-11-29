@@ -10,7 +10,6 @@ import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-hom
 
 const routes: Routes = [
 
-<<<<<<< HEAD
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
@@ -18,12 +17,6 @@ const routes: Routes = [
   {path: 'loggedInHome', component: LoggedInHomeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
-=======
-  {path: '', pathMatch: 'full', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
-  // {path: 'login', component: 'login'},
-  // {path: 'profile', component: 'profile'},
->>>>>>> 6da0216d0524f4f36808eab4fe5f6a09c5b27183
   {path: 'publicCalculator', component: PublicCalculatorComponent},
 
 ];
