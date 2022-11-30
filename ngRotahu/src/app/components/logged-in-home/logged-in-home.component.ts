@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
@@ -14,7 +15,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
 
-  constructor(private debtService:DebtService, private user: UserService, private auth: AuthService) { }
+  constructor(private debtService:DebtService, private user: UserService, private auth: AuthService, private router: Router) { }
 
 
 
@@ -38,6 +39,5 @@ export class LoggedInHomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadDebts();
   }
-
 
 }

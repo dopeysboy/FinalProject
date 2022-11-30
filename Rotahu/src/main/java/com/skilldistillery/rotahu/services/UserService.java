@@ -13,5 +13,7 @@ public interface UserService {
 //	User updateUser(User user, String username);
 //	
 //	boolean destroyUser(int userId);
+	
+	boolean disable(String username);
 
 }
