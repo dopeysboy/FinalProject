@@ -1,2 +1,47 @@
-<p>logged-in-home works!</p>
-<button (click)="profile()"></button>
+<div class="row">
+  <div class="col-sm-3">
+<ngb-accordion #acc="ngbAccordion" *ngFor="let debt of debts">
+
+	<ngb-panel id="toggle-{{debt.name}}" title="{{debt.name}}">
+		<ng-template ngbPanelContent>
+      <div *ngIf = "showDetails">
+        <ul>
+          <li><u>Lender</u></li>
+          {{debt.debtLender?.name}}
+          <li><u>Balance</u></li>
+          {{debt.currentBalance | currency}}
+          <li><u>APR</u></li>
+          {{debt.annualPercentageRate}}%
+          <li><u>Min. Monthly Payment</u></li>
+          {{debt.minimumMonthlyPayment | currency}}
+        </ul>
+        <button class = "btn btn-danger"
+        (click)="deleteDebt(debt.id)">Delete Debt</button>
+        <button class = "btn btn-primary" (click)="toggle()">Update Debt</button>
+      </div>
+      <div *ngIf = "showForm">
+        <form>
+          <label for="name">Name</label>
+          <input type="text" name = "name" value="{{debt.name}}" [(ngModel)]="debt.name"><br>
+          <label for="apr">APR </label><br>
+          <input type="text" name = "APR" value="{{debt.annualPercentageRate}}" [(ngModel)]="debt.annualPercentageRate"><br>
+          <label for="minPayment">Minimum Monthly Payment</label>
+          <input type="text" name = "minPayment" value="{{debt.minimumMonthlyPayment}}" [(ngModel)]="debt.minimumMonthlyPayment"><br>
+          <label for="currentBalance">Current Balance</label>
+          <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
+          <button class = "btn btn-primary" (click)="[editDebt(), toggle()]">Submit </button>
+        </form>
+      </div>
+
+
+		</ng-template>
+	</ngb-panel>
+	<!-- <ngb-panel id="toggle-2" title="Second">
+		<ng-template ngbPanelContent>
+			p2
+		</ng-template>
+	</ngb-panel> -->
+</ngb-accordion>
+</div>
+</div>
+

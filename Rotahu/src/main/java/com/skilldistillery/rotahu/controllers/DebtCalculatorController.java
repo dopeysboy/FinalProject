@@ -1,6 +1,7 @@
 package com.skilldistillery.rotahu.controllers;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public class DebtCalculatorController {
 			return null;
 		}
 		
-		Map<Integer, Double> map = debtCalc.calculatePayments(debt, debt.getMinimumMonthlyPayment());
+		Map<Integer, Double> map = debtCalc.calculatePayments(debt, debt.getMinimumMonthlyPayment(), 1);
 		
 		return map;
 	}
@@ -59,7 +60,7 @@ public class DebtCalculatorController {
 	@PostMapping("calculator/loggedout")
 	public Map<Integer, Double> calculatedLoggedOutDebt(@RequestBody Debt debt, HttpServletRequest req,
 			HttpServletResponse resp){
-		Map<Integer, Double> map = debtCalc.calculatePayments(debt, debt.getMinimumMonthlyPayment());
+		Map<Integer, Double> map = debtCalc.calculatePayments(debt, debt.getMinimumMonthlyPayment(), 1);
 		
 		return map;
 	}
@@ -74,9 +75,37 @@ public class DebtCalculatorController {
 			return null;
 		}
 		
-		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(debts, resInc);
+		Map<String, Double> paymentAmounts = new HashMap<>();
+		
+		debts.stream().forEach( (debt) -> {
+			paymentAmounts.put(debt.getName(), debt.getMinimumMonthlyPayment());
+		});
+		
+		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(debts, paymentAmounts, resInc);
 		
 		return map;
 	}
 	
+	@GetMapping("calculator/inc/{resInc}")
+	public Map<String, Map<Integer, Double>> calculateDebtsGivenUser(@PathVariable double resInc,
+			Principal principal, HttpServletRequest req, HttpServletResponse resp){
+		User user = authService.getUserByUsername(principal.getName());
+		
+		if(user == null) {
+			resp.setStatus(401);
+			return null;
+		}
+		List<Debt> debts = user.getDebts();
+		
+		Map<String, Double> paymentAmounts = new HashMap<>();
+		
+		debts.stream().forEach( (debt) -> {
+			paymentAmounts.put(debt.getName(), debt.getMinimumMonthlyPayment());
+		});
+		
+		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(debts, paymentAmounts, resInc);
+
+		
+		return map;
+	}
 }

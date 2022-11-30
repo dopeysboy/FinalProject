@@ -1,6 +1,5 @@
 package com.skilldistillery.rotahu.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="debt_type")
@@ -33,6 +31,10 @@ public class DebtType {
 	
 	public DebtType() {}
 
+	public DebtType(int id) {
+		this.id = id;
+	}
+	
 	public DebtType(int id, String description, int defaultPriority, List<Debt> debts) {
 		super();
 		this.id = id;

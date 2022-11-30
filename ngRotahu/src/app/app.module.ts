@@ -17,6 +17,9 @@ import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-hom
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
+import { UpdateDebtComponent } from './components/update-debt/update-debt.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { NgChartsModule } from 'ng2-charts';
     RegisterComponent,
     LogoutComponent,
     LoggedInHomeComponent,
+    LoggedInCalculatorComponent,
+    UpdateDebtComponent,
 
   ],
   imports: [
@@ -38,7 +43,8 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgChartsModule
+    NgChartsModule,
+    NgbAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
