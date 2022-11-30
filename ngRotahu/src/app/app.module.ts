@@ -22,6 +22,8 @@ import { LoggedInCalculatorComponent } from './components/logged-in-calculator/l
 import { UpdateDebtComponent } from './components/update-debt/update-debt.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { UserPieChartComponent } from './components/user-pie-chart/user-pie-char
     UpdateDebtComponent,
     FooterComponent,
     UserPieChartComponent,
+    FaqComponent,
+    AboutUsComponent,
 
   ],
   imports: [
