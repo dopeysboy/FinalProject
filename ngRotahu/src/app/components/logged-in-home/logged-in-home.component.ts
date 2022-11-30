@@ -14,10 +14,15 @@ import { UserService } from 'src/app/services/user.service';
 export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
+  newDebt: Debt = new Debt();
+
   public showDetails:boolean = true;
   public showForm: boolean = false;
   public buttonDetails:string = 'show';
-  public buttonForm:string = 'hide'
+  public buttonForm:string = 'hide';
+  public showAddDebtForm:boolean = false;
+
+  selected: null | Debt = null;
 
   constructor(private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
@@ -34,6 +39,18 @@ export class LoggedInHomeComponent implements OnInit {
         console.error(oops);
       }
     })
+  }
+
+  createDebt(debt: Debt){
+    this.debtService.create(debt).subscribe({
+      next: (createdDebt) => {
+            this.router.navigateByUrl('/loggedInHome');
+          },
+          error: (problem) => {
+            console.error('LoggedInHomeComponenet.create(): Error creating new debt:');
+            console.error(problem);
+          }
+        });
   }
 
 
@@ -67,6 +84,11 @@ export class LoggedInHomeComponent implements OnInit {
       this.buttonDetails = "hideDetails";
       this.buttonForm = "showForm"
     }
+
+  }
+
+  showAddDebt(){
+    this.showAddDebtForm = !this.showAddDebtForm;
 
   }
 
