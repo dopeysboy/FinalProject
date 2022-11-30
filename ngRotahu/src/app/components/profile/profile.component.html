@@ -42,9 +42,9 @@
         <label for="description">Description: </label>
           <input type="text" name="description" [(ngModel)]="editExpense.description" />
         <label for="category">Category: </label>
-          <input type="text" name="category" [(ngModel)]="editExpense.category" />
+          <input type="text" name="category" [(ngModel)]="editExpense.category.name" />
         <label for="frequency">Frequency: </label>
-          <input type="text" name="frequency" [(ngModel)]="editExpense.frequency" />
+          <input type="text" name="frequency" [(ngModel)]="editExpense.frequency.name" />
         <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
         <button class="btn btn-primary" (click)="updateExpense(editExpense)">Update</button>
         <button class="btn btn-danger" (click)="deleteExpense(editExpense)">Delete</button>

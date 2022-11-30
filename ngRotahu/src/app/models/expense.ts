@@ -8,12 +8,12 @@ export class Expense {
   description : string | undefined;
   createdAt : string | undefined;
   updatedAt : string | undefined;
-  category : Category | undefined;
-  frequency : Frequency | undefined;
+  category : Category;
+  frequency : Frequency;
   user : User | undefined;
 
   constructor(id?:number, amount?:number, description?:string, createdAt?:string,
-    updatedAt?:string, category?:Category, frequency?:Frequency, user?:User){
+    updatedAt?:string, category:Category = new Category(), frequency:Frequency = new Frequency(), user?:User){
       this.id = id;
       this.amount = amount;
       this.description = description;
