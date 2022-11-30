@@ -10,6 +10,7 @@ import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-hom
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 
 const routes: Routes = [
 
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'publicCalculator', component: PublicCalculatorComponent},
   {path: 'loggedInCalc', component: LoggedInCalculatorComponent},
   {path: 'faq', component: FaqComponent},
-  {path: 'aboutUs', component: AboutUsComponent}
+  {path: 'aboutUs', component: AboutUsComponent},
+  {path: 'FORTESTING', component: UserPieChartComponent}
 ];
 
 @NgModule({
