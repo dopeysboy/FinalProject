@@ -35,4 +35,15 @@ export class UserService {
     );
   }
 
+  changePassword(newPassword: string): Observable<User>{
+    return this.http.put<User>(`${this.url}/changePassword`, newPassword, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('UserService.changePAssword(): error changing password: ' + err)
+        )
+      })
+    );
+  }
+
 }

@@ -58,4 +58,12 @@ public class AuthController {
 		}
 	}
 	
+	@PutMapping("user/changePassword")
+	public User changePassword(@RequestBody String newPassword, HttpServletResponse res, Principal principal) {
+		String username = principal.getName();
+		User user = userService.findByUsername(username);
+		user = userService.changePassword(user, newPassword);
+		return user;
+	}
+	
 }
