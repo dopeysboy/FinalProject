@@ -1,5 +1,6 @@
 package com.skilldistillery.rotahu.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +10,18 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.Debt;
+import com.skilldistillery.rotahu.entities.DebtType;
 
 @Service
 public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 
 	private Double remainingIncome;
+	private List<DebtType> debtTypesWithLowPrio = new ArrayList<>();
+	
+	{
+		debtTypesWithLowPrio.add(new DebtType(10));
+		debtTypesWithLowPrio.add(new DebtType(9));
+	}
 	
 	@Override
 	public Map<Integer, Double> calculatePayments(Debt debt, double payment){
@@ -86,8 +94,14 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 			 * 		will calculate the payment plan on each debt using the adjusted payment amounts
 			 */
 			debts.stream().forEach( (debt) -> {
-				interestPaid.put(debt.getName(), 
-						calculatePayments(debt, paymentAmounts.get( debt.getName() ) ).get(-1));
+				Map<Integer, Double> map = calculatePayments(debt, paymentAmounts.get(debt.getName()));
+				if(map.get(59) != null && map.get(1) < map.get(59)) {
+					interestPaid.put(debt.getName(), Double.MAX_VALUE);
+				} else if(debtTypesWithLowPrio.contains(debt.getDebtType()) && debt.getPriority() >= debt.getDebtType().getDefaultPriority()){
+					interestPaid.put(debt.getName(), Double.MIN_VALUE);
+				} else {
+					interestPaid.put(debt.getName(), map.get(-1));
+				}
 			});
 			
 			//"sort" the map, so the highest interest paid is the first entry in the stream
@@ -99,7 +113,7 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 			//the name of the debt for highest interest paid
 			String key =  highestInterest.getKey();
 			
-			remainingIncome = (double) Math.round(remainingIncome / 2 * 100.0) / 100;
+			remainingIncome = (double) Math.round(remainingIncome / 4 * 100.0) / 100;
 			Double value = paymentAmounts.get(key) + remainingIncome;
 			
 			paymentAmounts.put(key, value);
@@ -107,12 +121,14 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService{
 			if(remainingIncome < .25) {
 				break;
 			}
-			System.out.println("key: " + key + "\tvalue: " + value);
 		}
 		debts.stream().forEach( (debt) -> {
-			returnMap.put(debt.getName(), 
-					calculatePayments(debt, paymentAmounts.get( debt.getName())));
+			Map<Integer, Double> payPlan = calculatePayments(debt, paymentAmounts.get( debt.getName()));
+			payPlan.put(-2, paymentAmounts.get(debt.getName()));
+			
+			returnMap.put(debt.getName(), payPlan);	
 		});
+		
 		return returnMap;
 	}
 }

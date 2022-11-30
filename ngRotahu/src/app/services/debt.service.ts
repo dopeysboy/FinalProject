@@ -66,6 +66,7 @@ export class DebtService {
     );
   }
 
+
   destroy(id: number): Observable<void>{
     return this.http.delete<void>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
       catchError( (err: any) => {

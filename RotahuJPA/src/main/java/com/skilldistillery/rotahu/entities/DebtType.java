@@ -33,6 +33,10 @@ public class DebtType {
 	
 	public DebtType() {}
 
+	public DebtType(int id) {
+		this.id = id;
+	}
+	
 	public DebtType(int id, String description, int defaultPriority, List<Debt> debts) {
 		super();
 		this.id = id;

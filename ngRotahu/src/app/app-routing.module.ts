@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
+import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 
 const routes: Routes = [
 
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'publicCalculator', component: PublicCalculatorComponent},
-
+  {path: 'loggedInCalc', component: LoggedInCalculatorComponent}
 ];
 
 @NgModule({

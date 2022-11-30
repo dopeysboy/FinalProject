@@ -113,7 +113,7 @@ export class PublicCalculatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.debt.name = "Navy Federal";
+    this.debt.name = "Input your debt";
     this.debt.currentBalance = 12323;
     this.debt.minimumMonthlyPayment = 600;
     this.debt.annualPercentageRate = 12;
