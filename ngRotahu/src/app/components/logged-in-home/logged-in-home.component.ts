@@ -18,6 +18,7 @@ export class LoggedInHomeComponent implements OnInit {
   debts : Debt[] = [];
   lenders : DebtLender[] = [];
   newDebt: Debt = new Debt();
+  newDebtLender: DebtLender = new DebtLender();
 
   public showDetails:boolean = true;
   public showForm: boolean = false;
@@ -57,7 +58,13 @@ export class LoggedInHomeComponent implements OnInit {
     })
   }
 
-  createDebt(debt: Debt){
+  createDebt(debt: Debt, debtLender : DebtLender){
+
+    debt.debtLender = debtLender;
+    console.log(this.newDebt)
+    console.log( debt);
+    console.log(typeof debt.debtLender);
+    console.log(this.lenders);
     this.debtService.create(debt).subscribe({
       next: (createdDebt) => {
             this.router.navigateByUrl('/loggedInHome');
