@@ -53,9 +53,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-
-
-  modalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
+  pwordModalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
     if (newPassword1 === newPassword2) {
       let hashedPassword = this.authService.generateBasicAuthCredentials(this.loggedInUser.username, oldPassword);
       let realPassword = localStorage.getItem('credentials');
@@ -79,6 +77,17 @@ export class ProfileComponent implements OnInit {
         });
       }
     }
+  }
+
+  update() {
+    this.userService.updateAccount(this.loggedInUser).subscribe({
+      next: (user) => {
+        console.log('updated');
+      },
+      error: (problem) => {
+        console.log('ProfileComponent.update(): Problem updating');
+      }
+    });
   }
 
   open(content: any) {
