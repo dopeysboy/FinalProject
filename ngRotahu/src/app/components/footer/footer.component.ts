@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -12,9 +13,9 @@ export class FooterComponent implements OnInit {
   }
 
   showReadme(){
-    console.log('Redirect to the README');
+    this.router.navigateByUrl('faq');
   }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
