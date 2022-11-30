@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Rotahu</a>
   <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,11 +6,11 @@
 
   <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
     <li  class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/login']"> Login</button>
-      <button *ngIf="loggedIn() == false" class="btn btn-primary" [routerLink]="['/register']"> Create Account</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-primary" [routerLink]="['/loggedInHome']"> Debts</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-primary" [routerLink]="['/profile']"> Profile</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-primary" [routerLink]="['/logout']"> Logout</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/login']"> Login</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/register']"> Create Account</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']"> Debts</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']"> Profile</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/logout']"> Logout</button>
 
 </ul>
 
