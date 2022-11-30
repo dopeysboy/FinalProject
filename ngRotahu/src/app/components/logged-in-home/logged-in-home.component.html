@@ -4,17 +4,22 @@
 
 	<ngb-panel id="toggle-{{debt.name}}" title="{{debt.name}}">
 		<ng-template ngbPanelContent>
-      <ul>
-        <li><u>Lender</u></li>
-        {{debt.debtLender?.name}}
-        <li><u>Balance</u></li>
-        {{debt.currentBalance | currency}}
-        <li><u>APR</u></li>
-        {{debt.annualPercentageRate}}%
-        <li><u>Min. Monthly Payment</u></li>
-       {{debt.minimumMonthlyPayment | currency}}
-      </ul>
-      <button class = "btn btn-danger" (click)="deleteDebt(debt.id)">Delete Debt</button>
+      <button class = "btn btn-primary" (click)="toggle()">Update Debt</button>
+      <div *ngIf = "show">
+        <ul>
+          <li><u>Lender</u></li>
+          {{debt.debtLender?.name}}
+          <li><u>Balance</u></li>
+          {{debt.currentBalance | currency}}
+          <li><u>APR</u></li>
+          {{debt.annualPercentageRate}}%
+          <li><u>Min. Monthly Payment</u></li>
+         {{debt.minimumMonthlyPayment | currency}}
+        </ul>
+        <button class = "btn btn-danger"
+        (click)="deleteDebt(debt.id)">Delete Debt</button>
+      </div>
+
 
 		</ng-template>
 	</ngb-panel>

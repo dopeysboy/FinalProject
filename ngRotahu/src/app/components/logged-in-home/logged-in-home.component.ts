@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
+  public show:boolean = false;
+  public buttonName:string = 'show';
 
   constructor(private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
@@ -49,6 +51,17 @@ export class LoggedInHomeComponent implements OnInit {
   getDebtsList(debts: []){
     return debts.length
   }
+
+  toggle() {
+    this.show = !this.show;
+
+    // Change the name of the button.
+    if(this.show)
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
+
 
   ngOnInit(): void {
     this.loadDebts();
