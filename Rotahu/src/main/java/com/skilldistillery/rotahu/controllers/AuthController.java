@@ -66,4 +66,12 @@ public class AuthController {
 		return user;
 	}
 	
+	@PutMapping("user/updateAccount")
+	public User updateAccount(@RequestBody User user, HttpServletResponse res, Principal principal) {
+		System.err.println("anything");
+		System.err.println(user.getFirstName());
+		user = userService.updateAccount(user);
+		return user;
+	}
+	
 }

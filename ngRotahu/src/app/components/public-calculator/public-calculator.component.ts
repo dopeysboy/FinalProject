@@ -19,7 +19,7 @@ export class PublicCalculatorComponent implements OnInit {
       {
         data: [],
         label: 'Debt Name',
-        backgroundColor: 'rgba(148,159,177,0.2)',
+        backgroundColor: 'rgba(255,0,0,0.2)',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointBorderColor: '#fff',
@@ -38,28 +38,38 @@ export class PublicCalculatorComponent implements OnInit {
       }
     },
     scales: {
-      x: {},
-      'y-axis-0':
-      {
-        position: 'left'
+      x: {
+        grid:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        },
+        ticks:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        }
       },
-      // 'y-axis-1':
-      // {
-      //   position: 'right',
-      //   grid:
-      //   {
-      //     color: 'rgba(255,0,0,0.3)'
-      //   },
-      //   ticks:
-      //   {
-      //     color: 'red'
-      //   }
-      // }
+      y:
+      {
+        position: 'left',
+        grid:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        },
+        ticks:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        }
+      },
     },
 
     plugins:
     {
-      legend: { display: true},
+      legend: {
+        display: true,
+        labels: {
+          color: 'rgba(255, 255, 255, 1)'
+        }
+      },
     }
   }
 

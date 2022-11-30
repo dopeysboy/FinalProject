@@ -40,7 +40,18 @@ export class UserService {
       catchError( (err: any) => {
         console.error(err);
         return throwError(
-          () => new Error('UserService.changePAssword(): error changing password: ' + err)
+          () => new Error('UserService.changePassword(): error changing password: ' + err)
+        )
+      })
+    );
+  }
+
+  updateAccount(user: User): Observable<User>{
+    return this.http.put<User>(`${this.url}/updateAccount`, user, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('UserService.updateAccount(): error updating account: ' + err)
         )
       })
     );
