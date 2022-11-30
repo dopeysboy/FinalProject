@@ -1,5 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+body{
+  background-color: #2a4e6c;
+  color: white;
+}
 .centered{
   text-align: center;
 }
