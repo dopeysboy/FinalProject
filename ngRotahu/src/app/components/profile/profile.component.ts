@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
     this.userService.disable(this.loggedInUser).subscribe({
       next: () => {
         console.log('Deleted');
+        this.authService.logout();
       },
       error (problem) {
         console.error('ProfileComponent.disable(): Problem disabling user');
@@ -60,8 +61,22 @@ export class ProfileComponent implements OnInit {
       let realPassword = localStorage.getItem('credentials');
       if (hashedPassword === realPassword) {
         this.submittable = true;
-
-
+        this.userService.changePassword(newPassword1).subscribe({
+          next: (user) => {
+            console.log('password changed');
+            this.authService.login(this.loggedInUser.username, newPassword1).subscribe({
+              next: () => {
+                console.log('Logged back in');
+              },
+              error: () => {
+                console.log('ProfileComponent.modalSubmit(): Problem logging in');
+              }
+            });
+          },
+          error: (problem) => {
+            console.log('ProfileComponent.modalSubmit(): Problem changing password');
+          }
+        });
       }
     }
   }

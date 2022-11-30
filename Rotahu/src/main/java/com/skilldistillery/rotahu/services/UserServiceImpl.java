@@ -1,6 +1,7 @@
 package com.skilldistillery.rotahu.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.User;
@@ -11,6 +12,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private PasswordEncoder passEncode;
 
 	@Override
 	public User findByUsername(String username) {
@@ -56,6 +59,14 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public User changePassword(User user, String newPassword) {
+		String encryptedPassword = passEncode.encode(newPassword);
+		user.setPassword(encryptedPassword);
+		userRepo.saveAndFlush(user);
+		return user;
 	}
 
 }
