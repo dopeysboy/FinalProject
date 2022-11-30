@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   newPassword1: string = '';
   newPassword2: string = '';
 
+  submittable: boolean = false;
+
   closeResult = '';
   loggedInUser: User = new User();
 
@@ -50,8 +52,18 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  modalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
 
+
+  modalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
+    if (newPassword1 === newPassword2) {
+      let hashedPassword = this.authService.generateBasicAuthCredentials(this.loggedInUser.username, oldPassword);
+      let realPassword = localStorage.getItem('credentials');
+      if (hashedPassword === realPassword) {
+        this.submittable = true;
+
+
+      }
+    }
   }
 
   open(content: any) {

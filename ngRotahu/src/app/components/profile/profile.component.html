@@ -43,6 +43,6 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); modalSubmit(oldPassword, newPassword1, newPassword2)">Change</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modalSubmit(oldPassword, newPassword1, newPassword2); submittable && modal.close('Save click')">Change</button>
 	</div>
 </ng-template>
