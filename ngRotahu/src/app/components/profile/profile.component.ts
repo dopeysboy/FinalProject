@@ -65,6 +65,7 @@ export class ProfileComponent implements OnInit {
             this.authService.login(this.loggedInUser.username, newPassword1).subscribe({
               next: () => {
                 console.log('Logged back in');
+                this.getUser();
               },
               error: () => {
                 console.log('ProfileComponent.modalSubmit(): Problem logging in');
@@ -83,6 +84,7 @@ export class ProfileComponent implements OnInit {
     this.userService.updateAccount(this.loggedInUser).subscribe({
       next: (user) => {
         console.log('updated');
+        this.getUser();
       },
       error: (problem) => {
         console.log('ProfileComponent.update(): Problem updating');
