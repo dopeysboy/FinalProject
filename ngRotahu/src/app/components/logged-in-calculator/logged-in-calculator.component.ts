@@ -67,7 +67,7 @@ export class LoggedInCalculatorComponent implements OnInit {
     let r = Math.random() * 255;
     let g = Math.random() * 255;
     let b = Math.random() * 255;
-    let a = Math.random();
+    let a = .3;
 
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   }
@@ -122,28 +122,38 @@ export class LoggedInCalculatorComponent implements OnInit {
       }
     },
     scales: {
-      x: {},
-      'y-axis-0':
-      {
-        position: 'left'
+      x: {
+        grid:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        },
+        ticks:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        }
       },
-      // 'y-axis-1':
-      // {
-      //   position: 'right',
-      //   grid:
-      //   {
-      //     color: 'rgba(255,0,0,0.3)'
-      //   },
-      //   ticks:
-      //   {
-      //     color: 'red'
-      //   }
-      // }
+      y:
+      {
+        position: 'left',
+        grid:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        },
+        ticks:
+        {
+          color: 'rgba(255, 255, 255, 1)'
+        }
+      },
     },
 
     plugins:
     {
-      legend: { display: true},
+      legend: {
+        display: true,
+        labels: {
+          color: 'rgba(255, 255, 255, 1)'
+        }
+      },
     }
   }
 
