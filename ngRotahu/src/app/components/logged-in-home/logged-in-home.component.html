@@ -37,11 +37,30 @@
 		</ng-template>
 	</ngb-panel>
 	<!-- <ngb-panel id="toggle-2" title="Second">
-		<ng-template ngbPanelContent>
-			p2
+    <ng-template ngbPanelContent>
+      p2
 		</ng-template>
 	</ngb-panel> -->
 </ngb-accordion>
+<button class = "btn btn-primary" (click)="showAddDebt()">Add Debt Account</button>
+<div *ngIf = "showAddDebtForm">
+  <form>
+    <label for="name">Name</label>
+    <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name"><br>
+    <label for="lender">Lender </label><br>
+    <input type="text" name = "lender" placeholder="Lender" [(ngModel)]="newDebt.debtLender"><br>
+    <label for="apr">APR </label><br>
+    <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br>
+    <label for="minPayment">Minimum Monthly Payment</label>
+    <input type="text" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment"><br>
+    <label for="priority">Priority</label>
+    <input type="text" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority"><br>
+    <button class = "btn btn-primary" (click)="[editDebt(), toggle()]">Submit </button>
+  </form>
 </div>
+</div>
+  <div class="col-md-9">
+    <app-logged-in-calculator></app-logged-in-calculator>
+  </div>
 </div>
 
