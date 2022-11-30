@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -14,8 +14,10 @@ import { Router } from '@angular/router';
 export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
-  public show:boolean = false;
-  public buttonName:string = 'show';
+  public showDetails:boolean = true;
+  public showForm: boolean = false;
+  public buttonDetails:string = 'show';
+  public buttonForm:string = 'hide'
 
   constructor(private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
@@ -53,13 +55,23 @@ export class LoggedInHomeComponent implements OnInit {
   }
 
   toggle() {
-    this.show = !this.show;
+    this.showDetails = !this.showDetails;
+    this.showForm = !this.showForm
 
     // Change the name of the button.
-    if(this.show)
-      this.buttonName = "Hide";
-    else
-      this.buttonName = "Show";
+    if(this.showDetails){
+      this.buttonDetails = "showDetails";
+      this.buttonForm = "hideForm"
+    }
+    else{
+      this.buttonDetails = "hideDetails";
+      this.buttonForm = "showForm"
+    }
+
+  }
+
+  editDebt(){
+    console.log("edit debt")
   }
 
 

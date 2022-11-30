@@ -80,6 +80,21 @@ export class LoggedInCalculatorComponent implements OnInit {
     return `#${fst}${snd}${trd}`
   }
 
+  /**
+   * Assumes that the apr given is the APR for the year, not monthly
+   * @param newTotal
+   * @param oldTotal
+   * @param apr
+   * @returns the amount paid between oldTotal and newTotal
+   */
+  calculatePaymentAmount(newTotal: number, oldTotal: number, apr: number): number{
+    let paymentAmount : number = 0;
+
+    paymentAmount = ((oldTotal * apr) - ((12 * newTotal) + (12 * oldTotal))) / (12 + apr);
+
+    return paymentAmount;
+  }
+
   constructor(private router: Router, private route: ActivatedRoute, private calcService: CalculatorService) { }
 
   ngOnInit(): void {
