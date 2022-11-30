@@ -21,6 +21,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 import { UpdateDebtComponent } from './components/update-debt/update-debt.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LoggedInCalculatorComponent,
     UpdateDebtComponent,
     FooterComponent,
+    UserPieChartComponent,
 
   ],
   imports: [
