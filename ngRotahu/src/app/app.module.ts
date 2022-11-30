@@ -20,6 +20,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 import { UpdateDebtComponent } from './components/update-debt/update-debt.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UpdateDebtComponent } from './components/update-debt/update-debt.compon
     LoggedInHomeComponent,
     LoggedInCalculatorComponent,
     UpdateDebtComponent,
+    FooterComponent,
 
   ],
   imports: [
