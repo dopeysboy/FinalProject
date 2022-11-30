@@ -6,6 +6,7 @@ import { DebtService } from 'src/app/services/debt.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
+import { DebtLender } from 'src/app/models/debt-lender';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -15,6 +16,7 @@ import { DebtLenderService } from 'src/app/services/debt-lender.service';
 export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
+  lenders : DebtLender[] = [];
   newDebt: Debt = new Debt();
 
   public showDetails:boolean = true;
@@ -25,7 +27,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   selected: null | Debt = null;
 
-  constructor(private debtService:DebtService, private router : Router, private auth: AuthService) { }
+  constructor(private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
 
 
@@ -34,6 +36,19 @@ export class LoggedInHomeComponent implements OnInit {
       next: (debts: Debt[])=>{
         console.log(debts);
         this.debts = debts;
+      },
+      error: (oops) => {
+        console.error('loggedInHome: error getting debts');
+        console.error(oops);
+      }
+    })
+  }
+
+  loadLenders(){
+    this.lender.index().subscribe({
+      next: (lenders: DebtLender[])=>{
+        console.log(lenders);
+        this.lenders = lenders;
       },
       error: (oops) => {
         console.error('loggedInHome: error getting debts');
