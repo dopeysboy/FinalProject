@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-home.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
@@ -39,9 +40,9 @@ import { LoggedInCalculatorComponent } from './components/logged-in-calculator/l
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     NgChartsModule,
     NgbAccordionModule
-    ,
   ],
   providers: [],
   bootstrap: [AppComponent]
