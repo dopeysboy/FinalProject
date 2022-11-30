@@ -5,6 +5,7 @@ import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { DebtLenderService } from 'src/app/services/debt-lender.service';
 
 @Component({
   selector: 'app-logged-in-home',
