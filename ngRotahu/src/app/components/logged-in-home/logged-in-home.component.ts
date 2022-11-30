@@ -115,6 +115,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDebts();
+    this.loadLenders();
   }
 
 

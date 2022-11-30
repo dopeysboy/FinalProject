@@ -47,8 +47,18 @@
   <form>
     <label for="name">Name</label>
     <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name"><br>
-    <label for="lender">Lender </label><br>
-    <input type="text" name = "lender" placeholder="Lender" [(ngModel)]="newDebt.debtLender"><br>
+
+    <label  for="lender">Lender </label><br>
+
+    <select>
+      <option *ngfor="let lender of lenders" value="lender.id">
+        {{lender.name}}
+      </option>
+
+    </select><br>
+
+
+    <!-- <input type="text" name = "lender" placeholder="Lender" [(ngModel)]="newDebt.debtLender"><br> -->
     <label for="apr">APR </label><br>
     <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br>
     <label for="minPayment">Minimum Monthly Payment</label>
