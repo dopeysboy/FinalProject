@@ -29,7 +29,7 @@
           <input type="text" name = "minPayment" value="{{debt.minimumMonthlyPayment}}" [(ngModel)]="debt.minimumMonthlyPayment"><br>
           <label for="currentBalance">Current Balance</label>
           <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
-          <button class = "btn btn-primary" (click)="[editDebt(), toggle()]">Submit </button>
+          <button class = "btn btn-primary" (click)="[updateDebt(debt), toggle()]">Submit </button>
         </form>
       </div>
 

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { User } from 'src/app/models/user';
 import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtLender } from 'src/app/models/debt-lender';
 import { DebtType } from 'src/app/models/debt-type';
@@ -23,6 +21,8 @@ export class LoggedInHomeComponent implements OnInit {
   newDebt: Debt = new Debt();
   newDebtLender: DebtLender = new DebtLender();
   newDebtType: DebtType = new DebtType();
+
+  editDebt: Debt | null = null;
 
   public showDetails:boolean = true;
   public showForm: boolean = false;
@@ -85,6 +85,7 @@ export class LoggedInHomeComponent implements OnInit {
     console.log(this.lenders);
     this.debtService.create(debt).subscribe({
       next: (createdDebt) => {
+            this.loadDebts();
             this.router.navigateByUrl('/loggedInHome');
           },
           error: (problem) => {
@@ -133,8 +134,21 @@ export class LoggedInHomeComponent implements OnInit {
 
   }
 
-  editDebt(){
-    console.log("edit debt")
+  setEditDebt(debt: Debt) : void{
+    this.editDebt = Object.assign({}, debt)
+  }
+
+  updateDebt(debt : Debt){
+    this.debtService.update(debt).subscribe({
+      next: (debt) => {
+        console.log(debt);
+        this.loadDebts();
+      },
+      error: (err) =>{
+        console.log('LoggedInHomeComponent.updateDebt(); Problem updating Debt');
+
+      }
+    })
   }
 
 
