@@ -1,7 +1,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 body{
-  background-color: #2a4e6c;
+  background-image: linear-gradient(to bottom, #386890, #070d12);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
 }
 .centered{
