@@ -3,23 +3,95 @@
     <div class="row">
       <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p>
     </div>
-    <div class="row">
-      <button class="btn btn-primary" (click)="open(passwordContent)">Change Password</button>
+    <div *ngIf="!editExpense && !editIncome && !newExpense && !newIncome">
+      <div class="row">
+        <button class="btn btn-primary" (click)="open(passwordContent)">Change Password</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="open(accountContent)">Update account Information</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="disable()">Delete Account</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" >CRUD Debt</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary col" (click)="setNewExpense()" >Add Expense</button>
+        <div ngbDropdown class="d-inline-block col">
+          <button type="button" class="btn btn-primary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
+          <div ngbDropdownMenu aria-labelledby="expenseDropdown">
+            <button ngbDropdownItem *ngFor="let expense of expenses" (click)="setEditExpense(expense)">{{expense.description}}</button>
+          </div>
+        </div>
+      </div>
+       <div class="row">
+        <button class="btn btn-primary col" (click)="setNewIncome()" >Add Income</button>
+        <div ngbDropdown class="d-inline-block col">
+          <button type="button" class="btn btn-primary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
+          <div ngbDropdownMenu aria-labelledby="incomeDropdown">
+            <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <button class="btn btn-primary" (click)="open(accountContent)">Update account Information</button>
+    <div *ngIf="editExpense">
+      <form>
+        <label for="amount">Amount: </label>
+          <input type="number" name="amount" [(ngModel)]="editExpense.amount" />
+        <label for="description">Description: </label>
+          <input type="text" name="description" [(ngModel)]="editExpense.description" />
+        <label for="category">Category: </label>
+          <input type="text" name="category" [(ngModel)]="editExpense.category" />
+        <label for="frequency">Frequency: </label>
+          <input type="text" name="frequency" [(ngModel)]="editExpense.frequency" />
+        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+        <button class="btn btn-primary" (click)="updateExpense(editExpense)">Update</button>
+        <button class="btn btn-danger" (click)="deleteExpense(editExpense)">Delete</button>
+      </form>
     </div>
-    <div class="row">
-      <button class="btn btn-primary" (click)="disable()">Delete Account</button>
+    <div *ngIf="editIncome">
+      <form>
+        <label for="amount">Amount: </label>
+          <input type="number" name="amount" [(ngModel)]="editIncome.amount" />
+        <label for="description">Description: </label>
+          <input type="text" name="description" [(ngModel)]="editIncome.description" />
+        <label for="category">Category: </label>
+          <input type="text" name="category" [(ngModel)]="editIncome.category" />
+        <label for="frequency">Frequency: </label>
+          <input type="text" name="frequency" [(ngModel)]="editIncome.frequency" />
+        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+        <button class="btn btn-primary" (click)="updateIncome(editIncome)">Update</button>
+        <button class="btn btn-danger" (click)="deleteIncome(editIncome)">Delete</button>
+      </form>
     </div>
-    <div class="row">
-      <button class="btn btn-primary" >CRUD Debt</button>
+    <div *ngIf="newExpense">
+      <form>
+        <label for="amount">Amount: </label>
+          <input type="number" name="amount" [(ngModel)]="newExpense.amount" />
+        <label for="description">Description: </label>
+          <input type="text" name="description" [(ngModel)]="newExpense.description" />
+        <label for="category">Category: </label>
+          <input type="text" name="category" [(ngModel)]="newExpense.category" />
+        <label for="frequency">Frequency: </label>
+          <input type="text" name="frequency" [(ngModel)]="newExpense.frequency" />
+        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+        <button class="btn btn-primary" (click)="addExpense(newExpense)">Update</button>
+      </form>
     </div>
-    <div class="row">
-      <button class="btn btn-primary" >CRUD Expenses</button>
-    </div>
-    <div class="row">
-      <button class="btn btn-primary" >CRUD Income</button>
+    <div *ngIf="newIncome">
+      <form>
+        <label for="amount">Amount: </label>
+          <input type="number" name="amount" [(ngModel)]="newIncome.amount" />
+        <label for="description">Description: </label>
+          <input type="text" name="description" [(ngModel)]="newIncome.description" />
+        <label for="category">Category: </label>
+          <input type="text" name="category" [(ngModel)]="newIncome.category" />
+        <label for="frequency">Frequency: </label>
+          <input type="text" name="frequency" [(ngModel)]="newIncome.frequency" />
+        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+        <button class="btn btn-primary" (click)="addIncome(newIncome)">Update</button>
+      </form>
     </div>
   </div>
 
@@ -30,7 +102,7 @@
 
 <!-- Change password modal -->
 
-<ng-template #passwordContent let-modal>
+<ng-template #passwordContent let-modal >
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -39,15 +111,15 @@
     <form>
       <div class="mb-3">
         <div class="input-group">
-          <label for="oldPassword">Old Password</label>
+          <label for="oldPassword">Old Password: </label>
           <input type="password" name="oldPassword" [(ngModel)]="oldPassword" />
 				</div>
         <div class="input-group">
-          <label for="newPassword1">New Password</label>
+          <label for="newPassword1">New Password: </label>
           <input type="password" name="newPassword1" [(ngModel)]="newPassword1" />
 				</div>
         <div class="input-group">
-          <label for="newPassword2">Retype New Password</label>
+          <label for="newPassword2">Retype New Password: </label>
           <input type="password" name="newPassword2" [(ngModel)]="newPassword2" />
 				</div>
 			</div>
@@ -60,7 +132,7 @@
 
 <!-- Update account modal -->
 
-<ng-template #accountContent let-modal>
+<ng-template #accountContent let-modal >
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Account Info</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -69,21 +141,21 @@
     <form>
       <div class="mb-3">
         <div class="input-group">
-          <label for="firstName">First Name</label>
+          <label for="firstName">First Name: </label>
           <input type="text" name="firstName" [(ngModel)]="loggedInUser.firstName" />
 				</div>
         <div class="input-group">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Last Name: </label>
           <input type="text" name="lastName" [(ngModel)]="loggedInUser.lastName" />
 				</div>
         <div class="input-group">
-          <label for="email">Email</label>
+          <label for="email">Email: </label>
           <input type="text" name="email" [(ngModel)]="loggedInUser.email" />
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="update(); modal.close('Save click')">Change</button>
+    <button type="button" class="btn btn-outline-dark" (click)="updateAccount(); modal.close('Save click')">Change</button>
 	</div>
 </ng-template>
