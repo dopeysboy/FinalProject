@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-sm-3">
-<ngb-accordion #acc="ngbAccordion" *ngFor="let debt of debts">
+  <div class="col-md-4">
+<ngb-accordion  #acc="ngbAccordion" *ngFor="let debt of debts">
 
-	<ngb-panel id="toggle-{{debt.name}}" title="{{debt.name}}">
+	<ngb-panel class="bg-dark" id="toggle-{{debt.name}}" title="{{debt.name}}">
 		<ng-template ngbPanelContent>
       <div *ngIf = "showDetails">
         <ul>
@@ -15,21 +15,22 @@
           <li><u>Min. Monthly Payment</u></li>
           {{debt.minimumMonthlyPayment | currency}}
         </ul>
-        <button class = "btn btn-danger"
+        <button class = "btn btn-outline-danger"
         (click)="deleteDebt(debt.id)">Delete Debt</button>
-        <button class = "btn btn-primary" (click)="toggle()">Update Debt</button>
+        <button class = "btn btn-outline-primary" (click)="toggle()">Update Debt</button>
       </div>
       <div *ngIf = "showForm">
         <form>
-          <label for="name">Name</label>
+          <label for="name">Name</label><br>
           <input type="text" name = "name" value="{{debt.name}}" [(ngModel)]="debt.name"><br>
           <label for="apr">APR </label><br>
           <input type="text" name = "APR" value="{{debt.annualPercentageRate}}" [(ngModel)]="debt.annualPercentageRate"><br>
-          <label for="minPayment">Minimum Monthly Payment</label>
+          <label for="minPayment">Minimum Monthly Payment</label><br>
           <input type="text" name = "minPayment" value="{{debt.minimumMonthlyPayment}}" [(ngModel)]="debt.minimumMonthlyPayment"><br>
-          <label for="currentBalance">Current Balance</label>
+          <label for="currentBalance">Current Balance</label><br>
           <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
-          <button class = "btn btn-primary" (click)="[updateDebt(debt), toggle()]">Submit </button>
+          <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]">Submit</button>
+          <button class = "btn btn-outline-danger" (click)="toggle()">Cancel</button>
         </form>
       </div>
 
@@ -42,33 +43,33 @@
 		</ng-template>
 	</ngb-panel> -->
 </ngb-accordion>
-<button class = "btn btn-primary" (click)="showAddDebt()">Add Debt Account</button>
+<button class = "btn btn-outline-primary" (click)="showAddDebt()">Add Debt Account</button>
 <div *ngIf = "showAddDebtForm">
   <form>
-    <label for="name">Name</label>
+    <label for="name">Name</label><br>
     <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name"><br>
     <label  for="lender">Lender </label><br>
     <select name = "debtLender" [(ngModel)]="newDebtLender.id">
       <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
     </select><br>
-
     <select name = "debtType" [(ngModel)]="newDebtType.id">
       <option *ngFor="let type of types" [value]="type.id" >{{type.description}}</option>
     </select><br>
-
     <label for="apr">APR </label><br>
     <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br>
     <label for="currentBalance">Current Balance </label><br>
     <input type="text" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance"><br>
-    <label for="minPayment">Minimum Monthly Payment</label>
+    <label for="minPayment">Minimum Monthly Payment: </label><br>
     <input type="text" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment"><br>
-    <label for="priority">Priority</label>
+    <label for="priority">Priority</label><br>
     <input type="text" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority"><br>
-    <button class = "btn btn-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
+    <button class = "btn btn-outline-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
+    <button class = "btn btn-outline-danger" (click)="hideAddDebt()">Cancel</button>
+
   </form>
 </div>
 </div>
-  <div class="col-md-9">
+  <div class="col-md-8">
     <app-logged-in-calculator></app-logged-in-calculator>
   </div>
 </div>
