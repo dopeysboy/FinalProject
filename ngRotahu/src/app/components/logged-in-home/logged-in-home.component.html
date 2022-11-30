@@ -48,22 +48,23 @@
     <label for="name">Name</label>
     <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name"><br>
     <label  for="lender">Lender </label><br>
-    <select name = "debtLender" [(ngModel)]="newDebtLender">
-
-      <option *ngFor="let lender of lenders" [value]="lender" >{{lender.name}}</option>
+    <select name = "debtLender" [(ngModel)]="newDebtLender.id">
+      <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
     </select><br>
 
+    <select name = "debtType" [(ngModel)]="newDebtType.id">
+      <option *ngFor="let type of types" [value]="type.id" >{{type.description}}</option>
+    </select><br>
 
-    <!-- <input type="text" name = "lender" placeholder="Lender" [(ngModel)]="newDebt.debtLender"><br> -->
     <label for="apr">APR </label><br>
     <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br>
-    <!-- <label for="apr">APR </label><br>
-    <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br> -->
+    <label for="currentBalance">Current Balance </label><br>
+    <input type="text" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance"><br>
     <label for="minPayment">Minimum Monthly Payment</label>
     <input type="text" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment"><br>
     <label for="priority">Priority</label>
     <input type="text" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority"><br>
-    <button class = "btn btn-primary" (click)="createDebt(newDebt, newDebtLender)" [routerLink]="['/loggedInHome']">Submit </button>
+    <button class = "btn btn-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
   </form>
 </div>
 </div>

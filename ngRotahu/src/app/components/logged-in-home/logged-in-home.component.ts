@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtLender } from 'src/app/models/debt-lender';
+import { DebtType } from 'src/app/models/debt-type';
+import { DebtTypeService } from 'src/app/services/debt-type.service';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -17,8 +19,10 @@ export class LoggedInHomeComponent implements OnInit {
 
   debts : Debt[] = [];
   lenders : DebtLender[] = [];
+  types : DebtType[] = [];
   newDebt: Debt = new Debt();
   newDebtLender: DebtLender = new DebtLender();
+  newDebtType: DebtType = new DebtType();
 
   public showDetails:boolean = true;
   public showForm: boolean = false;
@@ -28,7 +32,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   selected: null | Debt = null;
 
-  constructor(private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
+  constructor(private type : DebtTypeService, private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
 
 
@@ -41,6 +45,19 @@ export class LoggedInHomeComponent implements OnInit {
       error: (oops) => {
         console.error('loggedInHome: error getting debts');
         console.error(oops);
+      }
+    })
+  }
+
+  loadTypes(){
+    this.type.index().subscribe({
+      next: (types: DebtType[])=>{
+        console.log(types);
+        this.types = types;
+      },
+      error: (err) => {
+        console.error('loggedInHome: error getting debt types');
+        console.error(err);
       }
     })
   }
@@ -58,9 +75,10 @@ export class LoggedInHomeComponent implements OnInit {
     })
   }
 
-  createDebt(debt: Debt, debtLender : DebtLender){
+  createDebt(debt: Debt, debtLender : DebtLender, debtType : DebtType){
 
     debt.debtLender = debtLender;
+    debt.debtType = debtType;
     console.log(this.newDebt)
     console.log( debt);
     console.log(typeof debt.debtLender);
@@ -123,6 +141,7 @@ export class LoggedInHomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadDebts();
     this.loadLenders();
+    this.loadTypes();
   }
 
 
