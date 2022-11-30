@@ -53,9 +53,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-
-
-  modalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
+  pwordModalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
     if (newPassword1 === newPassword2) {
       let hashedPassword = this.authService.generateBasicAuthCredentials(this.loggedInUser.username, oldPassword);
       let realPassword = localStorage.getItem('credentials');
@@ -67,6 +65,7 @@ export class ProfileComponent implements OnInit {
             this.authService.login(this.loggedInUser.username, newPassword1).subscribe({
               next: () => {
                 console.log('Logged back in');
+                this.getUser();
               },
               error: () => {
                 console.log('ProfileComponent.modalSubmit(): Problem logging in');
@@ -79,6 +78,18 @@ export class ProfileComponent implements OnInit {
         });
       }
     }
+  }
+
+  update() {
+    this.userService.updateAccount(this.loggedInUser).subscribe({
+      next: (user) => {
+        console.log('updated');
+        this.getUser();
+      },
+      error: (problem) => {
+        console.log('ProfileComponent.update(): Problem updating');
+      }
+    });
   }
 
   open(content: any) {
