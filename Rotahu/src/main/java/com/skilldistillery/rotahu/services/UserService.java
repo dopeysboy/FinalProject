@@ -17,5 +17,7 @@ public interface UserService {
 	boolean disable(String username);
 	
 	User changePassword(User user, String newPassword);
+	
+	User updateAccount(User user);
 
 }
