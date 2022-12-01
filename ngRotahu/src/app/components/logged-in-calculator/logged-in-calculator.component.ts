@@ -95,20 +95,22 @@ export class LoggedInCalculatorComponent implements OnInit {
     return paymentAmount;
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private calcService: CalculatorService) { }
-
-  ngOnInit(): void {
-    let residualIncome : number = 10000;
-
+  reloadChartData(residualIncome: number){
     this.calcService.calculateUserDebtsFromUser(residualIncome).subscribe({
       next: (results) => {
         this.generateDataSets(results);
-        console.log(results);
       },
       error: (err) => {
         console.log(err);
       }
     })
+  }
+  constructor(private router: Router, private route: ActivatedRoute, private calcService: CalculatorService) { }
+
+  ngOnInit(): void {
+    let residualIncome : number = 10000;
+
+    this.reloadChartData(residualIncome);
   }
 
   public lineChartData: ChartConfiguration['data'] = {

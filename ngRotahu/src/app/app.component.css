@@ -3,6 +3,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 #content{
@@ -14,4 +15,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+.clear{
+  clear: both;
+  height: 60px;
 }

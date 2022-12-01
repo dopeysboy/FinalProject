@@ -35,7 +35,7 @@
           <div class="row">
             <div class="btn-group" role="group" >
               <button class = "btn btn-outline-dark" (click)="toggle()">Cancel</button>
-              <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]">Submit</button>
+              <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]" [routerLink]="['/loggedInHome']">Submit</button>
             </div>
           </div>
         </form>
@@ -91,7 +91,6 @@
         <button class = "btn btn-outline-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
       </div>
     </div>
-
   </form>
 </div>
 </div>

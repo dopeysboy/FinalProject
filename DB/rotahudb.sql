@@ -332,6 +332,11 @@ INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (2, 'We
 INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (3, 'USAA', NULL, NULL);
 INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (4, 'Chase ', NULL, NULL);
 INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (5, 'Bank of America', NULL, NULL);
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (6 , 'Citi', NULL, NULL);
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (7, 'CapitalOne', NULL, NULL);
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (8, 'Quicken Loans', NULL, NULL);
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (9, 'Discover', NULL, NULL);
+INSERT INTO `debt_lender` (`id`, `name`, `image_url`, `site_url`) VALUES (10, 'Other', NULL, NULL);
 
 COMMIT;
 
@@ -375,12 +380,20 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `category` (`id`, `name`) VALUES (1, 'groceries');
-INSERT INTO `category` (`id`, `name`) VALUES (2, 'developer salary');
-INSERT INTO `category` (`id`, `name`) VALUES (3, 'Monthly Housing Allowance');
-INSERT INTO `category` (`id`, `name`) VALUES (4, 'Dividends');
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'Groceries');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'Salary');
+INSERT INTO `category` (`id`, `name`) VALUES (3, 'Bounuses');
+INSERT INTO `category` (`id`, `name`) VALUES (4, 'Stocks and Dividends');
 INSERT INTO `category` (`id`, `name`) VALUES (5, 'Rent');
 INSERT INTO `category` (`id`, `name`) VALUES (6, 'Gas');
+INSERT INTO `category` (`id`, `name`) VALUES (7, 'Miscellanious');
+INSERT INTO `category` (`id`, `name`) VALUES (8, 'Medical');
+INSERT INTO `category` (`id`, `name`) VALUES (9, 'Leisure');
+INSERT INTO `category` (`id`, `name`) VALUES (10, 'Insurance');
+INSERT INTO `category` (`id`, `name`) VALUES (11, 'Maintenance');
+INSERT INTO `category` (`id`, `name`) VALUES (12, 'Subscriptions');
+INSERT INTO `category` (`id`, `name`) VALUES (13, 'Pets');
+INSERT INTO `category` (`id`, `name`) VALUES (14, 'Real Estate');
 
 COMMIT;
 
