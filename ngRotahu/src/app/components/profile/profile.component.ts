@@ -7,6 +7,16 @@ import { Expense } from 'src/app/models/expense';
 import { Income } from 'src/app/models/income';
 import { IncomeService } from 'src/app/services/income.service';
 import { ExpenseService } from 'src/app/services/expense.service';
+import { Debt } from 'src/app/models/debt';
+import { DebtService } from 'src/app/services/debt.service';
+import { Frequency } from 'src/app/models/frequency';
+import { Category } from 'src/app/models/category';
+import { CategoryService } from 'src/app/services/category.service';
+import { FrequencyService } from 'src/app/services/frequency.service';
+import { DebtLender } from 'src/app/models/debt-lender';
+import { DebtType } from 'src/app/models/debt-type';
+import { DebtLenderService } from 'src/app/services/debt-lender.service';
+import { DebtTypeService } from 'src/app/services/debt-type.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,9 +30,20 @@ export class ProfileComponent implements OnInit {
   newExpense: Expense | null = null;
   editIncome: Income | null = null;
   newIncome: Income | null = null;
+  editDebt: Debt | null = null;
+  newDebt: Debt | null = null;
+  newDebtLender: DebtLender = new DebtLender();
+  newDebtType: DebtType = new DebtType();
+  newCategory: Category = new Category();
+  newFrequency: Frequency = new Frequency();
 
+  lenders : DebtLender[] = [];
+  types : DebtType[] = [];
   expenses: Expense[] = [];
   incomes: Income[] = [];
+  debts: Debt[] = [];
+  frequencies: Frequency[] = [];
+  categories: Category[] = [];
 
   oldPassword: string = '';
   newPassword1: string = '';
@@ -37,6 +58,11 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private incomeService: IncomeService,
     private expenseService: ExpenseService,
+    private debtService: DebtService,
+    private frequencyService: FrequencyService,
+    private categoryService: CategoryService,
+    private typeService : DebtTypeService,
+    private lenderService: DebtLenderService,
     private modalService: NgbModal
     ) { }
 
@@ -44,6 +70,11 @@ export class ProfileComponent implements OnInit {
     this.getUser();
     this.getExpenses();
     this.getIncomes();
+    this.getDebts();
+    this.getLenders();
+    this.getTypes();
+    this.getCategories();
+    this.getFrequencies();
   }
 
   getUser() {
@@ -75,6 +106,61 @@ export class ProfileComponent implements OnInit {
       },
       error: (problem) => {
         console.error('ProfileComponent.getIncomes(): Error getting Incomes');
+      }
+    });
+  }
+
+  getDebts() {
+    this.debtService.index().subscribe({
+      next: (debts) => {
+        this.debts = debts;
+      },
+      error: (problem) => {
+        console.error('ProfileComponent.getIncomes(): Error getting Incomes');
+      }
+    });
+  }
+
+  getFrequencies() {
+    this.frequencyService.index().subscribe({
+      next: (frequencies) => {
+        this.frequencies = frequencies;
+      },
+      error: (problem) => {
+        console.error('ProfileComponent.getFrequencies(): Error getting Frequencies');
+      }
+    });
+  }
+
+  getCategories() {
+    this.categoryService.index().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+      },
+      error: (problem) => {
+        console.error('ProfileComponent.getCategories(): Error getting Categories');
+      }
+    });
+  }
+
+  getLenders() {
+    this.lenderService.index().subscribe({
+      next: (lenders) => {
+        this.lenders = lenders;
+      },
+      error: (problem) => {
+        console.error('ProfileComponent.getLenders(): Error getting Lenders');
+      }
+    });
+  }
+
+  getTypes() {
+    this.typeService.index().subscribe({
+      next: (types) => {
+        this.types = types;
+      },
+      error: (problem) => {
+        console.error('ProfileComponent.getTypes(): Error getting Types');
       }
     });
   }
@@ -153,10 +239,16 @@ export class ProfileComponent implements OnInit {
 	}
 
   showMainOptions() {
+    this.editDebt = null;
     this.editExpense = null;
     this.editIncome = null;
+    this.newDebt = null;
     this.newExpense = null;
     this.newIncome = null;
+  }
+
+  setEditDebt(debt: Debt): void {
+    this.editDebt = Object.assign({}, debt);
   }
 
   setEditExpense(expense: Expense): void {
@@ -167,12 +259,29 @@ export class ProfileComponent implements OnInit {
     this.editIncome = Object.assign({}, income);
   }
 
+  setNewDebt(): void {
+    this.newDebt = new Debt();
+  }
+
   setNewExpense(): void {
     this.newExpense = new Expense();
   }
 
   setNewIncome(): void {
     this.newIncome = new Income();
+  }
+
+  updateDebt(debt: Debt) {
+    this.debtService.update(debt).subscribe({
+      next: (debt) => {
+        console.log(debt);
+        this.getDebts();
+        this.showMainOptions();
+      },
+      error: (problem) => {
+        console.log('ProfileComponent.updateDebt(): Problem updating Debt');
+      }
+    });
   }
 
   updateExpense(expense: Expense) {
@@ -201,6 +310,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  deleteDebt(debt: Debt) {
+    if (debt.id) {
+      this.debtService.destroy(debt.id).subscribe({
+        next: (debt) => {
+          console.log(debt);
+          this.getDebts();
+          this.showMainOptions();
+        },
+        error: (problem) => {
+          console.log('ProfileComponent.deleteDebt(): Problem deleting Debt');
+        }
+      });
+    }
+  }
+
   deleteExpense(expense: Expense) {
     if (expense.id) {
       this.expenseService.destroy(expense.id).subscribe({
@@ -210,7 +334,7 @@ export class ProfileComponent implements OnInit {
           this.showMainOptions();
         },
         error: (problem) => {
-          console.log('ProfileComponent.updateExpense(): Problem updating Expense');
+          console.log('ProfileComponent.updateExpense(): Problem deleting Expense');
         }
       });
     }
@@ -225,10 +349,25 @@ export class ProfileComponent implements OnInit {
           this.showMainOptions();
         },
         error: (problem) => {
-          console.log('ProfileComponent.updateIncome(): Problem updating Income');
+          console.log('ProfileComponent.updateIncome(): Problem deleting Income');
         }
       });
     }
+  }
+
+  addDebt(debt: Debt, debtLender : DebtLender, debtType : DebtType){
+    debt.debtLender = debtLender;
+    debt.debtType = debtType;
+    this.debtService.create(debt).subscribe({
+      next: (createdDebt) => {
+            this.getDebts();
+            this.showMainOptions();
+          },
+          error: (problem) => {
+            console.error('ProfileComponent.addDebt(): Error adding debt:');
+            console.error(problem);
+          }
+        });
   }
 
   addExpense(expense: Expense) {

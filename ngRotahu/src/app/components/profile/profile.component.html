@@ -3,7 +3,7 @@
     <div class="row">
       <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p>
     </div>
-    <div *ngIf="!editExpense && !editIncome && !newExpense && !newIncome">
+    <div *ngIf="!editDebt && !editExpense && !editIncome && !newDebt && !newExpense && !newIncome">
       <div class="row">
         <button class="btn btn-primary" (click)="open(passwordContent)">Change Password</button>
       </div>
@@ -14,26 +14,55 @@
         <button class="btn btn-primary" (click)="disable()">Delete Account</button>
       </div>
       <div class="row">
-        <button class="btn btn-primary" >CRUD Debt</button>
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary col" (click)="setNewDebt()" >Add Debt</button>
+          <div ngbDropdown class="d-inline-block btn-group">
+            <button type="button" class="btn btn-primary" id="debtDropdown" ngbDropdownToggle>Edit Debt</button>
+            <div ngbDropdownMenu aria-labelledby="debtDropdown">
+              <button ngbDropdownItem *ngFor="let debt of debts" (click)="setEditDebt(debt)">{{debt.name}}</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
-        <button class="btn btn-primary col" (click)="setNewExpense()" >Add Expense</button>
-        <div ngbDropdown class="d-inline-block col">
-          <button type="button" class="btn btn-primary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
-          <div ngbDropdownMenu aria-labelledby="expenseDropdown">
-            <button ngbDropdownItem *ngFor="let expense of expenses" (click)="setEditExpense(expense)">{{expense.description}}</button>
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary col" (click)="setNewExpense()" >Add Expense</button>
+          <div ngbDropdown class="d-inline-block btn-group">
+            <button type="button" class="btn btn-primary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
+            <div ngbDropdownMenu aria-labelledby="expenseDropdown">
+              <button ngbDropdownItem *ngFor="let expense of expenses" (click)="setEditExpense(expense)">{{expense.description}}</button>
+            </div>
           </div>
         </div>
       </div>
        <div class="row">
-        <button class="btn btn-primary col" (click)="setNewIncome()" >Add Income</button>
-        <div ngbDropdown class="d-inline-block col">
-          <button type="button" class="btn btn-primary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
-          <div ngbDropdownMenu aria-labelledby="incomeDropdown">
-            <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-primary col" (click)="setNewIncome()" >Add Income</button>
+          <div ngbDropdown class="d-inline-block btn-group">
+            <button type="button" class="btn btn-primary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
+            <div ngbDropdownMenu aria-labelledby="incomeDropdown">
+              <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div *ngIf="editDebt">
+      <form>
+        <label for="name">Name: </label>
+          <input type="text" name="name" [(ngModel)]="editDebt.name" />
+        <label for="annualPercentageRate">Annual Percentage Rate: </label>
+          <input type="number" name="annualPercentageRate" [(ngModel)]="editDebt.annualPercentageRate" />
+        <label for="minimumMonthlyPayment">Minimum Monthly Payment: </label>
+          <input type="number" name="minimumMonthlyPayment" [(ngModel)]="editDebt.minimumMonthlyPayment" />
+        <label for="currentBalance">Current Balance: </label>
+          <input type="number" name="currentBalance" [(ngModel)]="editDebt.currentBalance" />
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+          <button class="btn btn-primary" (click)="updateDebt(editDebt)">Update</button>
+          <button class="btn btn-danger" (click)="deleteDebt(editDebt)">Delete</button>
+        </div>
+      </form>
     </div>
     <div *ngIf="editExpense">
       <form>
@@ -45,9 +74,11 @@
           <input type="text" name="category" [(ngModel)]="editExpense.category.name" />
         <label for="frequency">Frequency: </label>
           <input type="text" name="frequency" [(ngModel)]="editExpense.frequency.name" />
-        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
-        <button class="btn btn-primary" (click)="updateExpense(editExpense)">Update</button>
-        <button class="btn btn-danger" (click)="deleteExpense(editExpense)">Delete</button>
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+          <button class="btn btn-primary" (click)="updateExpense(editExpense)">Update</button>
+          <button class="btn btn-danger" (click)="deleteExpense(editExpense)">Delete</button>
+        </div>
       </form>
     </div>
     <div *ngIf="editIncome">
@@ -60,9 +91,37 @@
           <input type="text" name="category" [(ngModel)]="editIncome.category" />
         <label for="frequency">Frequency: </label>
           <input type="text" name="frequency" [(ngModel)]="editIncome.frequency" />
-        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
-        <button class="btn btn-primary" (click)="updateIncome(editIncome)">Update</button>
-        <button class="btn btn-danger" (click)="deleteIncome(editIncome)">Delete</button>
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+          <button class="btn btn-primary" (click)="updateIncome(editIncome)">Update</button>
+          <button class="btn btn-danger" (click)="deleteIncome(editIncome)">Delete</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="newDebt">
+      <form>
+        <label for="name">Name</label>
+          <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name">
+        <label  for="lender">Lender </label>
+          <select name = "debtLender" [(ngModel)]="newDebtLender.id">
+            <option *ngFor="let lender of lenders" value="{{lender.id}}" >{{lender.name}}</option>
+          </select>
+        <label  for="debtType">Debt Type </label>
+          <select name = "debtType" [(ngModel)]="newDebtType.id">
+            <option *ngFor="let type of types" value="{{type.id}}" >{{type.description}}</option>
+          </select>
+        <label for="apr">APR </label>
+          <input type="number" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate">
+        <label for="currentBalance">Current Balance </label>
+          <input type="number" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance">
+        <label for="minPayment">Minimum Monthly Payment</label>
+          <input type="number" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment">
+        <label for="priority">Priority</label>
+          <input type="number" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority">
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+          <button class = "btn btn-primary" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
+        </div>
       </form>
     </div>
     <div *ngIf="newExpense">
@@ -72,11 +131,17 @@
         <label for="description">Description: </label>
           <input type="text" name="description" [(ngModel)]="newExpense.description" />
         <label for="category">Category: </label>
-          <input type="text" name="category" [(ngModel)]="newExpense.category" />
+          <select name="category" [(ngModel)]="newCategory.id">
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
         <label for="frequency">Frequency: </label>
-          <input type="text" name="frequency" [(ngModel)]="newExpense.frequency" />
-        <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
-        <button class="btn btn-primary" (click)="addExpense(newExpense)">Update</button>
+          <select name="frequency" [(ngModel)]="newFrequency.id">
+            <option *ngFor="let frequency of frequencies" value="{{frequency.id}}">{{frequency.name}}</option>
+          </select>
+        <div class="btn-group" role="group" >
+          <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
+          <button class="btn btn-primary" (click)="addExpense(newExpense)">Add New Expense</button>
+        </div>
       </form>
     </div>
     <div *ngIf="newIncome">
@@ -85,12 +150,16 @@
           <input type="number" name="amount" [(ngModel)]="newIncome.amount" />
         <label for="description">Description: </label>
           <input type="text" name="description" [(ngModel)]="newIncome.description" />
-        <label for="category">Category: </label>
-          <input type="text" name="category" [(ngModel)]="newIncome.category" />
-        <label for="frequency">Frequency: </label>
-          <input type="text" name="frequency" [(ngModel)]="newIncome.frequency" />
+          <label for="category">Category: </label>
+          <select name="category" [(ngModel)]="newCategory.id">
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+          </select>
+          <label for="frequency">Frequency: </label>
+          <select name="frequency" [(ngModel)]="newFrequency.id">
+            <option *ngFor="let frequency of frequencies" value="{{frequency.id}}">{{frequency.name}}</option>
+          </select>
         <button class="btn btn-primary" (click)="showMainOptions()">Cancel</button>
-        <button class="btn btn-primary" (click)="addIncome(newIncome)">Update</button>
+        <button class="btn btn-primary" (click)="addIncome(newIncome)">Add New Income</button>
       </form>
     </div>
   </div>
