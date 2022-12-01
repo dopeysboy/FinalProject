@@ -17,6 +17,7 @@ import { DebtLender } from 'src/app/models/debt-lender';
 import { DebtType } from 'src/app/models/debt-type';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtTypeService } from 'src/app/services/debt-type.service';
+import { ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-profile',
@@ -394,6 +395,29 @@ export class ProfileComponent implements OnInit {
         console.log('ProfileComponent.addIncome(): Problem adding Income');
       }
     });
+  }
+
+  // Doughnut chart stuff -----------------------------------------------------------------
+
+  public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [
+      { data: [ 350, 450, 100 ] },
+      { data: [ 50, 150, 120 ] },
+      { data: [ 250, 130, 70 ] }
+    ]
+  };
+
+  public doughnutChartType: ChartType = 'doughnut';
+
+  // events
+  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
+    console.log(event, active);
   }
 
 }
