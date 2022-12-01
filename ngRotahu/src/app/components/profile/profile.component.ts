@@ -18,6 +18,7 @@ import { DebtType } from 'src/app/models/debt-type';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtTypeService } from 'src/app/services/debt-type.service';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
   closeResult = '';
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private authService: AuthService,
     private incomeService: IncomeService,
@@ -78,7 +80,7 @@ export class ProfileComponent implements OnInit {
     this.getFrequencies();
     setTimeout(() => {
       this.generateChartData();
-    }, 200);
+    }, 500);
   }
 
   getUser() {
@@ -174,6 +176,7 @@ export class ProfileComponent implements OnInit {
       next: () => {
         console.log('Deleted');
         this.authService.logout();
+        this.router.navigate(['/home'])
       },
       error (problem) {
         console.error('ProfileComponent.disable(): Problem disabling user');
