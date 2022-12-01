@@ -377,7 +377,9 @@ export class ProfileComponent implements OnInit {
         });
   }
 
-  addExpense(expense: Expense) {
+  addExpense(expense: Expense, category: Category, frequency: Frequency) {
+    expense.category = category;
+    expense.frequency = frequency
     this.expenseService.create(expense).subscribe({
       next: (expense) => {
         console.log(expense);
@@ -390,7 +392,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  addIncome(income: Income) {
+  addIncome(income: Income, category: Category, frequency: Frequency) {
+    income.category = category;
+    income.frequency = frequency
     this.incomeService.create(income).subscribe({
       next: (income) => {
         console.log(income);
