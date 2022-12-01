@@ -248,22 +248,22 @@
 
 <ng-template #passwordContent let-modal >
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+    <h4 class="modal-title" id="modal-title">Change Password</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
     <form>
       <div class="mb-3">
         <div class="input-group">
-          <label for="oldPassword">Old Password: </label>
+          <label for="oldPassword" id="modal-content">Old Password: </label>
           <input type="password" name="oldPassword" [(ngModel)]="oldPassword" />
 				</div>
         <div class="input-group">
-          <label for="newPassword1">New Password: </label>
+          <label for="newPassword1" id="modal-content">New Password: </label>
           <input type="password" name="newPassword1" [(ngModel)]="newPassword1" />
 				</div>
         <div class="input-group">
-          <label for="newPassword2">Retype New Password: </label>
+          <label for="newPassword2" id="modal-content">Retype New Password: </label>
           <input type="password" name="newPassword2" [(ngModel)]="newPassword2" />
 				</div>
 			</div>
@@ -278,22 +278,22 @@
 
 <ng-template #accountContent let-modal >
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Account Info</h4>
+    <h4 class="modal-title" id="modal-title">Account Info</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
     <form>
       <div class="mb-3">
         <div class="input-group">
-          <label for="firstName">First Name: </label>
+          <label for="firstName" id="modal-content">First Name: </label>
           <input type="text" name="firstName" [(ngModel)]="loggedInUser.firstName" />
 				</div>
         <div class="input-group">
-          <label for="lastName">Last Name: </label>
+          <label for="lastName" id="modal-content">Last Name: </label>
           <input type="text" name="lastName" [(ngModel)]="loggedInUser.lastName" />
 				</div>
         <div class="input-group">
-          <label for="email">Email: </label>
+          <label for="email" id="modal-content">Email: </label>
           <input type="text" name="email" [(ngModel)]="loggedInUser.email" />
 				</div>
 			</div>

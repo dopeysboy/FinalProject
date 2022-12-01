@@ -30,3 +30,11 @@ div.btn-group button {
   margin-left: 0;
   margin-right: 0;
 }
+
+#modal-title, #modal-content {
+  color: black;
+}
+
+#modal-content {
+  padding-right: 10px;
+}
