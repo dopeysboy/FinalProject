@@ -76,7 +76,9 @@ export class ProfileComponent implements OnInit {
     this.getTypes();
     this.getCategories();
     this.getFrequencies();
-    this.generateChartData();
+    setTimeout(() => {
+      this.generateChartData();
+    }, 200);
   }
 
   getUser() {
