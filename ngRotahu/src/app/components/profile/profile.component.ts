@@ -76,6 +76,7 @@ export class ProfileComponent implements OnInit {
     this.getTypes();
     this.getCategories();
     this.getFrequencies();
+    this.generateChartData();
   }
 
   getUser() {
@@ -399,23 +400,66 @@ export class ProfileComponent implements OnInit {
 
   // Doughnut chart stuff -----------------------------------------------------------------
 
-  public doughnutChartLabels: string[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
   public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [ 350, 450, 100 ] },
-      { data: [ 50, 150, 120 ] },
-      { data: [ 250, 130, 70 ] }
-    ]
+    labels: [],
+    datasets: []
   };
-  public chartLabels: string[] = [];
-  for (let debt: Debt of this.debts) {
-    console.log('a');
+  chartLabels: string[] = [];
+  debtData: number[] = [];
+  incomeData: number[] = [];
+  expenseData: number[] = [];
+  generateChartData() {
+    for (let debt of this.debts) {
+      if (debt.name) {
+        this.chartLabels.push(debt.name);
+      } else {
+        this.chartLabels.push(' ');
+      }
+      if (debt.currentBalance) {
+        this.debtData.push(debt.currentBalance);
+      } else {
+        this.debtData.push(0);
+      }
+      this.incomeData.push(0);
+      this.expenseData.push(0);
+    }
+    for (let income of this.incomes) {
+      if (income.description) {
+        this.chartLabels.push(income.description);
+      } else {
+        this.chartLabels.push(' ');
+      }
+      if (income.amount) {
+        this.incomeData.push(income.amount);
+      } else {
+        this.incomeData.push(0);
+      }
+      this.debtData.push(0);
+      this.expenseData.push(0);
+    }
+    for (let expense of this.expenses) {
+      if (expense.description) {
+        this.chartLabels.push(expense.description);
+      } else {
+        this.chartLabels.push(' ');
+      }
+      if (expense.amount) {
+        this.expenseData.push(expense.amount);
+      } else {
+        this.expenseData.push(0);
+      }
+      this.debtData.push(0);
+      this.incomeData.push(0);
+    }
+    this.doughnutChartData = {
+      labels: this.chartLabels,
+      datasets: [
+        { data: this.debtData },
+        { data: this.incomeData },
+        { data: this.expenseData }
+      ]
+    };
   }
-  // public labels: Label[] = ['asdf', 'sdgf', 'dfhg', 'asdf_1', 'asdf_2', 'sdgf_1', 'sdgf_2', 'dfgh_1', 'dfgh_2'];
-
-  // public data = [[34, 50, 26, 0,0,0,0,0,0], [0,0,0, 14, 20, 30, 20, 10, 16]];
-
 
   public doughnutChartType: ChartType = 'doughnut';
 
