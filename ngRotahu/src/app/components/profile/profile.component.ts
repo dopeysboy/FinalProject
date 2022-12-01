@@ -408,6 +408,14 @@ export class ProfileComponent implements OnInit {
       { data: [ 250, 130, 70 ] }
     ]
   };
+  public chartLabels: string[] = [];
+  for (let debt: Debt of this.debts) {
+    console.log('a');
+  }
+  // public labels: Label[] = ['asdf', 'sdgf', 'dfhg', 'asdf_1', 'asdf_2', 'sdgf_1', 'sdgf_2', 'dfgh_1', 'dfgh_2'];
+
+  // public data = [[34, 50, 26, 0,0,0,0,0,0], [0,0,0, 14, 20, 30, 20, 10, 16]];
+
 
   public doughnutChartType: ChartType = 'doughnut';
 
