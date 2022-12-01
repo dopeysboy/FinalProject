@@ -33,7 +33,7 @@ export class LoggedInCalculatorComponent implements OnInit {
 
       let dataArr = [];
 
-      for(let i = 1; i < 60; i++){
+      for(let i = 0; i < 60; i++){
         if(debtPaymentPlan[field][i]){
           if(debtPaymentPlan[field][i] > 0){
             dataArr.push(debtPaymentPlan[field][i]);
@@ -103,6 +103,7 @@ export class LoggedInCalculatorComponent implements OnInit {
     this.calcService.calculateUserDebtsFromUser(residualIncome).subscribe({
       next: (results) => {
         this.generateDataSets(results);
+        console.log(results);
       },
       error: (err) => {
         console.log(err);

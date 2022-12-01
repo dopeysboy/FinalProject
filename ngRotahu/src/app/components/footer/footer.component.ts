@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class FooterComponent implements OnInit {
 
   showAboutUs(){
-    console.log('Redirect to an about us page');
+    this.router.navigateByUrl('aboutUs');
   }
 
   showReadme(){
