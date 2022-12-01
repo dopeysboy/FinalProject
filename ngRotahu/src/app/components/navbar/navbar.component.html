@@ -9,6 +9,7 @@
       <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/login']"> Login</button>
       <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/register']"> Create Account</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']"> Debts</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/resources']"> Resources</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']"> Profile</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/logout']"> Logout</button>
 
