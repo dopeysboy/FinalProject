@@ -20,3 +20,13 @@ button {
 div.row {
   justify-content: center;
 }
+
+div.btn-group {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+div.btn-group button {
+  margin-left: 0;
+  margin-right: 0;
+}
