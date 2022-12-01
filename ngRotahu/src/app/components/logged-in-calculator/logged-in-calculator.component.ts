@@ -96,7 +96,7 @@ export class LoggedInCalculatorComponent implements OnInit {
   }
 
   reloadChartData(residualIncome: number){
-    this.calcService.calculateUserDebtsFromUser(residualIncome).subscribe({
+    this.calcService.calculateUserDebtsFromUser().subscribe({
       next: (results) => {
         this.generateDataSets(results);
       },
