@@ -6,12 +6,20 @@
 
   <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
     <li  class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+<<<<<<< HEAD
       <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/login']"> Login</button>
       <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/register']"> Create Account</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']"> Debts</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/resources']"> Resources</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']"> Profile</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/logout']"> Logout</button>
+=======
+      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/login']">Login</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/register']">Create Account</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']">Debts</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']">Profile</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" (click)="logout()">Logout</button>
+>>>>>>> ff47e0eb704b76bd50ee581839504e08a28eaa5d
 
 </ul>
 

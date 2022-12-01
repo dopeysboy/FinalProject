@@ -27,8 +27,8 @@ div.btn-group {
 }
 
 div.btn-group button {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 #modal-title, #modal-content {
