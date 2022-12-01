@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.rotahu.entities.Debt;
+import com.skilldistillery.rotahu.entities.Expense;
+import com.skilldistillery.rotahu.entities.Income;
 import com.skilldistillery.rotahu.entities.User;
 import com.skilldistillery.rotahu.services.AuthService;
 import com.skilldistillery.rotahu.services.DebtCalculatorService;
@@ -86,17 +88,20 @@ public class DebtCalculatorController {
 		return map;
 	}
 	
-	@GetMapping("calculator/inc/{resInc}")
-	public Map<String, Map<Integer, Double>> calculateDebtsGivenUser(@PathVariable double resInc,
-			Principal principal, HttpServletRequest req, HttpServletResponse resp){
+	@GetMapping("calculator")
+	public Map<String, Map<Integer, Double>> calculateDebtsGivenUser(Principal principal, 
+			HttpServletRequest req, HttpServletResponse resp){
 		User user = authService.getUserByUsername(principal.getName());
 		
 		if(user == null) {
 			resp.setStatus(401);
 			return null;
 		}
-		List<Debt> debts = user.getDebts();
 		
+		Double resInc = calculateResIncome(user);
+		
+		List<Debt> debts = user.getDebts();
+
 		Map<String, Double> paymentAmounts = new HashMap<>();
 		
 		debts.stream().forEach( (debt) -> {
@@ -107,5 +112,33 @@ public class DebtCalculatorController {
 
 		
 		return map;
+	}
+	
+	private Double calculateResIncome(User user) {
+		List<Expense> expenses = user.getExpenses();
+		List<Income> incomes = user.getIncomes();
+		Double resInc = 0.0;
+		
+		for(Expense exp : expenses) {
+			if(exp.getFrequency().getName().equals("weekly")) {
+				resInc -= (exp.getAmount() * 4);
+			} else if(exp.getFrequency().getName().equals("quartely")) {
+				resInc -= (exp.getAmount() / 4);
+			} else {
+				resInc -= exp.getAmount();
+			}
+		}
+		
+		for(Income inc : incomes) {
+			if(inc.getFrequency().getName().equals("weekly")) {
+				resInc += (inc.getAmount() * 4);
+			} else if(inc.getFrequency().getName().equals("quarterly")) {
+				resInc += (inc.getAmount() / 4);
+			} else {
+				resInc += inc.getAmount();
+			}
+		}
+		
+		return resInc;
 	}
 }

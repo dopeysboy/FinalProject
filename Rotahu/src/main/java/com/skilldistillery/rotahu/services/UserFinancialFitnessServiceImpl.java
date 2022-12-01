@@ -14,7 +14,6 @@ import com.skilldistillery.rotahu.entities.User;
 @Service
 public class UserFinancialFitnessServiceImpl implements UserFinancialFitnessService{
 	
-	private final double goodDebtWeight = .1;
 	private List<DebtType> goodDebtTypes = new ArrayList<>();
 	
 	{
@@ -22,6 +21,13 @@ public class UserFinancialFitnessServiceImpl implements UserFinancialFitnessServ
 		goodDebtTypes.add(new DebtType(5));
 	}
 	
+	private final double GOOD_DEBT_WEIGHT = .1;
+	
+	private final double MIN_RI = 100;
+	private final double MAX_RI = 5000;
+	
+	private final double MIN_DA = 1000;
+	private final double MAX_DA = 100000;
 	/*
 	 * determines a fitness score, with 100 being perfect
 	 * and 0 being the worst possible
@@ -74,12 +80,12 @@ public class UserFinancialFitnessServiceImpl implements UserFinancialFitnessServ
 		
 		}
 		
-		if(resIncome > 5000) {
+		if(resIncome > MAX_RI) {
 			fitness = 50;
-		} else if(resIncome < 100) {
+		} else if(resIncome < MIN_RI) {
 			fitness = 0;
 		} else {
-			fitness = (int)(( (12 * resIncome) + 25) / 1225);
+			fitness = riFitnessFunction(resIncome);
 		}
 		
 		return fitness;
@@ -94,19 +100,27 @@ public class UserFinancialFitnessServiceImpl implements UserFinancialFitnessServ
 		
 		for(Debt d : debts) {
 			if(goodDebtTypes.contains(d.getDebtType())) {
-				totalDebtAmt += (d.getCurrentBalance() * goodDebtWeight);
+				totalDebtAmt += (d.getCurrentBalance() * GOOD_DEBT_WEIGHT);
 			} else {
 				totalDebtAmt += d.getCurrentBalance();
 			}
 		}
 		
-		if(totalDebtAmt > 100000) {
+		if(totalDebtAmt > MAX_DA) {
 			fitness = 0;
-		} else if(totalDebtAmt < 1000) {
+		} else if(totalDebtAmt < MIN_DA) {
 			fitness = 50;
 		} else {
-			fitness = (int) (((-2 * totalDebtAmt) + 200125)  / 2);
+			fitness = debtFitnessFunction(totalDebtAmt);
 		}
 		return fitness;
+	}
+	
+	private Integer riFitnessFunction(Double ri) {
+		return (int) ( ((48 * ri) + MAX_RI - (49 * MIN_RI)) / (MAX_RI - MIN_RI) );
+	}
+	
+	private Integer debtFitnessFunction(Double da) {
+		return (int) ( ((48 * da) + MAX_DA - (49 * MIN_DA)) / (MAX_DA - MIN_DA) );
 	}
 }
