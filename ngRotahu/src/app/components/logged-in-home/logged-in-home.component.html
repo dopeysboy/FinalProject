@@ -43,7 +43,7 @@
 		</ng-template>
 	</ngb-panel> -->
 </ngb-accordion>
-<button class = "btn btn-outline-primary" (click)="showAddDebt()">Add Debt Account</button>
+<button class = "btn btn-outline-primary" id="add-button" (click)="showAddDebt()">Add Debt Account</button>
 <div *ngIf = "showAddDebtForm">
   <form>
     <label for="name">Name</label><br>

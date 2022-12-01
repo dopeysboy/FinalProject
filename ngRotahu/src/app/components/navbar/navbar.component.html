@@ -11,11 +11,6 @@
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']"> Debts</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/resources']"> Resources</button>
       <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']"> Profile</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/logout']"> Logout</button>
-
-</ul>
-
-
-
-
+      <button *ngIf="loggedIn() == true" class="btn btn-dark" (click)="logout()"> Logout</button>
+  </ul>
 </nav>
