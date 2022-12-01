@@ -420,6 +420,8 @@ export class ProfileComponent implements OnInit {
       } else {
         this.debtData.push(0);
       }
+      this.incomeData.push(0);
+      this.expenseData.push(0);
     }
     for (let income of this.incomes) {
       if (income.description) {
@@ -432,6 +434,8 @@ export class ProfileComponent implements OnInit {
       } else {
         this.incomeData.push(0);
       }
+      this.debtData.push(0);
+      this.expenseData.push(0);
     }
     for (let expense of this.expenses) {
       if (expense.description) {
@@ -444,6 +448,8 @@ export class ProfileComponent implements OnInit {
       } else {
         this.expenseData.push(0);
       }
+      this.debtData.push(0);
+      this.incomeData.push(0);
     }
     this.doughnutChartData = {
       labels: this.chartLabels,
