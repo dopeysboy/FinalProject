@@ -81,7 +81,7 @@ public class DebtCalculatorController {
 			paymentAmounts.put(debt.getName(), debt.getMinimumMonthlyPayment());
 		});
 		
-		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(debts, paymentAmounts, resInc);
+		Map<String, Map<Integer, Double>> map = debtCalc.calculateDebtsAfterDebtGoesToZero(null, null, 1, resInc, debts);
 		
 		return map;
 	}
@@ -103,7 +103,7 @@ public class DebtCalculatorController {
 			paymentAmounts.put(debt.getName(), debt.getMinimumMonthlyPayment());
 		});
 		
-		Map<String, Map<Integer, Double>> map = debtCalc.calculateBestPayment(debts, paymentAmounts, resInc);
+		Map<String, Map<Integer, Double>> map = debtCalc.calculateDebtsAfterDebtGoesToZero(null, null, 1, resInc, debts);
 
 		
 		return map;
