@@ -133,6 +133,9 @@ export class LoggedInHomeComponent implements OnInit {
     this.showAddDebtForm = !this.showAddDebtForm;
 
   }
+  hideAddDebt(){
+    this.showAddDebtForm = !this.showAddDebtForm;
+  }
 
   setEditDebt(debt: Debt) : void{
     this.editDebt = Object.assign({}, debt)
