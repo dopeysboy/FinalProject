@@ -24,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { DrowningComponent } from './components/drowning/drowning.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     UserPieChartComponent,
     FaqComponent,
     AboutUsComponent,
+    DrowningComponent,
 
   ],
   imports: [
