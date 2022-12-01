@@ -11,6 +11,7 @@ import { LoggedInCalculatorComponent } from './components/logged-in-calculator/l
 import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
+import { DebtResourcesComponent } from './components/debt-resources/debt-resources.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path: 'loggedInCalc', component: LoggedInCalculatorComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'aboutUs', component: AboutUsComponent},
+  {path: 'resources', component: DebtResourcesComponent},
+
   {path: 'FORTESTING', component: UserPieChartComponent}
 ];
 

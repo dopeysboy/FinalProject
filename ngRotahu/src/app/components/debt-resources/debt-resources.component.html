@@ -1,0 +1,9 @@
+<div *ngIf="fitnessScore >60">
+  <app-thriving></app-thriving>
+</div>
+<div *ngIf="fitnessScore >40 && fitnessScore <60">
+  Good Standing
+</div>
+<div *ngIf="fitnessScore <50 ">
+  <app-drowning></app-drowning>
+</div>
