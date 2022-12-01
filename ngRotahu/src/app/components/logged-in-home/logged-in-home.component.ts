@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
@@ -7,6 +7,7 @@ import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtLender } from 'src/app/models/debt-lender';
 import { DebtType } from 'src/app/models/debt-type';
 import { DebtTypeService } from 'src/app/services/debt-type.service';
+import { LoggedInCalculatorComponent } from '../logged-in-calculator/logged-in-calculator.component';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -14,6 +15,7 @@ import { DebtTypeService } from 'src/app/services/debt-type.service';
   styleUrls: ['./logged-in-home.component.css']
 })
 export class LoggedInHomeComponent implements OnInit {
+  @ViewChild(LoggedInCalculatorComponent) calculator: any;
 
   debts : Debt[] = [];
   lenders : DebtLender[] = [];
@@ -21,6 +23,10 @@ export class LoggedInHomeComponent implements OnInit {
   newDebt: Debt = new Debt();
   newDebtLender: DebtLender = new DebtLender();
   newDebtType: DebtType = new DebtType();
+
+  //TODO CHANGE ME FIX ME
+  //THIS NEEDS TO BE FIXED
+  residualIncome : number = 10000;
 
   editDebt: Debt | null = null;
 
@@ -34,12 +40,17 @@ export class LoggedInHomeComponent implements OnInit {
 
   constructor(private type : DebtTypeService, private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
-
+  updateNewDebtPrio(debtType: DebtType){
+    for(let dt of this.types){
+      if(debtType.id == dt.id){
+        this.newDebt.priority = dt.defaultPriority;
+      }
+    }
+  }
 
   loadDebts(){
     this.debtService.index().subscribe({
       next: (debts: Debt[])=>{
-        console.log(debts);
         this.debts = debts;
       },
       error: (oops) => {
@@ -52,7 +63,6 @@ export class LoggedInHomeComponent implements OnInit {
   loadTypes(){
     this.type.index().subscribe({
       next: (types: DebtType[])=>{
-        console.log(types);
         this.types = types;
       },
       error: (err) => {
@@ -65,7 +75,6 @@ export class LoggedInHomeComponent implements OnInit {
   loadLenders(){
     this.lender.index().subscribe({
       next: (lenders: DebtLender[])=>{
-        console.log(lenders);
         this.lenders = lenders;
       },
       error: (oops) => {
@@ -79,14 +88,11 @@ export class LoggedInHomeComponent implements OnInit {
 
     debt.debtLender = debtLender;
     debt.debtType = debtType;
-    console.log(this.newDebt)
-    console.log( debt);
-    console.log(typeof debt.debtLender);
-    console.log(this.lenders);
+
     this.debtService.create(debt).subscribe({
       next: (createdDebt) => {
-            this.loadDebts();
-            this.router.navigateByUrl('/loggedInHome');
+        this.loadDebts();
+        this.calculator.reloadChartData(this.residualIncome);
           },
           error: (problem) => {
             console.error('LoggedInHomeComponenet.create(): Error creating new debt:');
@@ -101,6 +107,7 @@ export class LoggedInHomeComponent implements OnInit {
     this.debtService.destroy(debtId).subscribe({
       next: (success)=>{
         this.loadDebts();
+        this.calculator.reloadChartData(this.residualIncome);
       },
       error: (err)=> {
         console.error('loggedinHome.deleteDebt: could not delete');
@@ -144,8 +151,8 @@ export class LoggedInHomeComponent implements OnInit {
   updateDebt(debt : Debt){
     this.debtService.update(debt).subscribe({
       next: (debt) => {
-        console.log(debt);
         this.loadDebts();
+        this.calculator.reloadChartData(this.residualIncome);
       },
       error: (err) =>{
         console.log('LoggedInHomeComponent.updateDebt(); Problem updating Debt');

@@ -29,7 +29,7 @@
           <input type="text" name = "minPayment" value="{{debt.minimumMonthlyPayment}}" [(ngModel)]="debt.minimumMonthlyPayment"><br>
           <label for="currentBalance">Current Balance</label><br>
           <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
-          <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]">Submit</button>
+          <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]" [routerLink]="['/loggedInHome']">Submit</button>
           <button class = "btn btn-outline-danger" (click)="toggle()">Cancel</button>
         </form>
       </div>
@@ -46,23 +46,24 @@
 <button class = "btn btn-outline-primary" (click)="showAddDebt()">Add Debt Account</button>
 <div *ngIf = "showAddDebtForm">
   <form>
-    <label for="name">Name</label><br>
-    <input type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name"><br>
-    <label  for="lender">Lender </label><br>
-    <select name = "debtLender" [(ngModel)]="newDebtLender.id">
+    <label class="form-label" for="name">Name</label>
+    <input class="form-control" type="text" name = "name" placeholder="Name" [(ngModel)]="newDebt.name">
+    <label class="form-label" for="lender">Lender </label>
+    <select class="form-control" name = "debtLender" [(ngModel)]="newDebtLender.id">
       <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
-    </select><br>
-    <select name = "debtType" [(ngModel)]="newDebtType.id">
+    </select>
+    <label class="form-label" for="debtType">Debt Type</label>
+    <select class="form-control" name = "debtType" (change)="updateNewDebtPrio(newDebtType)" [(ngModel)]="newDebtType.id">
       <option *ngFor="let type of types" [value]="type.id" >{{type.description}}</option>
-    </select><br>
-    <label for="apr">APR </label><br>
-    <input type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate"><br>
-    <label for="currentBalance">Current Balance </label><br>
-    <input type="text" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance"><br>
-    <label for="minPayment">Minimum Monthly Payment: </label><br>
-    <input type="text" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment"><br>
-    <label for="priority">Priority</label><br>
-    <input type="text" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority"><br>
+    </select>
+    <label class="form-label" for="apr">APR </label>
+    <input class="form-control" type="text" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate">
+    <label class="form-label" for="currentBalance">Current Balance </label>
+    <input class="form-control" type="text" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance">
+    <label class="form-label" for="minPayment">Minimum Monthly Payment: </label>
+    <input class="form-control" type="text" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment">
+    <label class="form-label" for="priority">Priority</label>
+    <input class="form-control" type="text" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority">
     <button class = "btn btn-outline-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
     <button class = "btn btn-outline-danger" (click)="hideAddDebt()">Cancel</button>
 
