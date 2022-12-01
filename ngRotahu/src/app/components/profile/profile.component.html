@@ -12,7 +12,7 @@
         <button class="btn btn-outline-primary" (click)="open(accountContent)">Update account Information</button>
       </div>
       <div class="row">
-        <button class="btn btn-outline-primary" (click)="disable()">Delete Account</button>
+        <button class="btn btn-outline-danger" (click)="disable()">Delete Account</button>
       </div>
       <div class="row">
         <div class="btn-group" role="group" >
@@ -149,19 +149,19 @@
         </div>
         <div class="row">
           <label for="apr">APR </label>
-          <input type="number" name = "APR" placeholder="APR" [(ngModel)]="newDebt.annualPercentageRate">
+          <input type="number" name = "APR" [(ngModel)]="newDebt.annualPercentageRate">
         </div>
         <div class="row">
           <label for="currentBalance">Current Balance </label>
-          <input type="number" name = "currentBalance" placeholder="Current Balance" [(ngModel)]="newDebt.currentBalance">
+          <input type="number" name = "currentBalance" [(ngModel)]="newDebt.currentBalance">
         </div>
         <div class="row">
           <label for="minPayment">Minimum Monthly Payment</label>
-          <input type="number" name = "minPayment" placeholder="Minimum Payment" [(ngModel)]="newDebt.minimumMonthlyPayment">
+          <input type="number" name = "minPayment" [(ngModel)]="newDebt.minimumMonthlyPayment">
         </div>
         <div class="row">
-          <label for="priority">Priority</label>
-          <input type="number" name = "priority" placeholder="Priority (1-10)" [(ngModel)]="newDebt.priority">
+          <label for="priority">Priority (Optional)</label>
+          <input type="number" name = "priority" placeholder="1-10" [(ngModel)]="newDebt.priority">
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
