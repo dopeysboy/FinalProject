@@ -128,4 +128,29 @@ public class CreditResourceController {
 		
 		return cr;
 	}
+	
+	@PutMapping("creditresource/admin/toggle")
+	public CreditResource toggleEnableCreditResource(@RequestBody Integer id, Principal principal,
+			HttpServletRequest req, HttpServletResponse resp) {
+		User user = authService.getUserByUsername(principal.getName());
+		
+		if(user == null || !user.getRole().equals("admin")) {
+			resp.setStatus(401);
+			return null;
+		}
+		
+		CreditResource cr = crServ.findById(id);
+		
+		if(cr == null) {
+			resp.setStatus(400);
+			return null;
+		}
+		
+		Boolean isEnabled = cr.getEnabled();
+		cr.setEnabled(!isEnabled);
+		
+		cr = crServ.updateCreditResource(cr, user, id);
+		
+		return cr;
+	}
 }

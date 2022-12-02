@@ -1,0 +1,33 @@
+<table class="table table-dark table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Image URL</th>
+      <th>Site URL</th>
+      <th>Debt Intensity</th>
+      <th>Created By</th>
+      <th>Enabled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cr of crs" >
+      <td>{{cr.id}}</td>
+      <td>{{cr.description}}</td>
+      <td><a [href]="cr.imageUrl">Image Link</a></td>
+      <td><a [href]="cr.siteUrl">Site Link</a></td>
+      <td>{{cr.debtIntensity}}</td>
+      <td>{{cr.createdBy?.username}}</td>
+      <td *ngIf="!cr.enabled">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" (click)="toggleEnable(cr)">
+        </div>
+      </td>
+      <td *ngIf="cr.enabled">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked (click)="toggleEnable(cr)">
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
