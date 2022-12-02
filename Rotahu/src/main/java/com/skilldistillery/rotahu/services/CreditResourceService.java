@@ -11,6 +11,8 @@ public interface CreditResourceService {
 
 	CreditResource findById(Integer id);
 	
+	List<CreditResource> findByCreator(User creator);
+	
 	CreditResource createCreditResource(CreditResource cr, User user);
 
 	CreditResource updateCreditResource(CreditResource newCr, User user, Integer oldCrId);

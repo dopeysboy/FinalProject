@@ -1,9 +1,12 @@
-<div *ngIf="fitnessScore >60">
-  <app-thriving></app-thriving>
-</div>
-<div *ngIf="fitnessScore >40 && fitnessScore <60">
-  Good Standing
-</div>
-<div *ngIf="fitnessScore <50 ">
-  <app-drowning></app-drowning>
+<div *ngFor="let cr of shownCR">
+  <div class = col-sm-4 >
+    <div class="card bg-dark" style="width: 18rem; height: 100%;">
+      <img [src]="cr.imageUrl" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Submitted By: {{cr.createdBy?.username}}</h5><hr>
+        <p class="card-text">{{cr.description}}</p>
+        <a [href]="cr.siteUrl" target="_blank" class="btn btn-primary">Check It Out!</a>
+      </div>
+    </div>
+  </div>
 </div>

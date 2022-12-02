@@ -3,7 +3,7 @@ import { User } from "./user";
 export class CreditResource {
   id : number | undefined;
   description : string | undefined;
-  videoUrl : string | undefined;
+  imageUrl : string | undefined;
   siteUrl : string | undefined;
   debtIntensity : number | undefined;
   createdAt : string | undefined;
@@ -16,7 +16,7 @@ export class CreditResource {
     createdBy?:User){
       this.id = id;
       this.description = description;
-      this.videoUrl = videoUrl;
+      this.imageUrl = videoUrl;
       this.siteUrl = siteUrl;
       this.debtIntensity = debtIntensity;
       this.createdAt = createdAt;

@@ -413,11 +413,17 @@ export class ProfileComponent implements OnInit {
     labels: [],
     datasets: []
   };
+
   chartLabels: string[] = [];
   debtData: number[] = [];
   incomeData: number[] = [];
   expenseData: number[] = [];
+
   generateChartData() {
+    this.chartLabels = [];
+    this.debtData = [];
+    this.incomeData = [];
+    this.expenseData = [];
     for (let debt of this.debts) {
       if (debt.name) {
         this.chartLabels.push(debt.name);
