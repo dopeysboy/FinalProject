@@ -10,9 +10,11 @@ import { LoggedInHomeComponent } from './components/logged-in-home/logged-in-hom
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 import { DebtResourcesComponent } from './components/debt-resources/debt-resources.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { UserCreatedCrComponent } from './components/user-created-cr/user-created-cr.component';
+import { CreditResourceCrudComponent } from './components/credit-resource-crud/credit-resource-crud.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
 
@@ -29,8 +31,10 @@ const routes: Routes = [
   {path: 'faq', component: FaqComponent},
   {path: 'aboutUs', component: AboutUsComponent},
   {path: 'resources', component: DebtResourcesComponent},
-
-  {path: 'FORTESTING', component: UserPieChartComponent}
+  {path: 'userCRList', component: UserCreatedCrComponent},
+  {path: 'createResource', component: CreditResourceCrudComponent},
+  {path: 'editResource/{id}', component: CreditResourceCrudComponent},
+  {path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

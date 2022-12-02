@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class CreditResourceService {
 
-  private url = environment.baseUrl + 'creditresource';
+  private url = environment.baseUrl + 'api/creditresource';
 
   getHttpOptions() {
     let options = {
@@ -61,6 +61,17 @@ export class CreditResourceService {
         console.error(err);
         return throwError(
           () => new Error('CreditResourceService.update(): error updating CreditResource: ' + err)
+        );
+      })
+    );
+  }
+
+  getByUsername(username: string): Observable<CreditResource[]>{
+    return this.http.get<CreditResource[]>(`${this.url}/user/${username}`, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('CreditResourceSesrvice.getByUsername(): error retrieving CreditResources: ' + err)
         );
       })
     );
