@@ -57,4 +57,26 @@ export class UserService {
     );
   }
 
+  index(): Observable<User[]>{
+    return this.http.get<User[]>(`${this.url}/admin`, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('UserService.index(): error retrieving Users: ' + err)
+        )
+      })
+    );
+  }
+
+  toggleEnable(user: User): Observable<void>{
+    return this.http.put<void>(`${this.url}/admin/toggleEnable`, user.username, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('UserService.toggleEnable(): error toggling enabled: ' + err)
+        )
+      })
+    );
+  }
+
 }

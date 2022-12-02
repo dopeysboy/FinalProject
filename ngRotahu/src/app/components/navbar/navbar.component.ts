@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isAdmin: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -18,6 +21,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getIsAdmin();
   }
 
   loggedIn(): boolean{
@@ -27,6 +31,10 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.auth.logout();
     this.router.navigateByUrl('/home');
+  }
+
+  getIsAdmin():boolean {
+    return this.auth.isAdmin();
   }
 
 }

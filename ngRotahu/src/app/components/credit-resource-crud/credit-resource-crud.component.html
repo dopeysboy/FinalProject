@@ -1,0 +1,28 @@
+<div *ngIf="!updateCr?.id">
+  <label class="form-label" for="description">Description</label>
+  <input class="form-control" name="description" type="text" [(ngModel)]="newCr.description"/>
+  <label class="form-label" for="videoUrl">Video URL?</label>
+  <input class="form-control" name="videoUrl" type="url" [(ngModel)]="newCr.videoUrl"/>
+  <label class="form-label" for="siteUrl">Site URL?</label>
+  <input class="form-control" name="siteUrl" type="url" [(ngModel)]="newCr.siteUrl"/>
+  <label class="form-label" for="debtIntensity">Intensity of Debt</label>
+  <input class="form-control" name="debtIntensity" type="range" min="0" max="100" [(ngModel)]="newCr.debtIntensity"/>
+  <label class="form-label" for="enabled">Show this Credit Resource to others?</label>
+  <input class="form-control" name="enabled" type="checkbox" [(ngModel)]="newCr.enabled"/>
+  <button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+  <button type="button" class="btn btn-outline-primary" (click)="submit(newCr)">Submit</button>
+</div>
+<div *ngIf="updateCr && updateCr.id">
+  <label class="form-label" for="description">Description</label>
+  <input class="form-control" name="description" type="text" [(ngModel)]="updateCr.description"/>
+  <label class="form-label" for="videoUrl">Video URL?</label>
+  <input class="form-control" name="videoUrl" type="url" [(ngModel)]="updateCr.videoUrl"/>
+  <label class="form-label" for="siteUrl">Site URL?</label>
+  <input class="form-control" name="siteUrl" type="url" [(ngModel)]="updateCr.siteUrl"/>
+  <label class="form-label" for="debtIntensity">Intensity of Debt</label>
+  <input class="form-control" name="debtIntensity" type="range" min="0" max="100" [(ngModel)]="updateCr.debtIntensity"/>
+  <label class="form-label" for="enabled">Show this Credit Resource to others?</label>
+  <input class="form-control" name="enabled" type="checkbox" [(ngModel)]="updateCr.enabled"/>
+  <button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+  <button type="button" class="btn btn-outline-primary" (click)="update(updateCr, updateCr.id)">Submit</button>
+</div>
