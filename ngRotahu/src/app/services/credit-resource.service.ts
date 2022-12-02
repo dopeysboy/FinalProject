@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class CreditResourceService {
 
-  url = environment.baseUrl + 'creditresource';
+  private url = environment.baseUrl + 'creditresource';
 
   getHttpOptions() {
     let options = {
@@ -65,5 +65,6 @@ export class CreditResourceService {
       })
     );
   }
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 }
