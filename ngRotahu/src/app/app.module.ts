@@ -29,6 +29,8 @@ import { ThrivingComponent } from './components/thriving/thriving.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CreditResourceCrudComponent } from './components/credit-resource-crud/credit-resource-crud.component';
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
+import { UserCreatedCrComponent } from './components/user-created-cr/user-created-cr.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { UserPieChartComponent } from './components/user-pie-chart/user-pie-char
     ThrivingComponent,
     AdminComponent,
     CreditResourceCrudComponent,
+    UserCreatedCrComponent,
+    ErrorComponent,
 
   ],
   imports: [
