@@ -1,6 +1,6 @@
 <div *ngIf="!updateCr?.id">
   <h4>Create a new Debt:</h4>
-  <label class="form-label" for="description">Description</label>
+  <label class="form-label" for="description">Title</label>
   <input class="form-control" name="description" type="text" [(ngModel)]="newCr.description"/>
   <label class="form-label" for="videoUrl">Image URL</label>
   <input class="form-control" name="videoUrl" type="url" [(ngModel)]="newCr.imageUrl"/>
@@ -15,7 +15,7 @@
 </div>
 <div *ngIf="updateCr && updateCr.id">
   <h4>Update a current Debt:</h4>
-  <label class="form-label" for="description">Description</label>
+  <label class="form-label" for="description">Title</label>
   <input class="form-control" name="description" type="text" [(ngModel)]="updateCr.description"/>
   <label class="form-label" for="videoUrl">Image URL</label>
   <input class="form-control" name="videoUrl" type="url" [(ngModel)]="updateCr.imageUrl"/>
