@@ -78,9 +78,6 @@ export class ProfileComponent implements OnInit {
     this.getTypes();
     this.getCategories();
     this.getFrequencies();
-    setTimeout(() => {
-      this.generateChartData();
-    }, 500);
   }
 
   getUser() {
@@ -98,6 +95,7 @@ export class ProfileComponent implements OnInit {
     this.expenseService.index().subscribe({
       next: (expenses) => {
         this.expenses = expenses;
+        this.generateChartData();
       },
       error: (problem) => {
         console.error('ProfileComponent.getExpenses(): Error getting Expenses');
@@ -109,6 +107,7 @@ export class ProfileComponent implements OnInit {
     this.incomeService.index().subscribe({
       next: (incomes) => {
         this.incomes = incomes;
+        this.generateChartData();
       },
       error: (problem) => {
         console.error('ProfileComponent.getIncomes(): Error getting Incomes');
@@ -120,6 +119,7 @@ export class ProfileComponent implements OnInit {
     this.debtService.index().subscribe({
       next: (debts) => {
         this.debts = debts;
+        this.generateChartData();
       },
       error: (problem) => {
         console.error('ProfileComponent.getIncomes(): Error getting Incomes');
