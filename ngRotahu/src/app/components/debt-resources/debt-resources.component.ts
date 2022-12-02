@@ -23,16 +23,52 @@ export class DebtResourcesComponent implements OnInit {
   constructor(private fitness : FitnessService, private crServ: CreditResourceService) { }
 
   reloadCards(){
+    console.log('starting reload process');
     if(this.fitnessScore <= 40){
       //select three random bad
+      while(this.shownCR.length < 3){
+        let idx = Math.floor(Math.random() * this.badCR.length);
+        let cr = this.badCR[idx];
+        if(!this.shownCR.includes(cr)){
+          this.shownCR.push(cr);
+        }
+      }
     } else if(this.fitnessScore >= 60){
       //select three random good
+      while(this.shownCR.length < 3){
+        let idx = Math.floor(Math.random() * this.goodCR.length);
+        let cr = this.goodCR[idx];
+        if(!this.shownCR.includes(cr)){
+          this.shownCR.push(cr);
+        }
+      }
     } else if(this.fitnessScore <= 50){
       //select two bad one good
+      while(this.shownCR.length < 2){
+        let idx = Math.floor(Math.random() * this.badCR.length);
+        let cr = this.badCR[idx];
+        if(!this.shownCR.includes(cr)){
+          this.shownCR.push(cr);
+        }
+      }
+      let idx = Math.floor(Math.random() * this.goodCR.length);
+      let cr = this.goodCR[idx];
+      this.shownCR.push(cr);
     } else {
       //select two good one bad
+      while(this.shownCR.length < 3){
+        let idx = Math.floor(Math.random() * this.goodCR.length);
+        let cr = this.goodCR[idx];
+        if(!this.shownCR.includes(cr)){
+          this.shownCR.push(cr);
+        }
+      }
+      let idx = Math.floor(Math.random() * this.badCR.length);
+      let cr = this.badCR[idx];
+      this.shownCR.push(cr);
     }
   }
+
   sortCR(crs : CreditResource[]){
     for(let cr of crs){
       if(cr.debtIntensity && cr.debtIntensity < 50){
@@ -42,6 +78,7 @@ export class DebtResourcesComponent implements OnInit {
       }
     }
 
+    this.reloadCards();
   }
 
   retrieveCR(){

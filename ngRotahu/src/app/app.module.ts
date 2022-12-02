@@ -31,7 +31,8 @@ import { CreditResourceCrudComponent } from './components/credit-resource-crud/c
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 import { UserCreatedCrComponent } from './components/user-created-cr/user-created-cr.component';
 import { ErrorComponent } from './components/error/error.component';
-import { CarouselPauseComponent } from './components/carousel-pause/carousel-pause.component';
+import { AdminCrListComponent } from './components/admin-cr-list/admin-cr-list.component';
+
 
 @NgModule({
   declarations: [

@@ -77,5 +77,16 @@ export class CreditResourceService {
     );
   }
 
+  toggleEnable(cr: CreditResource): Observable<CreditResource>{
+    return this.http.put<CreditResource>(`${this.url}/admin/toggle`, cr.id, this.getHttpOptions()).pipe(
+      catchError( (err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('CreditResourceService.toggleEnable(): error updating CreditResources: ' + err)
+        );
+      })
+    );
+  }
+
   constructor(private http: HttpClient, private authService: AuthService) { }
 }

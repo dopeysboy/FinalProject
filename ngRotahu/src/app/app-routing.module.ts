@@ -15,6 +15,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserCreatedCrComponent } from './components/user-created-cr/user-created-cr.component';
 import { CreditResourceCrudComponent } from './components/credit-resource-crud/credit-resource-crud.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AdminCrListComponent } from './components/admin-cr-list/admin-cr-list.component';
 
 const routes: Routes = [
 
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'resources', component: DebtResourcesComponent},
   {path: 'userCRList', component: UserCreatedCrComponent},
   {path: 'createResource', component: CreditResourceCrudComponent},
-  {path: 'editResource/{id}', component: CreditResourceCrudComponent},
+  {path: 'editResource/:id', component: CreditResourceCrudComponent},
+  {path: 'adminCR', component: AdminCrListComponent},
   {path: '**', component: ErrorComponent}
 ];
 
