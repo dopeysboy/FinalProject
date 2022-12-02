@@ -27,6 +27,7 @@ export class DebtResourcesComponent implements OnInit {
     if(this.fitnessScore <= 40){
       //select three random bad
       while(this.shownCR.length < 3){
+        console.log('3b');
         let idx = Math.floor(Math.random() * this.badCR.length);
         let cr = this.badCR[idx];
         if(!this.shownCR.includes(cr)){
@@ -36,6 +37,7 @@ export class DebtResourcesComponent implements OnInit {
     } else if(this.fitnessScore >= 60){
       //select three random good
       while(this.shownCR.length < 3){
+        console.log('3g');
         let idx = Math.floor(Math.random() * this.goodCR.length);
         let cr = this.goodCR[idx];
         if(!this.shownCR.includes(cr)){
@@ -45,6 +47,7 @@ export class DebtResourcesComponent implements OnInit {
     } else if(this.fitnessScore <= 50){
       //select two bad one good
       while(this.shownCR.length < 2){
+        console.log('2b1g');
         let idx = Math.floor(Math.random() * this.badCR.length);
         let cr = this.badCR[idx];
         if(!this.shownCR.includes(cr)){
@@ -56,7 +59,8 @@ export class DebtResourcesComponent implements OnInit {
       this.shownCR.push(cr);
     } else {
       //select two good one bad
-      while(this.shownCR.length < 3){
+      while(this.shownCR.length < 2){
+        console.log('2g1b');
         let idx = Math.floor(Math.random() * this.goodCR.length);
         let cr = this.goodCR[idx];
         if(!this.shownCR.includes(cr)){
@@ -71,13 +75,14 @@ export class DebtResourcesComponent implements OnInit {
 
   sortCR(crs : CreditResource[]){
     for(let cr of crs){
-      if(cr.debtIntensity && cr.debtIntensity < 50){
+      if((cr.debtIntensity || cr.debtIntensity === 0) && cr.debtIntensity < 50){
         this.badCR.push(cr);
       } else {
         this.goodCR.push(cr);
       }
     }
-
+    console.log(this.goodCR);
+    console.log(this.badCR);
     this.reloadCards();
   }
 

@@ -59,7 +59,7 @@ import { AdminCrListComponent } from './components/admin-cr-list/admin-cr-list.c
     CreditResourceCrudComponent,
     UserCreatedCrComponent,
     ErrorComponent,
-
+    AdminCrListComponent
   ],
   imports: [
     BrowserModule,
