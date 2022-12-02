@@ -18,3 +18,17 @@
   color: #fff;
   background-color: #5face3;
 }
+
+#navbar-logo-button {
+  margin-left: 16px;
+}
+
+#navbar-logo-button:hover {
+  background-color: inherit;
+  border-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+#navbar-logo {
+  height: 24px;
+  width: 24px;
+}
