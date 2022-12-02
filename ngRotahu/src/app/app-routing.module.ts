@@ -12,10 +12,12 @@ import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 import { DebtResourcesComponent } from './components/debt-resources/debt-resources.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
 
   {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'users', component: AdminComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
