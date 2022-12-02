@@ -9,7 +9,7 @@
       <input class="form-control" type="number" name="apr" [(ngModel)]="debt.annualPercentageRate"/><br>
       <label class="form-label" for="balance">Amount owed</label>
       <input class="form-control" type="number" name="balance" [(ngModel)]="debt.currentBalance"/><br>
-      <button type="button" (click)="formSubmit(debt)">Refresh Chart</button>
+      <button type="button" class="btn btn-secondary" (click)="formSubmit(debt)">Refresh Chart</button>
     </form>
     <p>Total Interest Paid:</p>
     <p>{{totalInterest | currency}}</p>
