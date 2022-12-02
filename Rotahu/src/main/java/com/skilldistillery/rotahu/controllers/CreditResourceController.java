@@ -23,7 +23,7 @@ import com.skilldistillery.rotahu.services.CreditResourceService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({"*", "http://localhost"})
 public class CreditResourceController {
 	@Autowired
 	private CreditResourceService crServ;
@@ -45,12 +45,17 @@ public class CreditResourceController {
 		return crs;
 	}
 	
-	@GetMapping("creditresource/{username}")
+	@GetMapping("creditresource/user/{username}")
 	public List<CreditResource> getByUser(@PathVariable String username, Principal principal, 
 			HttpServletRequest req, HttpServletResponse resp){
 		User user = authService.getUserByUsername(principal.getName());
+
+		if(user == null) {
+			resp.setStatus(401);
+			return null;
+		}
 		
-		if(user == null || user.getUsername() != username || user.getRole() != "admin") {
+		if(user.getUsername() != username && !user.getRole().equals("admin")) {
 			resp.setStatus(401);
 			return null;
 		}
