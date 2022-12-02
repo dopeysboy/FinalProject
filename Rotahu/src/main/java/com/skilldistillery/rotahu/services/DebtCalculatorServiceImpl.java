@@ -1,6 +1,5 @@
 package com.skilldistillery.rotahu.services;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rotahu.entities.Debt;
 import com.skilldistillery.rotahu.entities.DebtType;
-
-import net.bytebuddy.dynamic.scaffold.inline.DecoratingDynamicTypeBuilder;
 
 
 @Service
