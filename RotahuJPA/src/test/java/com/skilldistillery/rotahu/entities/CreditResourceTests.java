@@ -47,7 +47,7 @@ class CreditResourceTests {
 	void test_CreditResource_mapping() {
 		assertNotNull(creditResource);
 		assertEquals("nice resource", creditResource.getDescription());
-		assertEquals(null, creditResource.getVideoUrl());
+		assertEquals(null, creditResource.getImageUrl());
 		assertEquals(null, creditResource.getSiteUrl());
 	}
 	@Test

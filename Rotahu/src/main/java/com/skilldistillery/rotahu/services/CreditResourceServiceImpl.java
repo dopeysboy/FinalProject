@@ -34,6 +34,17 @@ public class CreditResourceServiceImpl implements CreditResourceService{
 	}
 	
 	@Override
+	public List<CreditResource> findByCreator(User creator){
+		List<CreditResource> crs = crRepo.findByCreatedBy(creator);
+		
+		if(crs.size() < 1) {
+			return null;
+		}
+		
+		return crs;
+	}
+	
+	@Override
 	public CreditResource createCreditResource(CreditResource cr, User user) {
 		cr.setCreatedBy(user);
 		cr.setEnabled(true);

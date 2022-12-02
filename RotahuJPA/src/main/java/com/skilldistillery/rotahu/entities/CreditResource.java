@@ -29,8 +29,8 @@ public class CreditResource {
 	private int id;
 	private String description;
 	
-	@Column(name="video_url")
-	private String videoUrl;
+	@Column(name="image_url")
+	private String imageUrl;
 	
 	@Column(name="site_url")
 	private String siteUrl;
@@ -77,13 +77,13 @@ public class CreditResource {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getVideoUrl() {
-		return videoUrl;
+	
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public String getSiteUrl() {

@@ -45,6 +45,25 @@ public class CreditResourceController {
 		return crs;
 	}
 	
+	@GetMapping("creditresource/{username}")
+	public List<CreditResource> getByUser(@PathVariable String username, Principal principal, 
+			HttpServletRequest req, HttpServletResponse resp){
+		User user = authService.getUserByUsername(principal.getName());
+		
+		if(user == null || user.getUsername() != username || user.getRole() != "admin") {
+			resp.setStatus(401);
+			return null;
+		}
+		
+		List<CreditResource> crs = crServ.findByCreator(authService.getUserByUsername(username));
+		
+		if(crs == null) {
+			resp.setStatus(404);
+		}
+		
+		return crs;
+	}
+	
 	@GetMapping("creditresource/{crId}")
 	public CreditResource getById(@PathVariable Integer crId, Principal principal,
 			HttpServletRequest req, HttpServletResponse resp) {
