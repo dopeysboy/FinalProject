@@ -1,12 +1,15 @@
+<div class="row bottom-padding">
+  <button type="button" class="btn btn-primary" (click)="createNew()">Create a new Resource!</button>
+</div>
 <div class="row">
-<div class = "col-sm-4 bottom-padding" *ngFor="let cr of userCrs">
-  <div *ngIf="cr.id" class="card bg-dark" style="width: 18rem; height: 100%;">
-    <img [src]="cr.imageUrl" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><button type="button" (click)="editResource(cr.id)" class="btn btn-outline-danger">Edit this Resource</button></h5><hr>
-      <p class="card-text">{{cr.description}}</p>
-      <a [href]="cr.siteUrl" target="_blank" class="btn btn-primary">Check It Out!</a>
+  <div class = "col-sm-4 bottom-padding" *ngFor="let cr of userCrs">
+    <div *ngIf="cr.id" class="card bg-dark" style="width: 18rem; height: 100%;">
+      <img [height]="imgHeight" [width]="imgWidth" [src]="cr.imageUrl" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{cr.description}}</h5><hr>
+        <p class="card-text"><button type="button" (click)="editResource(cr.id)" class="btn btn-outline-danger">Edit this Resource</button></p>
+        <a [href]="cr.siteUrl" target="_blank" class="btn btn-primary">Check It Out!</a>
+      </div>
     </div>
   </div>
-</div>
 </div>
