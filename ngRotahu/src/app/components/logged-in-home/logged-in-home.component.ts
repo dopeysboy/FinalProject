@@ -85,6 +85,7 @@ export class LoggedInHomeComponent implements OnInit {
     })
   }
 
+
   createDebt(debt: Debt, debtLender : DebtLender, debtType : DebtType){
 
     debt.debtLender = debtLender;
@@ -100,7 +101,7 @@ export class LoggedInHomeComponent implements OnInit {
             console.error(problem);
           }
         });
-  }
+      }
 
 
 

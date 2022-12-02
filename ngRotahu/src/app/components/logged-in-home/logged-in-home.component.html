@@ -26,15 +26,20 @@
         <form>
           <label for="name">Name</label><br>
           <input type="text" name = "name" value="{{debt.name}}" [(ngModel)]="debt.name"><br>
+          <label for="lender">Debt Lender</label><br>
+          <!-- <input type="text" name = "lender" value="{{newDebtLender.name}}" [(ngModel)]="newDebtLender.name"><br> -->
+          <!-- <select name = "lender" [(ngModel)]="debt.debtLender">
+            <option *ngFor="let lender of lenders" [value]="lender.name" >{{lender.name}}</option>
+          </select> -->
+          <label for="currentBalance">Current Balance</label><br>
+          <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
           <label for="apr">APR </label><br>
           <input type="text" name = "APR" value="{{debt.annualPercentageRate}}" [(ngModel)]="debt.annualPercentageRate"><br>
           <label for="minPayment">Minimum Monthly Payment</label><br>
           <input type="text" name = "minPayment" value="{{debt.minimumMonthlyPayment}}" [(ngModel)]="debt.minimumMonthlyPayment"><br>
-          <label for="currentBalance">Current Balance</label><br>
-          <input type="text" name = "currentBalance" value="{{debt.currentBalance}}" [(ngModel)]="debt.currentBalance"><br>
           <div class="row">
             <div class="btn-group" role="group" >
-              <button class = "btn btn-outline-dark" (click)="toggle()">Cancel</button>
+              <button class = "btn btn-outline-dark" (click)="[toggle(), loadDebts()]">Cancel</button>
               <button class = "btn btn-outline-primary" (click)="[updateDebt(debt), toggle()]" [routerLink]="['/loggedInHome']">Submit</button>
             </div>
           </div>
@@ -83,12 +88,12 @@
     </div>
     <div class="row">
       <label for="priority">Priority (Optional)</label>
-      <input type="text" name = "priority" placeholder="1-10" [(ngModel)]="newDebt.priority">
+      <input type="text" name = "priority" placeholder="{{newDebtType.defaultPriority}}" [(ngModel)]="newDebtType.defaultPriority">
     </div>
     <div class="row">
       <div class="btn-group" role="group" >
         <button class = "btn btn-outline-light" (click)="hideAddDebt()">Cancel</button>
-        <button class = "btn btn-outline-primary" (click)="createDebt(newDebt, newDebtLender, newDebtType)" [routerLink]="['/loggedInHome']">Submit </button>
+        <button class = "btn btn-outline-primary" (click)="[createDebt(newDebt, newDebtLender, newDebtType), hideAddDebt()]" [routerLink]="['/loggedInHome']">Submit </button>
       </div>
     </div>
   </form>
