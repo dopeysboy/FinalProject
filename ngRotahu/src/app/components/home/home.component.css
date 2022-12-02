@@ -6,3 +6,28 @@ height:200px;
 width:200px;
 
 }
+
+body {
+  background: #000 !important;
+}
+.card {
+  border: 1px solid #5face3;
+
+}
+.card-header {
+  color: #fff;
+  /*background: #ff0000;*/
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600 !important;
+  margin-top: 10px;
+  border-bottom: 0;
+}
+.login_btn:hover{
+  color: #fff;
+  background-color: #5face3;
+}
+
+.h1{
+  font-family: "Serif", "Garamond", monospace;
+}
