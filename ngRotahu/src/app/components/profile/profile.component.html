@@ -6,19 +6,10 @@
     </div>
     <div *ngIf="!editDebt && !editExpense && !editIncome && !newDebt && !newExpense && !newIncome">
       <div class="row">
-        <button class="btn btn-outline-primary" (click)="open(passwordContent)">Change Password</button>
-      </div>
-      <div class="row">
-        <button class="btn btn-outline-primary" (click)="open(accountContent)">Update account Information</button>
-      </div>
-      <div class="row">
-        <button class="btn btn-outline-danger" (click)="disable()">Delete Account</button>
-      </div>
-      <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-outline-primary col" (click)="setNewDebt()" >Add Debt</button>
+          <button class="btn btn-secondary col" (click)="setNewDebt()" >Add Debt</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-outline-primary" id="debtDropdown" ngbDropdownToggle>Edit Debt</button>
+            <button type="button" class="btn btn-secondary" id="debtDropdown" ngbDropdownToggle>Edit Debt</button>
             <div ngbDropdownMenu aria-labelledby="debtDropdown">
               <button ngbDropdownItem *ngFor="let debt of debts" (click)="setEditDebt(debt)">{{debt.name}}</button>
             </div>
@@ -27,25 +18,34 @@
       </div>
       <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-outline-primary col" (click)="setNewExpense()" >Add Expense</button>
+          <button class="btn btn-secondary col" (click)="setNewExpense()" >Add Expense</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-outline-primary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
+            <button type="button" class="btn btn-secondary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
             <div ngbDropdownMenu aria-labelledby="expenseDropdown">
               <button ngbDropdownItem *ngFor="let expense of expenses" (click)="setEditExpense(expense)">{{expense.description}}</button>
             </div>
           </div>
         </div>
       </div>
-       <div class="row">
+      <div class="row">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-outline-primary col" (click)="setNewIncome()" >Add Income</button>
+          <button class="btn btn-secondary col" (click)="setNewIncome()" >Add Income</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-outline-primary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
+            <button type="button" class="btn btn-secondary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
             <div ngbDropdownMenu aria-labelledby="incomeDropdown">
               <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
             </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-secondary" (click)="open(passwordContent)">Change Password</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-secondary" (click)="open(accountContent)">Update account Information</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-outline-danger" (click)="open(deleteContent)">Delete Account</button>
       </div>
     </div>
     <div *ngIf="editDebt">
@@ -68,9 +68,9 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-outline-primary" (click)="updateDebt(editDebt)">Update</button>
-            <button class="btn btn-outline-danger" (click)="deleteDebt(editDebt)">Delete</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-primary" (click)="updateDebt(editDebt)">Update</button>
+            <button class="btn btn-danger" (click)="deleteDebt(editDebt)">Delete</button>
           </div>
         </div>
       </form>
@@ -95,9 +95,9 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-outline-primary" (click)="updateExpense(editExpense)">Update</button>
-            <button class="btn btn-outline-danger" (click)="deleteExpense(editExpense)">Delete</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-primary" (click)="updateExpense(editExpense)">Update</button>
+            <button class="btn btn-danger" (click)="deleteExpense(editExpense)">Delete</button>
           </div>
         </div>
       </form>
@@ -122,9 +122,9 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-outline-primary" (click)="updateIncome(editIncome)">Update</button>
-            <button class="btn btn-outline-danger" (click)="deleteIncome(editIncome)">Delete</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-primary" (click)="updateIncome(editIncome)">Update</button>
+            <button class="btn btn-danger" (click)="deleteIncome(editIncome)">Delete</button>
           </div>
         </div>
       </form>
@@ -165,8 +165,8 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class = "btn btn-outline-primary" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class = "btn btn-primary" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
           </div>
         </div>
       </form>
@@ -195,8 +195,8 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-outline-primary" (click)="addExpense(newExpense, newCategory, newFrequency)">Add New Expense</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-primary" (click)="addExpense(newExpense, newCategory, newFrequency)">Add New Expense</button>
           </div>
         </div>
       </form>
@@ -225,8 +225,8 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-outline-light" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-outline-primary" (click)="addIncome(newIncome, newCategory, newFrequency)">Add New Income</button>
+            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-primary" (click)="addIncome(newIncome, newCategory, newFrequency)">Add New Income</button>
           </div>
         </div>
       </form>
@@ -301,5 +301,24 @@
 	</div>
 	<div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="updateAccount(); modal.close('Save click')">Change</button>
+	</div>
+</ng-template>
+
+<!-- Delete account modal -->
+
+<ng-template #deleteContent let-modal >
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Delete Account</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <h4 id="modal-content">Are you sure you want to delete your account?</h4>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="disable(); modal.close('Save click')">Yes, Delete</button>
 	</div>
 </ng-template>
