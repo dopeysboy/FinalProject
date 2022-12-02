@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.rotahu.entities.Debt;
 import com.skilldistillery.rotahu.entities.DebtType;
 
+import net.bytebuddy.dynamic.scaffold.inline.DecoratingDynamicTypeBuilder;
+
+
 @Service
 public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 
@@ -89,7 +92,7 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 		
 		// because I'm not 100% sure I won't be changing the original debts -- SOMETHING
 		// WE DON'T WANT FOR THIS
-		List<Debt> debts = debts2;
+		List<Debt> debts = new ArrayList<>(debts2);
 		// using a class level variable so it can be used in a stream
 		remainingIncome = residualIncome;
 		monthCounter = monthNum;
@@ -102,6 +105,7 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 		}
 		
 		if(debts.size() < 1) {
+			System.out.println("returning debtPlan");
 			return debtPlan;
 		}
 		/**
@@ -117,9 +121,9 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 				paymentAmounts.put(debt.getName(), 0.0);
 			}
 			//if a recursive call to this function
-			if(debtPlan.size() > 0) {
-				debt.setCurrentBalance(debtPlan.get(debt.getName()).get(monthCounter));
-			}
+//			if(debtPlan.size() > 0) {
+//				debt.setCurrentBalance(debtPlan.get(debt.getName()).get(monthCounter));
+//			}
 			
 		}
 		
@@ -134,11 +138,6 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 			 * the adjusted payment amounts
 			 */
 			
-			for(Debt debt : debts) {				
-				System.out.print("\t");
-				System.out.println(debt.getName() + "\t" + debt.getCurrentBalance());
-			}
-			System.out.println("-------------");
 			for(Debt debt : debts) {
 				Map<Integer, Double> map = calculatePayments(debt, paymentAmounts.get(debt.getName()), monthCounter);
 				
@@ -172,6 +171,7 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 				break;
 			}
 		}
+		
 		// update current debtPlan with new projection points
 		if(debtPlan.size() > 1) {
 			for(Debt debt : debts) {
@@ -183,6 +183,8 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 				for (int i = monthCounter; i < 60; i++) {
 					if (map.get(i) != null) {
 						existingPayPlan.put(i, map.get(i));
+					} else {
+						existingPayPlan.remove(i);
 					}
 				}
 		
@@ -215,10 +217,6 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 		// have been touched
 		debtEndPoints.entrySet().removeIf((ent) -> ent.getValue() <= monthCounter);
 		
-		debtEndPoints.entrySet().forEach((ent) -> {
-			System.out.println(ent.getKey() + "\t" + ent.getValue());
-		});
-		
 		if(paidDebts == null) {
 			paidDebts = new ArrayList<>();
 		}
@@ -230,132 +228,22 @@ public class DebtCalculatorServiceImpl implements DebtCalculatorService {
 			Entry<String, Integer> firstEndPoint = debtEndPoints.entrySet().stream()
 					.sorted(Map.Entry.comparingByValue()).findFirst().get();
 
+			for(Debt debt: debts) {
+				debt.setCurrentBalance(debtPlan.get(debt.getName()).get(firstEndPoint.getValue()));
+			}
+			
 			monthCounter = firstEndPoint.getValue() +1;
-
+			
 			for(Entry<String, Integer> ent : debtEndPoints.entrySet()) {
 				if(ent.getValue() <= monthCounter) {
 					paidDebts.add(ent.getKey());
 				}
 			}
 			
-			for(String str : paidDebts) {
-				System.out.println("\t\t\t" + str);
-			}
-
-			System.out.println("Going again starting at : " + monthCounter);
-			return calculateDebtsAfterDebtGoesToZero(debtPlan, paidDebts, monthCounter, residualIncome, debts2);
+			return calculateDebtsAfterDebtGoesToZero(debtPlan, paidDebts, monthCounter, residualIncome, debts);
 		} else {
 			return debtPlan;
 		}
 	}
-//	@Override
-//	public Map<String, Map<Integer, Double>> calculateBestPayment(List<Debt> debtsOG,
-//			Map<String, Double> paymentAmounts, double leftoverIncome) {
-//		Map<String, Map<Integer, Double>> returnMap = new HashMap<>();
-//
-//		Map<String, Double> interestPaid = new HashMap<>();
-//
-//		// because I'm not 100% sure I won't be changing the original debts -- SOMETHING
-//		// WE DON'T WANT FOR THIS
-//		List<Debt> debts = debtsOG;
-//		// using a class level variable so it can be used in a stream
-//		remainingIncome = leftoverIncome;
-//
-//		/**
-//		 * make sure remainingIncome can cover the minimum payments of each payment,
-//		 * will set the payment for the debt to 0 if it cannot cover min payment
-//		 */
-//		paymentAmounts.entrySet().stream().forEach((ent) -> {
-//			if (remainingIncome >= ent.getValue()) {
-//				remainingIncome -= ent.getValue();
-//			} else {
-//				ent.setValue(0.0);
-//			}
-//		});
-//
-//		// will iterate until you run out of excess monthly income after minimum
-//		// payments
-//		while (remainingIncome > 0) {
-//			/**
-//			 * on first iteration: will calculate the payment plan on each debt for minimum
-//			 * payments
-//			 * 
-//			 * on following iterations: will calculate the payment plan on each debt using
-//			 * the adjusted payment amounts
-//			 */
-//			debts.stream().forEach((debt) -> {
-//				Map<Integer, Double> map = calculatePayments(debt, paymentAmounts.get(debt.getName()), 1);
-//				if (map.get(59) != null && map.get(1) < map.get(59)) {
-//					interestPaid.put(debt.getName(), Double.MAX_VALUE);
-//				} else if (debtTypesWithLowPrio.contains(debt.getDebtType())
-//						&& debt.getPriority() >= debt.getDebtType().getDefaultPriority()) {
-//					interestPaid.put(debt.getName(), Double.MIN_VALUE);
-//				} else {
-//					interestPaid.put(debt.getName(), map.get(-1));
-//				}
-//			});
-//
-//			// "sort" the map, so the highest interest paid is the first entry in the stream
-//			Stream<Map.Entry<String, Double>> sorted = interestPaid.entrySet().stream()
-//					.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()));
-//
-//			Map.Entry<String, Double> highestInterest = sorted.findFirst().get();
-//
-//			// the name of the debt for highest interest paid
-//			String key = highestInterest.getKey();
-//
-//			remainingIncome = (double) Math.round(remainingIncome / 4 * 100.0) / 100;
-//			Double value = paymentAmounts.get(key) + remainingIncome;
-//
-//			paymentAmounts.put(key, value);
-//
-//			if (remainingIncome < .25) {
-//				break;
-//			}
-//		}
-//		debts.stream().forEach((debt) -> {
-//			Map<Integer, Double> payPlan = calculatePayments(debt, paymentAmounts.get(debt.getName()), 1);
-//
-//			returnMap.put(debt.getName(), payPlan);
-//		});
-//
-//		// name of the debt, month ended
-//		Map<String, Integer> debtEndPoints = new HashMap<>();
-//
-//		returnMap.entrySet().stream().forEach((ent) -> {
-//			// should be the lowest balance in the <Integer, Double> map
-//			Optional<Entry<Integer, Double>> entOpt = ent.getValue().entrySet().stream()
-//					.sorted(Map.Entry.comparingByValue()).findFirst();
-//
-//			// if the debt ever reaches 0 or below, will take the month it happened and
-//			// put it in the debtEndPoints map
-//			if (entOpt.get().getValue() <= 0) {
-//				debtEndPoints.put(ent.getKey(), entOpt.get().getKey());
-//			}
-//
-//		});
-//
-//		if (debtEndPoints.size() > 0) {
-//			List<String> paidDebts = new ArrayList<>();
-//			
-//			Entry<String, Integer> soonestEndEntry = debtEndPoints.entrySet().stream()
-//					.sorted(Map.Entry.comparingByValue()).findFirst().get();
-//
-//			Integer monthNum = soonestEndEntry.getValue();
-//
-//			for(Entry<String, Integer> ent : debtEndPoints.entrySet()) {
-//				if(ent.getValue() == monthNum) {
-//					paidDebts.add(ent.getKey());
-//				}
-//			}
-//			
-//			Double residualIncome = leftoverIncome;
-//			List<Debt> debts2 = debtsOG;
-//
-//			return calculateDebtsAfterDebtGoesToZero(returnMap, paidDebts, monthNum, residualIncome, debts2);
-//		}
-//
-//		return returnMap;
-//	}
 }
 	
