@@ -27,6 +27,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { DrowningComponent } from './components/drowning/drowning.component';
 import { DebtResourcesComponent } from './components/debt-resources/debt-resources.component';
 import { ThrivingComponent } from './components/thriving/thriving.component';
+import { CreditResourceCrudComponent } from './components/credit-resource-crud/credit-resource-crud.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ThrivingComponent } from './components/thriving/thriving.component';
     DrowningComponent,
     DebtResourcesComponent,
     ThrivingComponent,
+    CreditResourceCrudComponent,
 
   ],
   imports: [
