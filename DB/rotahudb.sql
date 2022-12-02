@@ -257,7 +257,7 @@ DROP TABLE IF EXISTS `credit_resource` ;
 CREATE TABLE IF NOT EXISTS `credit_resource` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(250) NULL,
-  `video_url` VARCHAR(1500) NULL,
+  `img_url` VARCHAR(3000) NULL,
   `site_url` VARCHAR(250) NULL,
   `debt_intensity` INT NULL,
   `created_at` DATETIME NOT NULL,
@@ -450,7 +450,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rotahudb`;
-INSERT INTO `credit_resource` (`id`, `description`, `video_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (1, 'nice resource', NULL, NULL, NULL, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (1, 'Debt Consolidation', 'https://www.nerdwallet.com/assets/img/nw-logos/NW_logo_200x200.png', 'https://www.nerdwallet.com/article/finance/consolidate-debt', 40, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (2, 'Student Loan Forgiveness', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Seal_of_the_United_States_Department_of_Education.svg/350px-Seal_of_the_United_States_Department_of_Education.svg.png', 'https://www.ed.gov/category/keyword/loan-forgiveness', 40, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (3, 'Debt Information', 'https://assets.experiancs.com/images/logo-experian.svg?hs=2c108564c86d0b65336076616b44b886', 'https://www.experian.com/', 40, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (4, 'Wealth Management', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939', 'https://www.schwab.com/', 60, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (5, 'Real Estate', 'https://www.investopedia.com/thmb/uqoN_RnaHB0jaIEv27Sug6cT_jw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Group1805-3b9f749674f0434184ef75020339bd35.jpg', 'hhttps://www.investopedia.com/investing/simple-ways-invest-real-estate/', 60, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
+INSERT INTO `credit_resource` (`id`, `description`, `img_url`, `site_url`, `debt_intensity`, `created_at`, `updated_at`, `enabled`, `user_id`) VALUES (6, 'Credit Monitoring', 'https://assets.experiancs.com/images/logo-experian.svg?hs=2c108564c86d0b65336076616b44b886', 'https://www.experian.com/', 60, '2022-11-22 12:00:00', '2022-11-22 12:00:00', NULL, 1);
 
 COMMIT;
 

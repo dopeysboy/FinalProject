@@ -5,4 +5,16 @@
 
 .navbar-brand {
   padding-left: 15px;
+
+}
+
+.navbar-brand:hover{
+  padding-left: 15px;
+  color: #fff;
+  background-color: #5face3;
+}
+
+.button.button:hover{
+  color: #fff;
+  background-color: #5face3;
 }
