@@ -14,6 +14,9 @@ body {
   border: 1px solid #5face3;
 
 }
+.transparent-bg {
+  background: rgba(228, 220, 220, 0.1);
+}
 .card-header {
   color: #fff;
   /*background: #ff0000;*/
@@ -29,5 +32,21 @@ body {
 }
 
 .h1{
-  font-family: "Serif", "Garamond", monospace;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, monospace;
+}
+.para{
+  font-family: "Avenir Next", Calibri, Verdana, sans-serif;
+  line-height: 2;
+  font-size: large;
+  text-align: center;
+}
+
+.lightblue{
+  color: #5face3;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
