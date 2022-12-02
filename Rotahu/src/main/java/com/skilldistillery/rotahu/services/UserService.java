@@ -1,8 +1,12 @@
 package com.skilldistillery.rotahu.services;
 
+import java.util.List;
+
 import com.skilldistillery.rotahu.entities.User;
 
 public interface UserService {
+	
+	List<User> index();
 	
 	User findByUsername(String username);
 //	
@@ -19,5 +23,7 @@ public interface UserService {
 	User changePassword(User user, String newPassword);
 	
 	User updateAccount(User user);
+	
+	User enableDisableAccount(User user);
 
 }

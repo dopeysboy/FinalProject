@@ -1,5 +1,7 @@
 package com.skilldistillery.rotahu.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,13 @@ public class UserServiceImpl implements UserService {
 	public User findByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
+	
+	@Override
+	public List<User> index() {
+		List<User> users = userRepo.findAll();
+		return users;
+	}
+	
 //
 //	@Override
 //	public User findByUserId(int userId) {
@@ -68,13 +77,25 @@ public class UserServiceImpl implements UserService {
 		userRepo.saveAndFlush(user);
 		return user;
 	}
-
+	
 	@Override
 	public User updateAccount(User user) {
 		User dbUser = userRepo.findByUsername(user.getUsername());
 		dbUser.setFirstName(user.getFirstName());
 		dbUser.setLastName(user.getLastName());
 		dbUser.setEmail(user.getEmail());
+		userRepo.saveAndFlush(dbUser);
+		return dbUser;
+	}
+	
+	@Override
+	public User enableDisableAccount(User user) {
+		User dbUser = userRepo.findByUsername(user.getUsername());
+		if (dbUser.getEnabled()) {
+			dbUser.setEnabled(false);
+		} else {
+			dbUser.setEnabled(true);
+		}
 		userRepo.saveAndFlush(dbUser);
 		return dbUser;
 	}

@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   register(user: User, password1: string, password2: string): void {
     if (password1 === password2) {
       this.errorMessage = '';
-      user.username = password1;
+      user.password = password1;
       this.auth.register(user).subscribe({
         next: (registeredUser) => {
           this.auth.login(user.username, user.password).subscribe({

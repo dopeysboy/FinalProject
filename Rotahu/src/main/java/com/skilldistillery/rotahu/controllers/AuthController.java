@@ -22,8 +22,6 @@ public class AuthController {
 
 	@Autowired
 	private AuthService authService;
-	@Autowired
-	private UserService userService;
 
 	@PostMapping("register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
@@ -44,32 +42,6 @@ public class AuthController {
 			return null;
 		}
 		return authService.getUserByUsername(principal.getName());
-	}
-	
-	@PutMapping("user/disable")
-	public void disableAcct(@RequestBody User user, HttpServletResponse res) {
-		String username = user.getUsername();
-		
-		boolean disabled = userService.disable(username);
-		if (!disabled) {
-			res.setStatus(404);
-		} else {
-			res.setStatus(204);
-		}
-	}
-	
-	@PutMapping("user/changePassword")
-	public User changePassword(@RequestBody String newPassword, HttpServletResponse res, Principal principal) {
-		String username = principal.getName();
-		User user = userService.findByUsername(username);
-		user = userService.changePassword(user, newPassword);
-		return user;
-	}
-	
-	@PutMapping("user/updateAccount")
-	public User updateAccount(@RequestBody User user, HttpServletResponse res, Principal principal) {
-		user = userService.updateAccount(user);
-		return user;
 	}
 	
 }
