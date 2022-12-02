@@ -246,12 +246,16 @@ export class ProfileComponent implements OnInit {
 	}
 
   showMainOptions() {
-    this.editDebt = null;
     this.editExpense = null;
-    this.editIncome = null;
-    this.newDebt = null;
     this.newExpense = null;
+    this.editIncome = null;
     this.newIncome = null;
+    this.editDebt = null;
+    this.newDebt = null;
+    this.newDebtLender = new DebtLender();
+    this.newDebtType = new DebtType();
+    this.newCategory = new Category();
+    this.newFrequency = new Frequency();
   }
 
   setEditDebt(debt: Debt): void {
