@@ -21,13 +21,14 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoggedInCalculatorComponent } from './components/logged-in-calculator/logged-in-calculator.component';
 import { UpdateDebtComponent } from './components/update-debt/update-debt.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { DrowningComponent } from './components/drowning/drowning.component';
 import { DebtResourcesComponent } from './components/debt-resources/debt-resources.component';
 import { ThrivingComponent } from './components/thriving/thriving.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { CreditResourceCrudComponent } from './components/credit-resource-crud/credit-resource-crud.component';
+import { UserPieChartComponent } from './components/user-pie-chart/user-pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AdminComponent } from './components/admin/admin.component';
     DebtResourcesComponent,
     ThrivingComponent,
     AdminComponent,
+    CreditResourceCrudComponent,
 
   ],
   imports: [
