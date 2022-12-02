@@ -5,8 +5,9 @@ import { CreditResourceService } from 'src/app/services/credit-resource.service'
 @Component({
   selector: 'app-admin-cr-list',
   templateUrl: './admin-cr-list.component.html',
-  styleUrls: ['./admin-cr-list.component.css']
+  styleUrls: ['./admin-cr-list.component.css'],
 })
+
 export class AdminCrListComponent implements OnInit {
 
   crs : CreditResource[] = [];
@@ -14,6 +15,7 @@ export class AdminCrListComponent implements OnInit {
   reloadCRs(){
     this.crServ.index().subscribe({
       next: (results) => {
+        console.log(results);
         this.crs = results;
       },
       error: (err) => {
