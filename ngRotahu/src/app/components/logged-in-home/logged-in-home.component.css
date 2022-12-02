@@ -15,3 +15,25 @@ div.btn-group button {
 button {
   margin: 10px;
 }
+
+.rotahu{
+  background-color: black;
+}
+
+/* ngb-accordion {
+  .card {
+    border: none;
+  }
+
+  .card-header {
+    @extend .h4;
+    margin-bottom: 0;
+    color: $primary-color;
+    background-color: transparent;
+  }
+
+  .card-body{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+} */

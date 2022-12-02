@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Debt } from 'src/app/models/debt';
 import { DebtService } from 'src/app/services/debt.service';
@@ -12,7 +12,8 @@ import { LoggedInCalculatorComponent } from '../logged-in-calculator/logged-in-c
 @Component({
   selector: 'app-logged-in-home',
   templateUrl: './logged-in-home.component.html',
-  styleUrls: ['./logged-in-home.component.css']
+  styleUrls: ['./logged-in-home.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoggedInHomeComponent implements OnInit {
   @ViewChild(LoggedInCalculatorComponent) calculator: any;
