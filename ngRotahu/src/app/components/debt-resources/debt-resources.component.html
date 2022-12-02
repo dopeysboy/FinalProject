@@ -1,10 +1,14 @@
 <div class="row">
+  <h1>Some hand-picked resources to help you navigate your financial wellness:</h1>
+</div>
+<hr>
+<div class="row">
   <div *ngFor="let cr of shownCR" class = col-sm-4 >
     <div class="card bg-dark" style="width: 18rem; height: 100%;">
-      <img [src]="cr.imageUrl" class="card-img-top" alt="...">
+      <img [height]="imgHeight" [width]="imgWidth" [src]="cr.imageUrl" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">Submitted By: {{cr.createdBy?.username}}</h5><hr>
-        <p class="card-text">{{cr.description}}</p>
+        <h5 class="card-title">{{cr.description}}</h5><hr>
+        <p class="card-text">Submitted By: {{cr.createdBy?.username}}</p>
         <a [href]="cr.siteUrl" target="_blank" class="btn btn-primary">Check It Out!</a>
       </div>
     </div>

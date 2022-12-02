@@ -14,8 +14,8 @@
     <tr *ngFor="let cr of crs">
       <td>{{cr.id}}</td>
       <td>{{cr.description}}</td>
-      <td><a [href]="cr.imageUrl">Image Link</a></td>
-      <td><a [href]="cr.siteUrl">Site Link</a></td>
+      <td><a target="_blank" [href]="cr.imageUrl">Image Link</a></td>
+      <td><a target="_blank" [href]="cr.siteUrl">Site Link</a></td>
       <td>{{cr.debtIntensity}}</td>
       <td>{{cr.createdBy?.username}}</td>
       <td *ngIf="!cr.enabled">

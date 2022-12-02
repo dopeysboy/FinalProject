@@ -12,7 +12,14 @@ import { Router } from '@angular/router';
 })
 export class UserCreatedCrComponent implements OnInit {
 
+  imgHeight : number = 200;
+  imgWidth : number = 150;
+
   userCrs : CreditResource[] = [];
+
+  createNew(){
+    this.router.navigateByUrl('createResource');
+  }
 
   editResource(id : number){
     this.router.navigateByUrl(`editResource/${id}`);

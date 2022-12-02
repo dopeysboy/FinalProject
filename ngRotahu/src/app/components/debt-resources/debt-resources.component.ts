@@ -13,6 +13,9 @@ import { IncomeService } from 'src/app/services/income.service';
 })
 export class DebtResourcesComponent implements OnInit {
 
+  imgHeight : number = 200;
+  imgWidth : number = 150;
+
   fitnessScore : number = 0;
   allCR : CreditResource[] = [];
   goodCR : CreditResource[] = [];
