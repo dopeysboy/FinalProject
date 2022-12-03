@@ -20,6 +20,49 @@ button {
   background-color: black;
 }
 
+.add-btn:hover{
+  border-color: black;
+  color: #fff;
+  background-color: #5face3;
+}
+
+.btn-outline-custom {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: #fff;
+}
+.delete-btn:hover{
+  border-color: red;
+  color: #fff;
+  background-color: #5face3;
+}
+.transparent-bg{
+  background-color: rgba(233, 224, 224, 0.5);
+}
+
+.btn-outline-customDelete {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: fff;
+}
+.update-btn:hover{
+  color: #fff;
+  border-color: rgb(33, 99, 5);
+  background-color: #5face3;
+}
+
+.btn-outline-customUpdate {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: #fff;
+}
+
 /* ngb-accordion {
   .card {
     border: none;

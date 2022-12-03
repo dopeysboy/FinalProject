@@ -8,9 +8,9 @@
     <div *ngIf="!editDebt && !editExpense && !editIncome && !newDebt && !newExpense && !newIncome">
       <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-secondary col" (click)="setNewDebt()" >Add Debt</button>
+          <button class="btn btn-custom btn-custom-hover col" (click)="setNewDebt()" >Add Debt</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-secondary" id="debtDropdown" ngbDropdownToggle>Edit Debt</button>
+            <button type="button" class="btn btn-custom btn-custom-hover" id="debtDropdown" ngbDropdownToggle>Edit Debt</button>
             <div ngbDropdownMenu aria-labelledby="debtDropdown">
               <button ngbDropdownItem *ngFor="let debt of debts" (click)="setEditDebt(debt)">{{debt.name}}</button>
             </div>
@@ -19,9 +19,9 @@
       </div>
       <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-secondary col" (click)="setNewExpense()" >Add Expense</button>
+          <button class="btn btn-custom btn-custom-hover col" (click)="setNewExpense()" >Add Expense</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-secondary" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
+            <button type="button" class="btn btn-custom btn-custom-hover" id="expenseDropdown" ngbDropdownToggle>Edit Expense</button>
             <div ngbDropdownMenu aria-labelledby="expenseDropdown">
               <button ngbDropdownItem *ngFor="let expense of expenses" (click)="setEditExpense(expense)">{{expense.description}}</button>
             </div>
@@ -30,9 +30,9 @@
       </div>
       <div class="row">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-secondary col" (click)="setNewIncome()" >Add Income</button>
+          <button class="btn btn-custom btn-custom-hover col" (click)="setNewIncome()" >Add Income</button>
           <div ngbDropdown class="d-inline-block btn-group">
-            <button type="button" class="btn btn-secondary" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
+            <button type="button" class="btn btn-custom btn-custom-hover" id="incomeDropdown" ngbDropdownToggle>Edit Income</button>
             <div ngbDropdownMenu aria-labelledby="incomeDropdown">
               <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
             </div>
@@ -49,7 +49,7 @@
         <button class="btn btn-secondary" (click)="open(passwordContent)">Change Password</button>
       </div>
       <div class="row">
-        <button class="btn btn-secondary" (click)="open(accountContent)">Update account Information</button>
+        <button class="btn btn-custom btn-custom-hover" (click)="open(accountContent)">Update account Information</button>
       </div>
       <div class="row">
         <button class="btn btn-outline-danger" (click)="open(deleteContent)">Delete Account</button>

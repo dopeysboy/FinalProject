@@ -118,7 +118,7 @@ export class LoggedInHomeComponent implements OnInit {
     })
   }
 
-  getDebtsList(debts: []){
+  getDebtsList(debts: Debt[]){
     return debts.length
   }
 

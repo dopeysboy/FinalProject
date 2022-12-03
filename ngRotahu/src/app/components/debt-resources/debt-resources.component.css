@@ -1,3 +1,17 @@
 .card-img-top{
   object-fit: contain;
 }
+
+.link-btn-hover:hover{
+  color: #fff;
+  background-color: #5face3;
+  border-color: #fff;
+}
+
+.link-btn {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: #5face3;
+}
