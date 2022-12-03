@@ -9,8 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   loginUser: User = new User();
   invalidLogin = false;
+  errorMessage:string = '';
 
   constructor(private router: Router, private loginservice: AuthService) { }
 
@@ -24,8 +26,9 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/loggedInHome');
         },
         error: (err) => {
-          console.error('Error in LoginComponent.login(): failed to login user');
-          console.error(err);
+          // console.error('Error in LoginComponent.login(): failed to login user');
+          // console.error(err);
+          this.errorMessage = 'Wrong username or password';
         }
       });
     }
