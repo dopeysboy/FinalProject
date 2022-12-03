@@ -41,6 +41,11 @@ div.btn-group button {
   padding-right: 10px;
 }
 
+#modal-error {
+  color: red;
+  justify-content: center;
+}
+
 #modal-form {
   align-content: center;
 }

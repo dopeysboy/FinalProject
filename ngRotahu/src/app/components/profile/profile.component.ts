@@ -47,6 +47,7 @@ export class ProfileComponent implements OnInit {
   frequencies: Frequency[] = [];
   categories: Category[] = [];
 
+  passwordNotMatch: string = '';
   oldPassword: string = '';
   newPassword1: string = '';
   newPassword2: string = '';
@@ -186,6 +187,7 @@ export class ProfileComponent implements OnInit {
 
   pwordModalSubmit(oldPassword: string, newPassword1: string, newPassword2: string) {
     if (newPassword1 === newPassword2) {
+      this.passwordNotMatch = "";
       let hashedPassword = this.authService.generateBasicAuthCredentials(this.loggedInUser.username, oldPassword);
       let realPassword = localStorage.getItem('credentials');
       if (hashedPassword === realPassword) {
@@ -208,7 +210,11 @@ export class ProfileComponent implements OnInit {
             console.log('ProfileComponent.modalSubmit(): Problem changing password');
           }
         });
+      } else {
+        this.passwordNotMatch = "Incorrect Password. Try again.";
       }
+    } else {
+      this.passwordNotMatch = "Passwords don't match. Try again.";
     }
   }
 
