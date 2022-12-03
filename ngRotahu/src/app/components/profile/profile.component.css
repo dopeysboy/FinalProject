@@ -1,6 +1,6 @@
 #initials {
   color: white;
-  background-color: rgba(var(--bs-primary-rgb));
+  background-color: #5face3;
   height: 160px;
   width: 160px;
   border-radius: 50%;
@@ -15,6 +15,19 @@
 
 button {
   margin: 10px;
+}
+
+.btn-custom {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: #fff;
+}
+.btn-custom-hover:hover{
+  border-color: black;
+  color: #fff;
+  background-color: #5face3;
 }
 
 div.row {

@@ -7,14 +7,14 @@
   <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
     <li  class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
       <div *ngIf="getIsAdmin() == true">
-        <button class="btn btn-dark" [routerLink]="['/adminCR']">Edit Resources</button>
-        <button class="btn btn-dark" [routerLink]="['/users']">Users</button>
+        <button class="btn btn-dark font-lightblue" [routerLink]="['/adminCR']">Edit Resources</button>
+        <button class="btn btn-dark font-lightblue" [routerLink]="['/users']">Users</button>
       </div>
-      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/login']">Login</button>
-      <button *ngIf="loggedIn() == false" class="btn btn-dark" [routerLink]="['/register']">Create Account</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/loggedInHome']">Debts</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/resources']">Resources</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-dark" [routerLink]="['/profile']">Profile</button>
-      <button *ngIf="loggedIn() == true" class="btn btn-dark" (click)="logout()">Logout</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-dark font-lightblue" [routerLink]="['/login']">Login</button>
+      <button *ngIf="loggedIn() == false" class="btn btn-dark font-lightblue" [routerLink]="['/register']">Create Account</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark font-lightblue" [routerLink]="['/loggedInHome']">Debts</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark font-lightblue" [routerLink]="['/resources']">Resources</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark font-lightblue" [routerLink]="['/profile']">Profile</button>
+      <button *ngIf="loggedIn() == true" class="btn btn-dark font-lightblue" (click)="logout()">Logout</button>
   </ul>
 </nav>

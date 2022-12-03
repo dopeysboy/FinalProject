@@ -8,6 +8,10 @@
 
 }
 
+.font-lightblue{
+  color: #5face3
+}
+
 .navbar-brand:hover{
   padding-left: 15px;
   color: #fff;

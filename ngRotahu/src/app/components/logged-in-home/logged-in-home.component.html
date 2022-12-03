@@ -1,3 +1,7 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <div class="row">
   <div class="col-md-4">
 <ngb-accordion  #acc="ngbAccordion" *ngFor="let debt of debts">
@@ -17,8 +21,8 @@
         </ul>
       <div class="row">
         <div class="btn-group" role="group" >
-          <button class = "btn btn-outline-danger" (click)="deleteDebt(debt.id)">Delete Debt</button>
-          <button class = "btn btn-outline-primary" (click)="toggle()">Update Debt</button>
+          <button class = "btn btn-outline-customDelete delete-btn" (click)="deleteDebt(debt.id)">Delete Debt</button><br>
+          <button class = "btn btn-outline-customUpdate update-btn" (click)="toggle()">Update Debt</button>
         </div>
       </div>
       </div>
@@ -55,47 +59,106 @@
 		</ng-template>
 	</ngb-panel> -->
 </ngb-accordion>
-<button class = "btn btn-outline-primary" id="add-button" (click)="showAddDebt()">Add Debt Account</button>
+<button *ngIf="getDebtsList(debts) > 0" class = "btn btn btn-outline-custom add-btn" id="add-button" (click)="showAddDebt()">Add Debt Account</button>
+<button *ngIf="getDebtsList(debts) ===0" class = "btn btn-outline-custom add-btn " id="add-button" (click)="showAddDebt()">Add First Debt</button>
+
 <div *ngIf = "showAddDebtForm">
-  <form>
-    <div class="row">
-      <label for="name">Name</label><br>
-      <input type="text" name = "name" [(ngModel)]="newDebt.name">
-    </div>
-    <div class="row">
-      <label  for="lender">Lender </label>
-      <select name = "debtLender" [(ngModel)]="newDebtLender.id">
-        <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
-      </select>
-    </div>
-    <div class="row">
-      <label  for="debtType">Debt Type </label>
-      <select name = "debtType" [(ngModel)]="newDebtType.id">
-        <option *ngFor="let type of types" [value]="type.id" >{{type.description}}</option>
-      </select>
-    </div>
-    <div class="row">
-      <label for="apr">APR </label>
-      <input type="text" name = "APR" [(ngModel)]="newDebt.annualPercentageRate">
-    </div>
-    <div class="row">
-      <label for="currentBalance">Current Balance </label>
-      <input type="text" name = "currentBalance" [(ngModel)]="newDebt.currentBalance">
-    </div>
-    <div class="row">
-      <label for="minPayment">Minimum Monthly Payment: </label>
-      <input type="text" name = "minPayment" [(ngModel)]="newDebt.minimumMonthlyPayment">
-    </div>
-    <div class="row">
-      <label for="priority">Priority (Optional)</label>
-      <input type="text" name = "priority" placeholder="{{newDebtType.defaultPriority}}" [(ngModel)]="newDebtType.defaultPriority">
-    </div>
-    <div class="row">
-      <div class="btn-group" role="group" >
-        <button class = "btn btn-outline-light" (click)="hideAddDebt()">Cancel</button>
-        <button class = "btn btn-outline-primary" (click)="[createDebt(newDebt, newDebtLender, newDebtType), hideAddDebt()]" [routerLink]="['/loggedInHome']">Submit </button>
+  <!-- <form>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
       </div>
     </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      </div>
+    </div>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+            <label class="form-check-label" for="gridRadios1">
+              First radio
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+            <label class="form-check-label" for="gridRadios2">
+              Second radio
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+            <label class="form-check-label" for="gridRadios3">
+              Third disabled radio
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <div class="col-sm-2">Checkbox</div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck1">
+          <label class="form-check-label" for="gridCheck1">
+            Example checkbox
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </div>
+  </form> -->
+  <br><form class="">
+    <div class="form-row">
+      <div class="form-group ">
+        <label for="name" >Name</label>
+        <input type="text" name = "name" class="form-control" [(ngModel)]="newDebt.name">
+      </div>
+      <div class="form-group ">
+        <label  for="lender">Lender </label>
+        <select name = "debtLender" class="form-control" [(ngModel)]="newDebtLender.id">
+          <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
+        </select>
+      </div>
+    <div class="form-group">
+      <label  for="debtType">Debt Type </label>
+      <select name = "debtType" class="form-control" [(ngModel)]="newDebtType.id">
+        <option *ngFor="let type of types"  [value]="type.id" >{{type.description}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="apr" >APR </label>
+      <input type="text" class="form-control" name = "APR" [(ngModel)]="newDebt.annualPercentageRate">
+    </div>
+    <div class="form-group">
+      <label for="currentBalance">Current Balance </label>
+      <input type="text" class="form-control" name = "currentBalance" [(ngModel)]="newDebt.currentBalance">
+    </div>
+    <div class="form-group">
+      <label for="minPayment" >Min. Monthly Payment: </label>
+      <input type="text" class="form-control" name = "minPayment" [(ngModel)]="newDebt.minimumMonthlyPayment">
+    </div>
+    <div class="form-group">
+      <label for="priority" >Priority (Optional)</label>
+      <input type="text" class="form-control" name = "priority" placeholder="{{newDebtType.defaultPriority}}" [(ngModel)]="newDebtType.defaultPriority">
+    </div>
+    <div class="form-group">
+      <div class="btn-group" role="group" >
+        <button class = "btn btn-outline-custom add-btn" (click)="hideAddDebt()">Cancel</button>
+        <button class = "btn btn-outline-custom2 add-btn" (click)="[createDebt(newDebt, newDebtLender, newDebtType), hideAddDebt()]" [routerLink]="['/loggedInHome']">Submit </button>
+      </div>
+    </div>
+  </div>
   </form>
 </div>
 </div>
