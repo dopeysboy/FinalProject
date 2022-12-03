@@ -122,7 +122,7 @@ export class UserPieChartComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'left',
+        position: 'right',
         labels: {
           color: 'rgba(255,255,255,1)'
         }
