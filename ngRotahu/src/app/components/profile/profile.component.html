@@ -2,7 +2,8 @@
   <div class="col-1"></div>
   <div class="col-3">
     <div class="row">
-      <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p>
+      <app-user-pie-chart></app-user-pie-chart>
+      <!-- <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p> -->
     </div>
     <div *ngIf="!editDebt && !editExpense && !editIncome && !newDebt && !newExpense && !newIncome">
       <div class="row">
@@ -36,6 +37,12 @@
               <button ngbDropdownItem *ngFor="let income of incomes" (click)="setEditIncome(income)">{{income.description}}</button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="btn-group" role="group" >
+          <button class="btn btn-secondary" >Add Resource</button>
+          <button class="btn btn-secondary" >View Resources</button>
         </div>
       </div>
       <div class="row">
@@ -252,18 +259,18 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-    <form>
+    <form id="modal-form">
       <div class="mb-3">
-        <div class="input-group">
+        <div class="input-group" id="modal-input-group">
           <label for="oldPassword" id="modal-content">Old Password: </label>
           <input type="password" name="oldPassword" [(ngModel)]="oldPassword" />
 				</div>
-        <div class="input-group">
+        <div class="input-group" id="modal-input-group">
           <label for="newPassword1" id="modal-content">New Password: </label>
           <input type="password" name="newPassword1" [(ngModel)]="newPassword1" />
 				</div>
-        <div class="input-group">
-          <label for="newPassword2" id="modal-content">Retype New Password: </label>
+        <div class="input-group" id="modal-input-group">
+          <label for="newPassword2" id="modal-content">Retype Password: </label>
           <input type="password" name="newPassword2" [(ngModel)]="newPassword2" />
 				</div>
 			</div>
@@ -282,17 +289,17 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-    <form>
+    <form id="modal-form">
       <div class="mb-3">
-        <div class="input-group">
+        <div class="input-group" id="modal-input-group">
           <label for="firstName" id="modal-content">First Name: </label>
           <input type="text" name="firstName" [(ngModel)]="loggedInUser.firstName" />
 				</div>
-        <div class="input-group">
+        <div class="input-group" id="modal-input-group">
           <label for="lastName" id="modal-content">Last Name: </label>
           <input type="text" name="lastName" [(ngModel)]="loggedInUser.lastName" />
 				</div>
-        <div class="input-group">
+        <div class="input-group" id="modal-input-group">
           <label for="email" id="modal-content">Email: </label>
           <input type="text" name="email" [(ngModel)]="loggedInUser.email" />
 				</div>
@@ -312,7 +319,7 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-    <form>
+    <form id="modal-form">
       <div class="mb-3">
         <h4 id="modal-content">Are you sure you want to delete your account?</h4>
 			</div>
