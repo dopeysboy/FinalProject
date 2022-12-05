@@ -9,7 +9,7 @@
   font-size: 50px;
   margin: 15px;
   top: 160px;
-  z-index: 2;
+  z-index: 0;
 }
 
 #initials,p {
