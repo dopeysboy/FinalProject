@@ -1,6 +1,7 @@
 #initials {
   color: white;
   background-color: #5face3;
+  /* background-color: rgba(var(--bs-primary-rgb)); */
   height: 160px;
   width: 160px;
   /* border-radius: 50%; */
