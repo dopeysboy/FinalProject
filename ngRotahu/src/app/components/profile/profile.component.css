@@ -32,6 +32,21 @@ button {
   color: #fff;
   background-color: #5face3;
 }
+.cancel-hover:hover{
+  border-color: black;
+  color: #fff;
+  background-color: #5face3;
+}
+.send-hover:hover{
+  border-color: rgb(32, 55, 124);
+  color: #fff;
+  background-color: #5face3;
+}
+.delete-hover:hover{
+  border-color: red;
+  color: #fff;
+  background-color: #5face3;
+}
 
 div.row {
   justify-content: center;
