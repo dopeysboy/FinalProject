@@ -1,15 +1,19 @@
 <div class="row">
   <div class="col-3">
     <form>
+      <div class="form-row">
+      <div class="form-group">
       <label class="form-label" for="name">Name of Debt</label>
-      <input class="form-control" type="text" name="name" [(ngModel)]="debt.name"/><br>
+      <input class="form-control" type="text" name="name" [(ngModel)]="debt.name"/>
+    </div>
       <label class="form-label" for="payment">Monthly payment</label>
-      <input class="form-control" type="number" name="payment" [(ngModel)]="debt.minimumMonthlyPayment"/><br>
+      <input class="form-control" type="number" name="payment" [(ngModel)]="debt.minimumMonthlyPayment"/>
       <label class="form-label" for="apr">APR</label>
-      <input class="form-control" type="number" name="apr" [(ngModel)]="debt.annualPercentageRate"/><br>
+      <input class="form-control" type="number" name="apr" [(ngModel)]="debt.annualPercentageRate"/>
       <label class="form-label" for="balance">Amount owed</label>
       <input class="form-control" type="number" name="balance" [(ngModel)]="debt.currentBalance"/><br>
       <button type="button" class="btn btn-outline-custom pc-btn form-control" (click)="formSubmit(debt)">Refresh Chart</button>
+    </div>
     </form>
     <p class = "form-label">Total Interest Paid:</p>
     <p class = "form-control disable">{{totalInterest | currency}}</p>
