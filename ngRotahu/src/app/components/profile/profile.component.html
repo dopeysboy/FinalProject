@@ -177,7 +177,7 @@
           <label for="priority">Priority (Optional)</label>
           <input type="number" class="form-control" name = "priority" placeholder="1-10" [(ngModel)]="newDebt.priority">
         </div>
-        <div class="row">
+        <div class="form-group">
           <div class="btn-group" role="group" >
             <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
             <button class = "btn btn-custom send-hover" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
@@ -209,7 +209,7 @@
             <option *ngFor="let frequency of frequencies" value="{{frequency.id}}">{{frequency.name}}</option>
           </select>
         </div>
-        <div class="row">
+        <div class="form-group">
           <div class="btn-group" role="group" >
             <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
             <button class="btn btn-custom send-hover" (click)="addExpense(newExpense, newCategory, newFrequency)">Add New Expense</button>
@@ -241,7 +241,7 @@
               <option *ngFor="let frequency of frequencies" value="{{frequency.id}}">{{frequency.name}}</option>
             </select>
           </div>
-        <div class="row">
+          <div class="form-group">
         <div class="btn-group" role="group" >
           <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
           <button class="btn btn-custom send-hover" (click)="addIncome(newIncome, newCategory, newFrequency)">Add New Income</button>
