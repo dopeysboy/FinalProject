@@ -121,35 +121,35 @@
   <br><form class="">
     <div class="form-row">
       <div class="form-group ">
-        <label for="name" >Name</label>
+        <label for="name" class="white" >Name</label>
         <input type="text" name = "name" class="form-control" [(ngModel)]="newDebt.name">
       </div>
       <div class="form-group ">
-        <label  for="lender">Lender </label>
+        <label  for="lender" class="white">Lender </label>
         <select name = "debtLender" class="form-control" [(ngModel)]="newDebtLender.id">
           <option *ngFor="let lender of lenders" [value]="lender.id" >{{lender.name}}</option>
         </select>
       </div>
     <div class="form-group">
-      <label  for="debtType">Debt Type </label>
+      <label  for="debtType" class="white">Debt Type </label>
       <select name = "debtType" class="form-control" [(ngModel)]="newDebtType.id">
         <option *ngFor="let type of types"  [value]="type.id" >{{type.description}}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="apr" >APR </label>
+      <label for="apr" class="white">APR </label>
       <input type="text" class="form-control" name = "APR" [(ngModel)]="newDebt.annualPercentageRate">
     </div>
     <div class="form-group">
-      <label for="currentBalance">Current Balance </label>
+      <label for="currentBalance" class="white">Current Balance </label>
       <input type="text" class="form-control" name = "currentBalance" [(ngModel)]="newDebt.currentBalance">
     </div>
     <div class="form-group">
-      <label for="minPayment" >Min. Monthly Payment: </label>
+      <label for="minPayment" class="white">Min. Monthly Payment: </label>
       <input type="text" class="form-control" name = "minPayment" [(ngModel)]="newDebt.minimumMonthlyPayment">
     </div>
     <div class="form-group">
-      <label for="priority" >Priority (Optional)</label>
+      <label for="priority" class="white">Priority (Optional)</label>
       <input type="text" class="form-control" name = "priority" placeholder="{{newDebtType.defaultPriority}}" [(ngModel)]="newDebtType.defaultPriority">
     </div>
     <div class="form-group">
