@@ -6,7 +6,7 @@
   <div class="col-md-4">
 <ngb-accordion  #acc="ngbAccordion" *ngFor="let debt of debts">
 
-	<ngb-panel class="bg-dark" id="toggle-{{debt.name}}" title="{{debt.name}}">
+	<ngb-panel class="bg-dark" id="toggle-{{debt.name}}" title="{{dropdownTitleGenerator(debt)}}">
 		<ng-template ngbPanelContent>
       <div *ngIf = "showDetails">
         <ul>

@@ -32,6 +32,7 @@ import { UserPieChartComponent } from './components/user-pie-chart/user-pie-char
 import { UserCreatedCrComponent } from './components/user-created-cr/user-created-cr.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AdminCrListComponent } from './components/admin-cr-list/admin-cr-list.component';
+import { CurrencyPipe } from '@angular/common';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { AdminCrListComponent } from './components/admin-cr-list/admin-cr-list.c
     NgChartsModule,
     NgbAccordionModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,8 @@ import { DebtLender } from 'src/app/models/debt-lender';
 import { DebtType } from 'src/app/models/debt-type';
 import { DebtTypeService } from 'src/app/services/debt-type.service';
 import { LoggedInCalculatorComponent } from '../logged-in-calculator/logged-in-calculator.component';
+import { ThemeService } from 'ng2-charts';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-logged-in-home',
@@ -39,7 +41,7 @@ export class LoggedInHomeComponent implements OnInit {
 
   selected: null | Debt = null;
 
-  constructor(private type : DebtTypeService, private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
+  constructor(private currencyPipe:CurrencyPipe, private type : DebtTypeService, private lender: DebtLenderService, private debtService:DebtService, private router : Router, private auth: AuthService) { }
 
   updateNewDebtPrio(debtType: DebtType){
     for(let dt of this.types){
@@ -136,6 +138,13 @@ export class LoggedInHomeComponent implements OnInit {
       this.buttonForm = "showForm"
     }
 
+  }
+
+  dropdownTitleGenerator(debt: Debt): string{
+    let paymentAmount = this.calculator.paymentAmountFromMonth(0, debt.name, debt.annualPercentageRate);
+    let name = debt.name;
+
+    return `${name}   ${this.currencyPipe.transform(paymentAmount)}`
   }
 
   showAddDebt(){

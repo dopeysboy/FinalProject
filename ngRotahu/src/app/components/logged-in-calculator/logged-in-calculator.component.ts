@@ -12,6 +12,15 @@ import { CalculatorService } from 'src/app/services/calculator.service';
 })
 export class LoggedInCalculatorComponent implements OnInit {
 
+  debtPaymentPlan : any;
+
+  paymentAmountFromMonth(monthNum: number, debtName: string, apr: number): number{
+    let newTotal = this.debtPaymentPlan[debtName][monthNum + 1];
+    let oldTotal = this.debtPaymentPlan[debtName][monthNum];
+
+    return this.calculatePaymentAmount(newTotal, oldTotal, apr);
+  }
+
   generateDataSets(debtPaymentPlan: any) {
     let fields : string[] = Object.keys(debtPaymentPlan);
 
@@ -90,7 +99,7 @@ export class LoggedInCalculatorComponent implements OnInit {
   calculatePaymentAmount(newTotal: number, oldTotal: number, apr: number): number{
     let paymentAmount : number = 0;
 
-    paymentAmount = ((oldTotal * apr) - ((12 * newTotal) + (12 * oldTotal))) / (12 + apr);
+    paymentAmount = ( (1200 * oldTotal) + (oldTotal * apr) - (1200 * newTotal)) / (1200 + apr);
 
     return paymentAmount;
   }
@@ -98,6 +107,7 @@ export class LoggedInCalculatorComponent implements OnInit {
   reloadChartData(residualIncome: number){
     this.calcService.calculateUserDebtsFromUser().subscribe({
       next: (results) => {
+        this.debtPaymentPlan = results;
         this.generateDataSets(results);
       },
       error: (err) => {
