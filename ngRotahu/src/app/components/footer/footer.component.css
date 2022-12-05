@@ -1,0 +1,12 @@
+.btn-outline-custom {
+  color: #fff;
+  font-size: 18px;
+  background-color: #5face3;
+  background-image: none;
+  border-color: #fff;
+}
+.footer-btn:hover{
+  border-color: black;
+  color: #fff;
+  background-color: #5face3;
+}
