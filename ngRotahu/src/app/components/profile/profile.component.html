@@ -2,8 +2,7 @@
   <div class="col-1"></div>
   <div class="col-3">
     <div class="row">
-      <app-user-pie-chart></app-user-pie-chart>
-      <!-- <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p> -->
+      <p id="initials">{{loggedInUser.firstName.toUpperCase().substring(0,1)}} {{loggedInUser.lastName.toUpperCase().substring(0,1)}}</p>
     </div>
     <div *ngIf="!editDebt && !editExpense && !editIncome && !newDebt && !newExpense && !newIncome">
       <div class="row">
@@ -41,8 +40,8 @@
       </div>
       <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-custom btn-custom-hover col" >Add Resource</button>
-          <button class="btn btn-custom btn-custom-hover col" >View Resources</button>
+          <button class="btn btn-custom btn-custom-hover col" id="resource-btn">Add Resource</button>
+          <button class="btn btn-custom btn-custom-hover col" id="resource-btn">View Resources</button>
         </div>
       </div>
       <div class="row">
@@ -59,27 +58,27 @@
       <form>
         <div class="form-row">
           <div class = "form-group">
-          <label for="name">Name: </label>
-          <input type="text" class="form-control" name="name" [(ngModel)]="editDebt.name" />
-        </div>
-        <div class="form-group">
-          <label for="annualPercentageRate">Annual Percentage Rate: </label>
-          <input type="number" class="form-control" name="annualPercentageRate" [(ngModel)]="editDebt.annualPercentageRate" />
-        </div>
-        <div class="form-group">
-          <label for="minimumMonthlyPayment">Minimum Monthly Payment: </label>
-          <input type="number" class="form-control" name="minimumMonthlyPayment" [(ngModel)]="editDebt.minimumMonthlyPayment" />
-        </div>
-        <div class="form-group">
-          <label for="currentBalance">Current Balance: </label>
-          <input type="number" class="form-control" name="currentBalance" [(ngModel)]="editDebt.currentBalance" />
-        </div>
-        <div class="form-group">
-          <div class="btn-group" role="group" >
-            <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-custom send-hover" (click)="updateDebt(editDebt)">Update</button>
-            <button class="btn btn-custom delete-hover" (click)="deleteDebt(editDebt)">Delete</button>
+            <label for="name">Name: </label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="editDebt.name" />
           </div>
+          <div class="form-group">
+            <label for="annualPercentageRate">Annual Percentage Rate: </label>
+            <input type="number" class="form-control" name="annualPercentageRate" [(ngModel)]="editDebt.annualPercentageRate" />
+          </div>
+          <div class="form-group">
+            <label for="minimumMonthlyPayment">Minimum Monthly Payment: </label>
+            <input type="number" class="form-control" name="minimumMonthlyPayment" [(ngModel)]="editDebt.minimumMonthlyPayment" />
+          </div>
+          <div class="form-group">
+            <label for="currentBalance">Current Balance: </label>
+            <input type="number" class="form-control" name="currentBalance" [(ngModel)]="editDebt.currentBalance" />
+          </div>
+          <div class="form-group">
+            <div class="btn-group" role="group" >
+              <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
+              <button class="btn btn-custom send-hover" (click)="updateDebt(editDebt)">Update</button>
+              <button class="btn btn-custom delete-hover" (click)="deleteDebt(editDebt)">Delete</button>
+            </div>
           </div>
         </div>
       </form>
@@ -88,22 +87,22 @@
       <form>
         <div class="form-row">
           <div class = "form-group">
-          <label for="amount">Amount: </label>
-          <input type="number" class="form-control"  name="amount" [(ngModel)]="editExpense.amount" />
+            <label for="amount">Amount: </label>
+            <input type="number" class="form-control"  name="amount" [(ngModel)]="editExpense.amount" />
+          </div>
+          <div class="form-group">
+            <label for="description">Description: </label>
+            <input type="text" name="description" class="form-control"  [(ngModel)]="editExpense.description" />
+          </div>
+          <div class="form-group">
+            <label for="category">Category: </label>
+            <input type="text" name="category" class="form-control"  [(ngModel)]="editExpense.category.name" />
+          </div>
+          <div class="form-group">
+            <label for="frequency">Frequency: </label>
+            <input type="text" class="form-control" name="frequency" [(ngModel)]="editExpense.frequency.name" />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="description">Description: </label>
-          <input type="text" name="description" class="form-control"  [(ngModel)]="editExpense.description" />
-        </div>
-        <div class="form-group">
-          <label for="category">Category: </label>
-          <input type="text" name="category" class="form-control"  [(ngModel)]="editExpense.category.name" />
-        </div>
-        <div class="form-group">
-          <label for="frequency">Frequency: </label>
-          <input type="text" class="form-control" name="frequency" [(ngModel)]="editExpense.frequency.name" />
-        </div>
-      </div>
         <div class="form-group">
           <div class="btn-group" role="group" >
             <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
@@ -117,28 +116,28 @@
       <form>
         <div class="form-row">
           <div class = "form-group">
-          <label for="amount">Amount: </label>
-          <input type="number" class="form-control" name="amount" [(ngModel)]="editIncome.amount" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description: </label>
-          <input type="text" class="form-control" name="description" [(ngModel)]="editIncome.description" />
-        </div>
-        <div class="form-group">
-          <label for="category">Category: </label>
-          <input type="text" class="form-control" name="category" [(ngModel)]="editIncome.category.name" />
-        </div>
-        <div class="form-group">
-          <label for="frequency">Frequency: </label>
-          <input type="text" class="form-control" name="frequency" [(ngModel)]="editIncome.frequency.name" />
-        </div>
-        <div class="form-group">
-          <div class="btn-group" role="group" >
-            <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-custom send-hover" (click)="updateIncome(editIncome)">Update</button>
-            <button class="btn btn-custom delete-hover" (click)="deleteIncome(editIncome)">Delete</button>
+            <label for="amount">Amount: </label>
+            <input type="number" class="form-control" name="amount" [(ngModel)]="editIncome.amount" />
           </div>
-        </div>
+          <div class="form-group">
+            <label for="description">Description: </label>
+            <input type="text" class="form-control" name="description" [(ngModel)]="editIncome.description" />
+          </div>
+          <div class="form-group">
+            <label for="category">Category: </label>
+            <input type="text" class="form-control" name="category" [(ngModel)]="editIncome.category.name" />
+          </div>
+          <div class="form-group">
+            <label for="frequency">Frequency: </label>
+            <input type="text" class="form-control" name="frequency" [(ngModel)]="editIncome.frequency.name" />
+          </div>
+          <div class="form-group">
+            <div class="btn-group" role="group" >
+              <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
+              <button class="btn btn-custom send-hover" (click)="updateIncome(editIncome)">Update</button>
+              <button class="btn btn-custom delete-hover" (click)="deleteIncome(editIncome)">Delete</button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -146,9 +145,9 @@
       <form>
         <div class="form-row">
           <div class = "form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" name = "name" placeholder="Name" [(ngModel)]="newDebt.name">
-        </div>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name = "name" placeholder="Name" [(ngModel)]="newDebt.name">
+          </div>
         </div>
         <div class="form-group">
           <label  for="lender">Lender </label>
@@ -180,8 +179,8 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
-            <button class = "btn btn-primary" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
+            <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
+            <button class = "btn btn-custom send-hover" (click)="addDebt(newDebt, newDebtLender, newDebtType)">Add New Debt</button>
           </div>
         </div>
       </form>
@@ -190,9 +189,9 @@
       <form>
         <div class="form-row">
           <div class = "form-group">
-          <label for="amount">Amount: </label>
-          <input type="number" class="form-control" name="amount" [(ngModel)]="newExpense.amount" />
-        </div>
+            <label for="amount">Amount: </label>
+            <input type="number" class="form-control" name="amount" [(ngModel)]="newExpense.amount" />
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Description: </label>
@@ -212,8 +211,8 @@
         </div>
         <div class="row">
           <div class="btn-group" role="group" >
-            <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
-            <button class="btn btn-primary" (click)="addExpense(newExpense, newCategory, newFrequency)">Add New Expense</button>
+            <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
+            <button class="btn btn-custom send-hover" (click)="addExpense(newExpense, newCategory, newFrequency)">Add New Expense</button>
           </div>
         </div>
       </form>
@@ -232,6 +231,7 @@
           <div class="form-group">
             <label for="category">Category: </label>
             <select name="category" class="form-control" [(ngModel)]="newCategory.id">
+
               <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
             </select>
             </div>
@@ -243,23 +243,28 @@
           </div>
         <div class="row">
         <div class="btn-group" role="group" >
-          <button class="btn btn-secondary" (click)="showMainOptions()">Cancel</button>
-          <button class="btn btn-primary" (click)="addIncome(newIncome, newCategory, newFrequency)">Add New Income</button>
+          <button class="btn btn-custom cancel-hover" (click)="showMainOptions()">Cancel</button>
+          <button class="btn btn-custom send-hover" (click)="addIncome(newIncome, newCategory, newFrequency)">Add New Income</button>
         </div>
       </div>
 
     </div>
     </form>
   </div>
-  <div class="col-1"></div>
-  <div class="col-7">
+</div>
+<div class="col-1"></div>
+<div class="col-5">
+  <div class="row">
     <div style="display: block">
       <canvas baseChart
         [data]="doughnutChartData"
-
+        [options]="doughnutChartOptions"
         [type]="doughnutChartType">
       </canvas>
     </div>
+  </div>
+  <div class="row">
+    <app-user-pie-chart></app-user-pie-chart>
   </div>
 </div>
 

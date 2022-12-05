@@ -17,7 +17,7 @@ import { DebtLender } from 'src/app/models/debt-lender';
 import { DebtType } from 'src/app/models/debt-type';
 import { DebtLenderService } from 'src/app/services/debt-lender.service';
 import { DebtTypeService } from 'src/app/services/debt-type.service';
-import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { Router } from '@angular/router';
 
 @Component({
@@ -485,6 +485,19 @@ export class ProfileComponent implements OnInit {
       ]
     };
   }
+
+  public doughnutChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'right',
+        labels: {
+          color: 'rgba(255,255,255,1)'
+        }
+      },
+    }
+  };
 
   public doughnutChartType: ChartType = 'doughnut';
 
