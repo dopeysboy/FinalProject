@@ -86,3 +86,7 @@ div.btn-group button {
 #modal-input-group input {
   width: 320px;
 }
+
+#resource-btn {
+  font-size: 16px;
+}
